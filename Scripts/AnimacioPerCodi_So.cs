@@ -23,7 +23,7 @@ public class AnimacioPerCodi_So : AnimacioPerCodi_Base
             if (temps > play && !activat)
             {
                 activat = true;
-                if (so != null) so.Play_Referencia(transform);
+                if (so != null) so.Play(transform);
             }
             if (activat && temps >= 1) activat = false;
         }

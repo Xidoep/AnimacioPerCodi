@@ -615,7 +615,7 @@ public class AnimacioPerCodi : MonoBehaviour
             {
                 played = true;
 
-                if(so != null) so.Play_Referencia(transform);
+                if(so != null) so.Play(transform);
 
                 if(sprite != null)
                 {

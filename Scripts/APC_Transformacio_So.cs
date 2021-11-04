@@ -22,7 +22,7 @@ public class APC_Transformacio_So : APC_Transformacio
     void Play()
     {
         GameObject _tmp = new GameObject();
-        AudioSource _ass = so.Play_Referencia(_tmp.transform);
+        so.Play(_tmp.transform);
         DestroyImmediate(_tmp);
     }
 
@@ -31,7 +31,7 @@ public class APC_Transformacio_So : APC_Transformacio
         if(temps > play && !played)
         {
             played = true;
-            so.Play_Referencia(transform);
+            so.Play(transform);
         }
     }
 
