@@ -72,7 +72,6 @@ public class AnimacioPerCodi : MonoBehaviour
         public ModificacioColor[] colors;
         public ModificacioEvent[] esdeveniments;
         //public AnimacioPerCodi_Transformacio.Transformacions[] prova;
-        APC_Transformacio[] scriptablesActuals;
         //[Range(0, 1)] public float tempsEsdeveniment = 0.8f;
         //bool llançat = false;
 
@@ -98,7 +97,7 @@ public class AnimacioPerCodi : MonoBehaviour
 
         bool finalitzarAlFinalAnimacio;
         bool finalitzat;
-        List<APC_Transformacio> scriptablesTmp;
+
 
         /*public IEnumerator Play(Transform _transform)
         {
