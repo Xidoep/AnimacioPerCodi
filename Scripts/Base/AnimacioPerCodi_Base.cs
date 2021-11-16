@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class AnimacioPerCodi_Base : MonoBehaviour
 {
     public enum Transicio_Tipus { clamp, loop, pingpong, loopPingpong, invertit }
+    [SerializeField] internal bool enEnable = false;
     [SerializeField] Transicio_Tipus transicio;
     [Tooltip("Temps de l'animacio")]
     [SerializeField] float temps = 1;
@@ -22,6 +23,15 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
     internal bool all;
 
     System.Action<float> transformacio;
+    //System.Action onEnd; 
+
+    private void OnEnable()
+    {
+        if (!enEnable)
+            return;
+
+        Play();
+    }
 
     void Transformar(float temps)
     {
@@ -67,6 +77,7 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
 
     public IEnumerator PlayCorrutina()
     {
+        time = Time.unscaledTime;
         if(all)
             transformacio = TransformarAll;
         else transformacio = TransformarOne;
@@ -99,7 +110,6 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
                 invertit = true;
                 break;
         }
-        time = Time.unscaledTime;
         return ActualitzarCorrutina();
     }
 
@@ -136,6 +146,18 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
             {
                 finalitzarAlFinalAnimacio = false;
                 finalitzat = true;
+                if (!pingPong)
+                {
+                    if (!invertit)
+                        Transformar(Mathf.Clamp01(TempsDesdePlay));
+                    else Transformar(1 - Mathf.Clamp01(TempsDesdePlay));
+                }
+                else
+                {
+                    if (TempsDesdePlay < 0.5f)
+                        Transformar(Mathf.Clamp01(TempsDesdePlay) * 2);
+                    else Transformar(2 - (Mathf.Clamp01(TempsDesdePlay) * 2));
+                }
             }
             else
             {

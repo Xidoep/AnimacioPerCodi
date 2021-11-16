@@ -15,17 +15,21 @@ public class AnimacioPerCodi_So : AnimacioPerCodi_Base
         [SerializeField] [Range(0, 1)] float play = 0.5f;
         [SerializeField] So so;
 
-        bool activat = false;
+        bool played;
 
 
         public override void Transformar(Transform transform, float temps)
         {
-            if (temps > play && !activat)
-            {
-                activat = true;
-                if (so != null) so.Play(transform);
-            }
-            if (activat && temps >= 1) activat = false;
+            if (temps < play) played = false;
+            else Play();
+        }
+        void Play()
+        {
+            if (played)
+                return;
+
+            so.Play();
+            played = true;
         }
     }
 }

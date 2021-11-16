@@ -5,7 +5,6 @@ using XS_Utils;
 
 public class Utils_DisableTempsAnimacio : AnimacioPerCodi_Base
 {
-    [SerializeField] bool enEnable;
     //[SerializeField] float tempsDisable;
     //[SerializeField] [Tooltip("Animacio que fara mentre espera a Disoldres")] AnimacioPerCodi.Animacio animacio;
     Countdown countdownDisable;

@@ -21,18 +21,30 @@ public class AnimacioPerCodi_Esdeveniments : AnimacioPerCodi_Base
         [SerializeField] [Range(0, 1)] float play = 0.5f;
         [SerializeField] UnityEvent esdeveniment;
 
-        bool activat = false;
+        bool esdevingut;
 
         public override void Transformar(Transform transform, float temps)
         {
-            if (temps > play && !activat)
+            if (temps < play) esdevingut = false;
+            else Esdevenir();
+            /*if (temps >= play && !esdevingut)
             {
-                activat = true;
+                esdevingut = true;
                 esdeveniment?.Invoke();
             }
-            if (activat && temps >= 1) activat = false;
+            if (esdevingut && temps >= 1) 
+            {
+                esdevingut = false;
+            } */
         }
+        void Esdevenir()
+        {
+            if (esdevingut)
+                return;
 
+            esdeveniment?.Invoke();
+            esdevingut = true;
+        }
     }
 
 }
