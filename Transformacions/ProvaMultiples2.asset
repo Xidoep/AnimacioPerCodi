@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182683339e853d942b862cd35c33b698, type: 3}
   m_Name: ProvaMultiples2
   m_EditorClassIdentifier: 
-  animacions: []
+  animacions:
+  - {fileID: 11400000, guid: fae93ff324d7dcc428e7849548b972a8, type: 2}
+  - {fileID: 11400000, guid: 1a0ca9d1e8068c246836170bff723d32, type: 2}
