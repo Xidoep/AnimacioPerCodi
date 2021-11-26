@@ -187,7 +187,7 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
 
 
     [System.Serializable]
-    public abstract class Transformacions
+    public abstract class Transformacions : ScriptableObject
     {
         public abstract void Transformar(Transform transform, float temps);
     }

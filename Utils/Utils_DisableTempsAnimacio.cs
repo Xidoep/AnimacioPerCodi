@@ -8,7 +8,7 @@ public class Utils_DisableTempsAnimacio : AnimacioPerCodi_Base
     //[SerializeField] float tempsDisable;
     //[SerializeField] [Tooltip("Animacio que fara mentre espera a Disoldres")] AnimacioPerCodi.Animacio animacio;
     Countdown countdownDisable;
-    [SerializeField] AnimacioPerCodi_All.T_All[] transformacions;
+    [SerializeField] Animacio_Multiple[] transformacions;
     internal override Transformacions[] GetTransformacions => transformacions;
 
     private void OnEnable()
