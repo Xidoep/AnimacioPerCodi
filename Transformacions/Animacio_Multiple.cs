@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "XS/AnimacioPerCodi/All", fileName = "All")]
+[CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/All", fileName = "All")]
 public class Animacio_Multiple : AnimacioPerCodi_Base.Transformacions
 {
     [SerializeField] AnimacioPerCodi_Base.Transformacions[] animacions;

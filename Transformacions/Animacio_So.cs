@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "XS/AnimacioPerCodi/So", fileName = "So")]
+[CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/So", fileName = "So")]
 public class Animacio_So : AnimacioPerCodi_Base.Transformacions
 {
     [SerializeField] [Range(0, 1)] float play = 0.5f;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-[CreateAssetMenu(menuName = "XS/AnimacioPerCodi/Color", fileName = "Color")]
+[CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Color", fileName = "Color")]
 public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
 {
     enum Tipus { Color, Alfa }
@@ -73,6 +73,7 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
         switch (tipusIntern)
         {
             case TipusIntern.image:
+                if(image == null) image = transform.GetComponent<Image>();
                 image.color = actual;
                 break;
             case TipusIntern.text:

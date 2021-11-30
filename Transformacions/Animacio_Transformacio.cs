@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable][CreateAssetMenu(menuName = "XS/AnimacioPerCodi/Transformacio", fileName = "Transformacio")]
+[System.Serializable][CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Transformacio", fileName = "Transformacio")]
 public class Animacio_Transformacio : AnimacioPerCodi_Base.Transformacions
 {
     enum Tipus { Moviment, Rotacio, Escalat, RectPosition }

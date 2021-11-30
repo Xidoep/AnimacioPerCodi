@@ -20,7 +20,6 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
     bool looping;
 
     internal int index;
-    internal bool all;
 
     System.Action<float> transformacio;
     //System.Action onEnd; 
@@ -33,14 +32,8 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
         Play();
     }
 
-    void Transformar(float temps)
-    {
-        transformacio.Invoke(temps);
-         //for (int i = 0; i < GetTransformacions.Length; i++) GetTransformacions[i].Transformar(transform, temps);
-    }
-
-    void TransformarAll(float temps) { for (int i = 0; i < GetTransformacions.Length; i++) GetTransformacions[i].Transformar(transform, temps); }
-    void TransformarOne(float temps) => GetTransformacions[index].Transformar(transform, temps);
+    void Transformar(float temps) => transformacio.Invoke(temps);
+    internal virtual void TransformarAll(float temps) { for (int i = 0; i < GetTransformacions.Length; i++) GetTransformacions[i].Transformar(transform, temps); }
 
     internal float GetTemps() => temps;
     public void Play()
@@ -48,39 +41,24 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
         if (!gameObject.activeSelf)
             return;
 
-        all = true;
         index = 0;
 
         StartCoroutine(PlayCorrutina());
     }
-    public void Play(int animacio)
+    public void Play(float temps)
     {
         if (!gameObject.activeSelf)
             return;
 
-        all = false;
-        index = animacio;
-
-        StartCoroutine(PlayCorrutina());
-    }
-    public void Play(int animacio, float temps)
-    {
-        if (!gameObject.activeSelf)
-            return;
-
-        all = false;
         this.temps = temps;
-        index = animacio;
+        index = 0;
 
         StartCoroutine(PlayCorrutina());
     }
-
     public IEnumerator PlayCorrutina()
     {
         time = Time.unscaledTime;
-        if(all)
-            transformacio = TransformarAll;
-        else transformacio = TransformarOne;
+        transformacio = TransformarAll;
 
         switch (transicio)
         {

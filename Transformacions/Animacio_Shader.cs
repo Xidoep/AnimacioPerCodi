@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-[CreateAssetMenu(menuName = "XS/AnimacioPerCodi/Shader", fileName = "Shader")]
+[CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Shader", fileName = "Shader")]
 public class Animacio_Shader : AnimacioPerCodi_Base.Transformacions
 {
     enum Tipus { Float, Vector }

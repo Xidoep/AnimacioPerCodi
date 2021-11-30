@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "XS/AnimacioPerCodi/BlendShape", fileName = "BlendShape")]
+[CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/BlendShape", fileName = "BlendShape")]
 public class Animacio_BlendShape : AnimacioPerCodi_Base.Transformacions
 {
     [SerializeField] int blendShapeIndex;
