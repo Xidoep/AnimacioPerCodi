@@ -16,6 +16,15 @@ public class Animacio_Shader : AnimacioPerCodi_Base.Transformacions
     [SerializeField] bool iniciDinamic;
     [SerializeField] string propietat;
     [SerializeField] Vector4 inici, final;
+    int propietatID = -1;
+    int Propietat
+    {
+        get
+        {
+            if (propietatID == -1) propietatID = Shader.PropertyToID(propietat);
+            return propietatID;
+        }
+    }
 
     enum TipusIntern { nul, image, text, spriteRenderer, tmpText, meshRenderer, skinnedMeshRenderer }
     TipusIntern tipusIntern;
@@ -54,11 +63,11 @@ public class Animacio_Shader : AnimacioPerCodi_Base.Transformacions
         switch (tipus)
         {
             case Tipus.Float:
-                GetMaterial.SetFloat(propietat, corba.Evaluate(temps));
+                GetMaterial.SetFloat(Propietat, corba.Evaluate(temps));
                 break;
             case Tipus.Vector:
                 actual = Vector4.LerpUnclamped(inici, final, corba.Evaluate(temps));
-                GetMaterial.SetVector(propietat, actual);
+                GetMaterial.SetVector(Propietat, actual);
                 break;
         }
 
@@ -94,17 +103,17 @@ public class Animacio_Shader : AnimacioPerCodi_Base.Transformacions
         switch (tipusIntern)
         {
             case TipusIntern.image:
-                return image.material.GetVector(propietat);
+                return image.material.GetVector(Propietat);
             case TipusIntern.text:
-                return text.material.GetVector(propietat);
+                return text.material.GetVector(Propietat);
             case TipusIntern.spriteRenderer:
-                return spriteRenderer.material.GetVector(propietat);
+                return spriteRenderer.material.GetVector(Propietat);
             case TipusIntern.tmpText:
-                return tmpText.material.GetVector(propietat);
+                return tmpText.material.GetVector(Propietat);
             case TipusIntern.meshRenderer:
-                return meshRenderer.material.GetVector(propietat);
+                return meshRenderer.material.GetVector(Propietat);
             case TipusIntern.skinnedMeshRenderer:
-                return skinnedMeshRenderer.material.GetVector(propietat);
+                return skinnedMeshRenderer.material.GetVector(Propietat);
             default:
                 return new Vector4();
         }
