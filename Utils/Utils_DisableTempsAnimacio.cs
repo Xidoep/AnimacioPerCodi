@@ -7,21 +7,13 @@ public class Utils_DisableTempsAnimacio : AnimacioPerCodi_Base
 {
     //[SerializeField] float tempsDisable;
     //[SerializeField] [Tooltip("Animacio que fara mentre espera a Disoldres")] AnimacioPerCodi.Animacio animacio;
-    Countdown countdownDisable;
     [SerializeField] Transformacions[] transformacions;
     internal override Transformacions[] GetTransformacions => transformacions;
+    Countdown countdownDisable;
 
     private void OnEnable()
     {
         countdownDisable = new Countdown(GetTemps() + 0.01f, HideGameObject);
-
-        if (!enEnable)
-            return;
-
-        if (GetTemps() == 0)
-            return;
-
-        Disable(GetTemps() + 0.01f);
     }
 
     private void Update()

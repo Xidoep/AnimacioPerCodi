@@ -6,8 +6,17 @@ using UnityEngine.Events;
 
 public class AnimacioPerCodi_Esdeveniment : AnimacioPerCodi_Base
 {
+    [SerializeField] bool enEnable;
     internal override Transformacions[] GetTransformacions => null;
     [SerializeField] ModificacioEvent[] transformacions;
+
+    private void OnEnable()
+    {
+        if (!enEnable)
+            return;
+
+        Play();
+    }
 
     internal override void TransformarAll(float temps) 
     {

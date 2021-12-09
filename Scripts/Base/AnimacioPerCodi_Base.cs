@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class AnimacioPerCodi_Base : MonoBehaviour
 {
     public enum Transicio_Tipus { clamp, loop, pingpong, loopPingpong, invertit }
-    [SerializeField] internal bool enEnable = false;
     [SerializeField] Transicio_Tipus transicio;
     [Tooltip("Temps de l'animacio")]
     [SerializeField] float temps = 1;
@@ -22,15 +21,7 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
     internal int index;
 
     System.Action<float> transformacio;
-    //System.Action onEnd; 
 
-    private void OnEnable()
-    {
-        if (!enEnable)
-            return;
-
-        Play();
-    }
 
     void Transformar(float temps) => transformacio.Invoke(temps);
     internal virtual void TransformarAll(float temps) { for (int i = 0; i < GetTransformacions.Length; i++) GetTransformacions[i].Transformar(transform, temps); }
