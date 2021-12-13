@@ -28,17 +28,28 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
     SkinnedMeshRenderer skinnedMeshRenderer;
 
     Color actual;
+    Transform transform;
+
+    private void OnEnable()
+    {
+        transform = null;
+    }
 
     public override void Transformar(Transform transform, float temps)
     {
+        if(this.transform != transform)
+        {
+            this.transform = transform;
+
+            image = this.transform.GetComponent<Image>();
+            text = this.transform.GetComponent<Text>();
+            spriteRenderer = this.transform.GetComponent<SpriteRenderer>();
+            tmpText = this.transform.GetComponent<TMP_Text>();
+            meshRenderer = this.transform.GetComponent<MeshRenderer>();
+        }
+
         if (tipusIntern == TipusIntern.nul)
         {
-            image = transform.GetComponent<Image>();
-            text = transform.GetComponent<Text>();
-            spriteRenderer = transform.GetComponent<SpriteRenderer>();
-            tmpText = transform.GetComponent<TMP_Text>();
-            meshRenderer = transform.GetComponent<MeshRenderer>();
-
             if (image != null) tipusIntern = TipusIntern.image;
             if (text != null) tipusIntern = TipusIntern.text;
             if (spriteRenderer != null) tipusIntern = TipusIntern.spriteRenderer;
@@ -73,7 +84,7 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
         switch (tipusIntern)
         {
             case TipusIntern.image:
-                if(image == null) image = transform.GetComponent<Image>();
+                if(image) image = this.transform.GetComponent<Image>();
                 image.color = actual;
                 break;
             case TipusIntern.text:
@@ -114,4 +125,5 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
                 return Color.magenta;
         }
     }
+
 }

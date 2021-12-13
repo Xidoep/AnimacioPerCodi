@@ -18,10 +18,7 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
     bool finalitzat;
     bool looping;
 
-    internal int index;
-
     System.Action<float> transformacio;
-
 
     void Transformar(float temps) => transformacio.Invoke(temps);
     internal virtual void TransformarAll(float temps) { for (int i = 0; i < GetTransformacions.Length; i++) GetTransformacions[i].Transformar(transform, temps); }
@@ -32,20 +29,22 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
         if (!gameObject.activeSelf)
             return;
 
-        index = 0;
-
         StartCoroutine(PlayCorrutina());
     }
     public void Play(float temps)
     {
-        if (!gameObject.activeSelf)
-            return;
-
         this.temps = temps;
-        index = 0;
-
-        StartCoroutine(PlayCorrutina());
+        Play();
     }
+    public void Play(float temps, Transicio_Tipus transicio)
+    {
+        this.temps = temps;
+        this.transicio = transicio;
+        Play();
+    }
+    
+
+
     public IEnumerator PlayCorrutina()
     {
         time = Time.unscaledTime;
