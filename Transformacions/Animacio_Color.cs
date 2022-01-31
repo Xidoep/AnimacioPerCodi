@@ -84,7 +84,7 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
         switch (tipusIntern)
         {
             case TipusIntern.image:
-                if(image) image = this.transform.GetComponent<Image>();
+                if(image == null) image = this.transform.GetComponent<Image>();
                 image.color = actual;
                 break;
             case TipusIntern.text:
