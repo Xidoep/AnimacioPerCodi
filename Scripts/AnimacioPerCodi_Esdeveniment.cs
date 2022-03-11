@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class AnimacioPerCodi_Esdeveniment : AnimacioPerCodi_Base
 {
     [SerializeField] bool enEnable;
-    internal override Transformacions[] GetTransformacions => null;
+    internal override Transformacions[] GetTransformacions { get => null; set{} }
     [SerializeField] ModificacioEvent[] transformacions;
 
     private void OnEnable()

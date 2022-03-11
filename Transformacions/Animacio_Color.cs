@@ -17,7 +17,7 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
     [SerializeField] Color inici, final;
     [SerializeField] [Tooltip("Només per tipus MeshRenderer i SkinnedMeshRenderer")] string propietat;
 
-    enum TipusIntern { nul, image, text, spriteRenderer, tmpText, meshRenderer, skinnedMeshRenderer }
+    enum TipusIntern { nul, image, text, spriteRenderer, tmpText, meshRenderer, skinnedMeshRenderer, toggle }
     TipusIntern tipusIntern;
 
     Image image;
@@ -26,6 +26,8 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
     TMP_Text tmpText;
     MeshRenderer meshRenderer;
     SkinnedMeshRenderer skinnedMeshRenderer;
+    Toggle toggle;
+    Image imageToggle;
 
     Color actual;
     Transform transform;
@@ -46,6 +48,7 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
             spriteRenderer = this.transform.GetComponent<SpriteRenderer>();
             tmpText = this.transform.GetComponent<TMP_Text>();
             meshRenderer = this.transform.GetComponent<MeshRenderer>();
+            toggle = this.transform.GetComponent<Toggle>();
         }
 
         if (tipusIntern == TipusIntern.nul)
@@ -56,6 +59,12 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
             if (tmpText != null) tipusIntern = TipusIntern.tmpText;
             if (meshRenderer != null) tipusIntern = TipusIntern.meshRenderer;
             if (skinnedMeshRenderer != null) tipusIntern = TipusIntern.skinnedMeshRenderer;
+            if (toggle != null) 
+            {
+                tipusIntern = TipusIntern.toggle;
+                imageToggle = this.transform.GetComponentInChildren<Image>();
+            } 
+
         }
 
         if (iniciDinamic && corba.Evaluate(temps) == 0) actual = GetIniciDinamic();
@@ -102,6 +111,10 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
             case TipusIntern.skinnedMeshRenderer:
                 skinnedMeshRenderer.material.SetColor(propietat, actual);
                 break;
+            case TipusIntern.toggle:
+                if (imageToggle == null) imageToggle = this.transform.GetComponentInChildren<Image>();
+                imageToggle.color = actual;
+                break;
         }
     }
 
@@ -121,6 +134,8 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
                 return meshRenderer.material.GetColor(propietat);
             case TipusIntern.skinnedMeshRenderer:
                 return skinnedMeshRenderer.material.GetColor(propietat);
+            case TipusIntern.toggle:
+                return imageToggle.color;
             default:
                 return Color.magenta;
         }

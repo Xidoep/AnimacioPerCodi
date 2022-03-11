@@ -23,7 +23,7 @@ public class AnimacioPerCodi_Button : AnimacioPerCodi_Base, IPointerEnterHandler
 
 
     Transformacions[] transformacionsSeleccionades;
-    internal override Transformacions[] GetTransformacions => transformacionsSeleccionades;
+    internal override Transformacions[] GetTransformacions { get => transformacionsSeleccionades; set => transformacionsSeleccionades = value; }
 
     void Play(Animacio animacio)
     {
@@ -31,6 +31,8 @@ public class AnimacioPerCodi_Button : AnimacioPerCodi_Base, IPointerEnterHandler
         transformacionsSeleccionades = animacio.transformacions;
         Play(animacio.temps, animacio.transicio);
     }
+    public void OnClick() => Play(onClick);
+
 
     //NAVIGATION
 
@@ -48,7 +50,6 @@ public class AnimacioPerCodi_Button : AnimacioPerCodi_Base, IPointerEnterHandler
         Play(onClick);
         coroutine = PlayDelayed(GetTemps(), loopSelected);
     }
-
     //POINTER
     public void OnPointerEnter(PointerEventData eventData) 
     {
@@ -75,7 +76,8 @@ public class AnimacioPerCodi_Button : AnimacioPerCodi_Base, IPointerEnterHandler
 
 
 
-    public Coroutine PlayDelayed(float delay, Animacio animacio)
+
+    Coroutine PlayDelayed(float delay, Animacio animacio)
     {
         waitForSeconds = new WaitForSecondsRealtime(delay);
         return StartCoroutine(PlayDelayed(animacio));

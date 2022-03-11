@@ -8,7 +8,7 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
     [SerializeField] Transicio_Tipus transicio;
     [Tooltip("Temps de l'animacio")]
     [SerializeField] float temps = 1;
-    internal abstract Transformacions[] GetTransformacions { get; }
+    internal abstract Transformacions[] GetTransformacions { get; set; }
 
     bool pingPong;
     bool invertit;
@@ -42,7 +42,10 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
         this.transicio = transicio;
         Play();
     }
-    
+    public void Play(Transformacions transformacions)
+    {
+        GetTransformacions = new Transformacions[] { transformacions };
+    }
 
 
     public IEnumerator PlayCorrutina()
