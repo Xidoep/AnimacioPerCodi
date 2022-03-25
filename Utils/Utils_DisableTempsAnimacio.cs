@@ -9,11 +9,11 @@ public class Utils_DisableTempsAnimacio : AnimacioPerCodi_Base
     //[SerializeField] [Tooltip("Animacio que fara mentre espera a Disoldres")] AnimacioPerCodi.Animacio animacio;
     [SerializeField] Transformacions[] transformacions;
     internal override Transformacions[] GetTransformacions { get => transformacions; set => transformacions = value; }
-    Countdown countdownDisable;
+    XS_Countdown countdownDisable;
 
     private void OnEnable()
     {
-        countdownDisable = new Countdown(GetTemps() + 0.01f, HideGameObject);
+        countdownDisable = new XS_Countdown(GetTemps() + 0.01f, HideGameObject);
     }
 
     private void Update()
