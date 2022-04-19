@@ -7,6 +7,28 @@ using TMPro;
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Color", fileName = "Color")]
 public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
 {
+    public override AnimacioPerCodi_Base.Transformacions Create()
+    {
+        Animacio_Color t = (Animacio_Color)ScriptableObject.CreateInstance<Animacio_Color>();
+        t.tipus = tipus;
+        t.corba = corba;
+        t.iniciDinamic = iniciDinamic;
+        t.inici = inici;
+        t.final = final;
+        t.propietat = propietat;
+        t.image = null;
+        t.text = null;
+        t.spriteRenderer = null;
+        t.tmpText = null;
+        t.meshRenderer = null;
+        t.skinnedMeshRenderer = null;
+        t.toggle = null;
+        t.imageToggle = null;
+        t.actual = iniciDinamic ? GetIniciDinamic() : inici;
+        t.transform = null;
+        return t;
+    }
+
     enum Tipus { Color, Alfa }
 
     [SerializeField] Tipus tipus;
@@ -48,6 +70,7 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
             spriteRenderer = this.transform.GetComponent<SpriteRenderer>();
             tmpText = this.transform.GetComponent<TMP_Text>();
             meshRenderer = this.transform.GetComponent<MeshRenderer>();
+            skinnedMeshRenderer = this.transform.GetComponent<SkinnedMeshRenderer>();
             toggle = this.transform.GetComponent<Toggle>();
         }
 

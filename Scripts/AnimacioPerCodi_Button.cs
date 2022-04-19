@@ -23,7 +23,7 @@ public class AnimacioPerCodi_Button : AnimacioPerCodi_Base, IPointerEnterHandler
 
 
     Transformacions[] transformacionsSeleccionades;
-    internal override Transformacions[] GetTransformacions { get => transformacionsSeleccionades; set => transformacionsSeleccionades = value; }
+    internal override Transformacions[] GetTransformacions { get => GetInstancedTransformacions(transformacionsSeleccionades); set => transformacionsSeleccionades = value; }
 
     void Play(Animacio animacio)
     {

@@ -7,6 +7,25 @@ using TMPro;
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Shader", fileName = "Shader")]
 public class Animacio_Shader : AnimacioPerCodi_Base.Transformacions
 {
+    public override AnimacioPerCodi_Base.Transformacions Create()
+    {
+        Animacio_Shader t = (Animacio_Shader)ScriptableObject.CreateInstance<Animacio_Shader>();
+        t.tipus = tipus;
+        t.corba = corba;
+        t.iniciDinamic = iniciDinamic;
+        t.propietat = propietat;
+        t.inici = inici;
+        t.final = final;
+        t.propietatID = -1;
+        t.image = null;
+        t.text = null;
+        t.spriteRenderer = null;
+        t.tmpText = null;
+        t.meshRenderer = null;
+        t.skinnedMeshRenderer = null;
+        if (iniciDinamic) t.actual = actual = GetIniciDinamic();
+        return t;
+    }
     enum Tipus { Float, Vector }
 
     [SerializeField] Tipus tipus;
@@ -47,6 +66,7 @@ public class Animacio_Shader : AnimacioPerCodi_Base.Transformacions
             spriteRenderer = transform.GetComponent<SpriteRenderer>();
             tmpText = transform.GetComponent<TMP_Text>();
             meshRenderer = transform.GetComponent<MeshRenderer>();
+            skinnedMeshRenderer = transform.GetComponent<SkinnedMeshRenderer>();
 
             if (image != null) tipusIntern = TipusIntern.image;
             if (text != null) tipusIntern = TipusIntern.text;

@@ -9,6 +9,15 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
     [Tooltip("Temps de l'animacio")]
     [SerializeField] float temps = 1;
     internal abstract Transformacions[] GetTransformacions { get; set; }
+    internal Transformacions[] GetInstancedTransformacions(Transformacions[] transformacions)
+    {
+        Transformacions[] _transformacions = new Transformacions[transformacions.Length];
+        for (int i = 0; i < transformacions.Length; i++)
+        {
+            _transformacions[i] = transformacions[i].Create();
+        }
+        return _transformacions;
+    }
 
     bool pingPong;
     bool invertit;
@@ -161,6 +170,7 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
     public abstract class Transformacions : ScriptableObject
     {
         public abstract void Transformar(Transform transform, float temps);
+        public abstract Transformacions Create();
     }
 }
 

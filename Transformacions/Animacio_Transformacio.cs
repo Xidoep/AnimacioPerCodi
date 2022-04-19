@@ -5,6 +5,17 @@ using UnityEngine;
 [System.Serializable][CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Transformacio", fileName = "Transformacio")]
 public class Animacio_Transformacio : AnimacioPerCodi_Base.Transformacions
 {
+    public override AnimacioPerCodi_Base.Transformacions Create()
+    {
+        Animacio_Transformacio t = (Animacio_Transformacio)ScriptableObject.CreateInstance<Animacio_Transformacio>();
+        t.tipus = tipus;
+        t.corba = corba;
+        t.iniciDinamic = iniciDinamic;
+        t.inici = inici;
+        t.final = final;
+        t.rectTransform = rectTransform;
+        return t;
+    }
     enum Tipus { Moviment, Rotacio, Escalat, RectPosition }
 
     [SerializeField] Tipus tipus;
