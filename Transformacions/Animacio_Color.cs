@@ -16,6 +16,7 @@ public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
         t.inici = inici;
         t.final = final;
         t.propietat = propietat;
+        t.tipusIntern = TipusIntern.nul;
         t.image = null;
         t.text = null;
         t.spriteRenderer = null;
