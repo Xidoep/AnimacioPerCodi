@@ -16,7 +16,7 @@ public class Animacio_Transformacio : AnimacioPerCodi_Base.Transformacions
         t.rectTransform = rectTransform;
         return t;
     }
-    enum Tipus { Moviment, Rotacio, Escalat, RectPosition }
+    enum Tipus { Moviment, Rotacio, Escalat, RectPosition, RectRotacio }
 
     [SerializeField] Tipus tipus;
     [SerializeField] AnimationCurve corba = new AnimationCurve();
@@ -50,6 +50,10 @@ public class Animacio_Transformacio : AnimacioPerCodi_Base.Transformacions
                 if (rectTransform == null) rectTransform = transform.GetComponent<RectTransform>();
                 rectTransform.anchoredPosition = Vector2.LerpUnclamped(actual, final, corba.Evaluate(temps));
                 break;
+            case Tipus.RectRotacio:
+                if (rectTransform == null) rectTransform = transform.GetComponent<RectTransform>();
+                rectTransform.rotation = Quaternion.LerpUnclamped(Quaternion.Euler(actual), Quaternion.Euler(final), corba.Evaluate(temps));
+                break;
         }
     }
 
@@ -66,6 +70,9 @@ public class Animacio_Transformacio : AnimacioPerCodi_Base.Transformacions
             case Tipus.RectPosition:
                 if (rectTransform == null) rectTransform = transform.GetComponent<RectTransform>();
                 return inici = rectTransform.anchoredPosition;
+            case Tipus.RectRotacio:
+                if (rectTransform == null) rectTransform = transform.GetComponent<RectTransform>();
+                return inici = rectTransform.eulerAngles;
             default:
                 return Vector3.zero;
         }

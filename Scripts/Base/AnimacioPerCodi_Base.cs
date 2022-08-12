@@ -54,6 +54,20 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
     public void Play(Transformacions transformacions)
     {
         GetTransformacions = new Transformacions[] { transformacions };
+        Play();
+    }
+    public void Play(Transformacions transformacions, Transicio_Tipus transicio)
+    {
+        this.transicio = transicio;
+        GetTransformacions = new Transformacions[] { transformacions };
+        Play();
+    }
+    public void Play(Transformacions transformacions, Transicio_Tipus transicio, float temps)
+    {
+        this.temps = temps;
+        this.transicio = transicio;
+        GetTransformacions = new Transformacions[] { transformacions };
+        Play();
     }
 
 
