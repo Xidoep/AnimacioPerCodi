@@ -20,12 +20,12 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
     }
 
     bool pingPong;
+    bool looping;
     bool invertit;
     float time;
     float TempsDesdePlay { get => (Time.unscaledTime - time) / temps; set => time = value; }
     bool finalitzarAlFinalAnimacio;
     bool finalitzat;
-    bool looping;
 
     System.Action<float> transformacio;
 
@@ -180,11 +180,6 @@ public abstract class AnimacioPerCodi_Base : MonoBehaviour
 
 
 
-    [System.Serializable]
-    public abstract class Transformacions : ScriptableObject
-    {
-        public abstract void Transformar(Transform transform, float temps);
-        public abstract Transformacions Create();
-    }
+
 }
 

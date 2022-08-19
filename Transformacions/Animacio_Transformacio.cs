@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable][CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Transformacio", fileName = "Transformacio")]
-public class Animacio_Transformacio : AnimacioPerCodi_Base.Transformacions
+[System.Serializable]
+[CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Transformacio", fileName = "Transformacio")]
+public class Animacio_Transformacio : Transformacions
 {
-    public override AnimacioPerCodi_Base.Transformacions Create()
+    public override Transformacions Create()
     {
         Animacio_Transformacio t = (Animacio_Transformacio)ScriptableObject.CreateInstance<Animacio_Transformacio>();
         t.tipus = tipus;
@@ -29,6 +30,7 @@ public class Animacio_Transformacio : AnimacioPerCodi_Base.Transformacions
     RectTransform rectTransform;
 
     Vector3 actual;
+
 
     public override void Transformar(Transform transform, float temps)
     {

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Shader", fileName = "Shader")]
-public class Animacio_Shader : AnimacioPerCodi_Base.Transformacions
+public class Animacio_Shader : Transformacions
 {
-    public override AnimacioPerCodi_Base.Transformacions Create()
+    public override Transformacions Create()
     {
         Animacio_Shader t = (Animacio_Shader)ScriptableObject.CreateInstance<Animacio_Shader>();
         t.tipus = tipus;

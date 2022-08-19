@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/So", fileName = "So")]
-public class Animacio_So : AnimacioPerCodi_Base.Transformacions
+public class Animacio_So : Transformacions
 {
-    public override AnimacioPerCodi_Base.Transformacions Create()
+    public override Transformacions Create()
     {
         Animacio_So t = (Animacio_So)ScriptableObject.CreateInstance<Animacio_So>();
         t.play = play;

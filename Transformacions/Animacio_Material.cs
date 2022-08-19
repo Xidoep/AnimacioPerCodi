@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Material", fileName = "Material")]
-public class Animacio_Material : AnimacioPerCodi_Base.Transformacions
+public class Animacio_Material : Transformacions
 {
-    public override AnimacioPerCodi_Base.Transformacions Create()
+    public override Transformacions Create()
     {
         Animacio_Material t = (Animacio_Material)ScriptableObject.CreateInstance<Animacio_Material>();
         t.corba = corba;

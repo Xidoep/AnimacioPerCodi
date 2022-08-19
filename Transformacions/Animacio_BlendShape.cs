@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/BlendShape", fileName = "BlendShape")]
-public class Animacio_BlendShape : AnimacioPerCodi_Base.Transformacions
+public class Animacio_BlendShape : Transformacions
 {
-    public override AnimacioPerCodi_Base.Transformacions Create()
+    public override Transformacions Create()
     {
         Animacio_BlendShape t = (Animacio_BlendShape)ScriptableObject.CreateInstance<Animacio_BlendShape>();
         t.blendShapeIndex = blendShapeIndex;

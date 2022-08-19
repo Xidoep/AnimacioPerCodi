@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Color", fileName = "Color")]
-public class Animacio_Color : AnimacioPerCodi_Base.Transformacions
+public class Animacio_Color : Transformacions
 {
-    public override AnimacioPerCodi_Base.Transformacions Create()
+    public override Transformacions Create()
     {
         Animacio_Color t = (Animacio_Color)ScriptableObject.CreateInstance<Animacio_Color>();
         t.tipus = tipus;

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/All", fileName = "All")]
-public class Animacio_Multiple : AnimacioPerCodi_Base.Transformacions
+public class Animacio_Multiple : Transformacions
 {
-    public override AnimacioPerCodi_Base.Transformacions Create()
+    public override Transformacions Create()
     {
         Animacio_Multiple t = (Animacio_Multiple)ScriptableObject.CreateInstance<Animacio_Multiple>();
         t.animacions = animacions;
         return t;
     }
 
-    [SerializeField] AnimacioPerCodi_Base.Transformacions[] animacions;
+    [SerializeField] Transformacions[] animacions;
     /*public Animacio_Transformacio[] transformacio;
     public Animacio_Color[] color;
     public Animacio_Shader[] shader;
