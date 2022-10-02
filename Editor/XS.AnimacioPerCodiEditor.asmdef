@@ -1,0 +1,18 @@
+{
+    "name": "XS.AnimacioPerCodiEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4270073c412aa7648a02fc93ab275391"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
