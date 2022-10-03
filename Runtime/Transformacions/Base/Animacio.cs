@@ -30,6 +30,13 @@ public class Animacio
     public void Stop() => lector.Stop(false);
     public void Stop_OnAnimationEnding(Transform transform) => transform.GetComponent<Lector>().Stop(true);
     public void Stop_OnAnimationEnding() => lector.Stop(true);
+
+    
 }
 
 public enum Transicio { clamp, loop, pingpong, loopPingpong, invertit }
+
+public static class Corba
+{
+    public static AnimationCurve Linear() => new AnimationCurve(new Keyframe[] { new Keyframe(0, 0), new Keyframe(1, 1) });
+}

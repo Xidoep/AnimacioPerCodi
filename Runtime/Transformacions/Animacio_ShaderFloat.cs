@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Animacio_RectPosicio : Animacio
+public class Animacio_ShaderFloat : Animacio
 {
-    public Animacio_RectPosicio() { }
-    public Animacio_RectPosicio(Vector3 inici, Vector3 final, bool dinamic = false)
+    public Animacio_ShaderFloat() { }
+    public Animacio_ShaderFloat(string propietat, float inici, float final, bool dinamic = false)
     {
         corba = Corba.Linear();
+        this.propietat = propietat;
         this.inici = inici;
         this.final = final;
         this.dinamic = dinamic;
@@ -16,10 +17,11 @@ public class Animacio_RectPosicio : Animacio
 
     [SerializeField] protected AnimationCurve corba = new AnimationCurve();
     [Space(10)]
-    [SerializeField] Vector2 inici;
-    [SerializeField] Vector2 final;
+    [SerializeField] string propietat;
+    [SerializeField] float inici, final;
     [Space(10)]
     [SerializeField] bool dinamic;
+
 
     public override void Transformar(object objectiu, float frame)
     {
@@ -29,15 +31,14 @@ public class Animacio_RectPosicio : Animacio
 
     void Dinamic(object objectiu, float frame)
     {
-        Vector2 inici = Vector2.zero;
+        float inici = 0;
 
-        if (frame == 0) inici = ((RectTransform)objectiu).anchoredPosition;
+        if (frame == 0) inici = ((MeshRenderer)objectiu).material.GetFloat(propietat);
 
         Accio(inici, objectiu, frame);
     }
-
-    void Accio(Vector3 inici, object objectiu, float frame)
+    void Accio(float inici, object objectiu, float frame)
     {
-        ((RectTransform)objectiu).anchoredPosition = Vector2.LerpUnclamped(inici, final, corba.Evaluate(frame));
+        ((MeshRenderer)objectiu).material.SetFloat(propietat, Mathf.LerpUnclamped(inici, final, corba.Evaluate(frame)));
     }
 }

@@ -8,14 +8,13 @@ public class Animacio_Posicio : Animacio
     public Animacio_Posicio() { }
     public Animacio_Posicio(Vector3 inici, Vector3 final, bool local = true, bool dinamic = false)
     {
-        corba = new AnimationCurve(new Keyframe[] { new Keyframe(0, 0), new Keyframe(1, 1) });
+        corba = Corba.Linear();
         this.inici = inici;
         this.final = final;
         this.local = local;
         this.dinamic = dinamic;
     }
 
-    [Header("Posicio")]
     [SerializeField] protected AnimationCurve corba = new AnimationCurve();
     [Space(10)]
     [SerializeField] Vector3 inici;
@@ -24,20 +23,28 @@ public class Animacio_Posicio : Animacio
     [SerializeField] bool local;
     [SerializeField] bool dinamic;
 
-    protected override void AddOrGet<T>(Transform transform) => base.AddOrGet<LectorTransform>(transform);
+
     public override void Transformar(object objectiu, float frame)
     {
-        if (dinamic && frame == 0)
-        {
-            if (!local)
-                inici = ((Transform)objectiu).position;
-            else inici = ((Transform)objectiu).localPosition;
-        }
+        if (!dinamic) Accio(inici, objectiu, frame);
+        else Dinamic(objectiu, frame);
+    }
 
+    void Dinamic(object objectiu, float frame)
+    {
+        Vector3 inici = Vector3.zero;
+
+        if (!local)
+            inici = ((Transform)objectiu).position;
+        else inici = ((Transform)objectiu).localPosition;
+
+        Accio(inici, objectiu, frame);
+    }
+    void Accio(Vector3 inici, object objectiu, float frame)
+    {
         if (!local)
             ((Transform)objectiu).position = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
         else ((Transform)objectiu).localPosition = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
     }
-
 }
 
