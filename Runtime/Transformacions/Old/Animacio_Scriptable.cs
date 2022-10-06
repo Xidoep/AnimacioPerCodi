@@ -1,8 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-[CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Scriptable", fileName = "Scriptable")]
+[CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Animacio", fileName = "Animacio")]
 public class Animacio_Scriptable : ScriptableObject
 {
     [SerializeField] Transicio transicio;
@@ -15,22 +16,15 @@ public class Animacio_Scriptable : ScriptableObject
 
     public List<Animacio> Animacions => animacions;
 
-    public void Play(Transform transform)
-    {
-        for (int i = 0; i < animacions.Count; i++)
-        {
-            animacions[i].Play(transform, temps, transicio);
-        }
-    }
-    public Lector Play_GetLector(Transform transform)
-    {
-        lector = animacions[0].Play_GetLector(transform, temps, transicio);
-        for (int i = 1; i < animacions.Count; i++)
-        {
-            animacions[i].Play(transform, temps, transicio);
-        }
-        return lector;
-    }
+    public void Play(GameObject gameObject) { for (int i = 0; i < animacions.Count; i++){ animacions[i].Play(gameObject, temps, transicio); } }
+    public void Play(Image image) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(image.gameObject, temps, transicio); } }
+    public void Play(Text text) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(text.gameObject, temps, transicio); } }
+    public void Play(SpriteRenderer spriteRenderer) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(spriteRenderer.gameObject, temps, transicio); } }
+    public void Play(TMP_Text text) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(text.gameObject, temps, transicio); } }
+    public void Play(Toggle toggle) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(toggle.gameObject, temps, transicio); } }
+
+
+
     public void Continue(Transform transform) 
     {
         transform.GetComponent<Lector>().Continue();

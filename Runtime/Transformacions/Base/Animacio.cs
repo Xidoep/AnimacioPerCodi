@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public class Animacio
@@ -12,16 +14,26 @@ public class Animacio
     }
     public virtual void Transformar(object objectiu, float frame) { }
 
-    public void Play(Transform transform, float temps, Transicio transicio)
+
+
+    public void Play(GameObject gameObject, float temps, Transicio transicio)
     {
-        if (lector == null)
-            transform.gameObject.AddComponent<Lector>().Setup(Transformar, temps, transicio).Play();
-        else lector.Setup(Transformar, temps, transicio).Play();
+        if (lector == null) lector = gameObject.AddComponent<Lector>();
+        SetupLector(temps, transicio);
     }
 
-    public Lector Play_GetLector(Transform transform, float temps, Transicio transicio)
+    public void Play(Image image, float temps, Transicio transicio)
     {
-        Play(transform, temps, transicio);
+        if (lector == null) lector = image.gameObject.AddComponent<LectorImage>();
+        SetupLector(temps, transicio);
+    }
+
+
+    void SetupLector(float temps, Transicio transicio) => lector.Setup(Transformar, temps, transicio).Play();
+
+    public Lector Play_GetLector(GameObject gameObject, float temps, Transicio transicio)
+    {
+        Play(gameObject, temps, transicio);
         return lector;
     }
     public void Continue(Transform transform) => transform.GetComponent<Lector>().Continue();

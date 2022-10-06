@@ -51,6 +51,16 @@ public static class Animacio_Inspector_Addings
         if (GUILayout.Button("So")) animacions.Add(new Animacio_So());
         if (GUILayout.Button("Audio")) animacions.Add(new Animacio_Audio());
         GUILayout.EndHorizontal();
+
+        EditorGUILayout.LabelField("ESDEVENIMENT");
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Esdeveniment")) animacions.Add(new Animacio_Esdeveniment());
+        GUILayout.EndHorizontal();
+
+        EditorGUILayout.LabelField("COLOR");
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Gradient Image")) animacions.Add(new Animacio_Gradient_Image());
+        GUILayout.EndHorizontal();
     }
 
 }
