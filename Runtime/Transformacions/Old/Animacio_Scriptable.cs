@@ -17,6 +17,7 @@ public class Animacio_Scriptable : ScriptableObject
     public List<Animacio> Animacions => animacions;
 
     public void Play(GameObject gameObject) { for (int i = 0; i < animacions.Count; i++){ animacions[i].Play(gameObject, temps, transicio); } }
+    public void Play(Transform transform) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(transform, temps, transicio); } }
     public void Play(Image image) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(image, temps, transicio); } }
     public void Play(Text text) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(text, temps, transicio); } }
     public void Play(SpriteRenderer spriteRenderer) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(spriteRenderer, temps, transicio); } }

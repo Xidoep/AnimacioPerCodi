@@ -19,7 +19,7 @@ public class Animacio_RotacioVector : Animacio
     [SerializeField] Vector3 eix;
     [SerializeField] float inici, final;
 
-    protected override void AddOrGet<T>(Transform transform) => base.AddOrGet<T>(transform);
+
 
     public override void Transformar(object objectiu, float frame)
     {
