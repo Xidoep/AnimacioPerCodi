@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Animacio_Audio : Animacio
 {
+    [SerializeField] string nom = "Audio";
     public Animacio_Audio() { }
     public Animacio_Audio(AudioClip audio, float delay = 0)
     {

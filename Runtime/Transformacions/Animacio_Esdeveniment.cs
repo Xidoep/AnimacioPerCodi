@@ -8,6 +8,7 @@ using static Animacio_Esdeveniment;
 [System.Serializable]
 public class Animacio_Esdeveniment : Animacio
 {
+    [SerializeField] string nom = "Esdeveniment";
     public Animacio_Esdeveniment() { }
     public Animacio_Esdeveniment(UnityEvent esdeveniment, Moment moment = Moment.final)
     {

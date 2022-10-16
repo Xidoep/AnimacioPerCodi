@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Animacio_RotacioVector : Animacio
 {
+    [SerializeField] string nom = "Rotacio a voltat de vector";
     public Animacio_RotacioVector() { }
     public Animacio_RotacioVector(Vector3 eix, float inici, float final)
     {

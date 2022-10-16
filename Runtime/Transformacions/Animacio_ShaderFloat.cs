@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Animacio_ShaderFloat : Animacio
 {
+    [SerializeField] string nom = "Shader float";
     public Animacio_ShaderFloat() { }
     public Animacio_ShaderFloat(string propietat, float inici, float final, bool dinamic = false)
     {

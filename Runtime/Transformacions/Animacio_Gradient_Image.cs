@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Animacio_Gradient_Image : Animacio
 {
+    [SerializeField] string nom = "Gradient imatge";
     public Animacio_Gradient_Image() { }
     public Animacio_Gradient_Image(Gradient gradient)
     {

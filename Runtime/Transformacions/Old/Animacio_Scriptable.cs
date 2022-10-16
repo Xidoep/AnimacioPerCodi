@@ -7,7 +7,7 @@ using TMPro;
 public class Animacio_Scriptable : ScriptableObject
 {
     [SerializeField] Transicio transicio;
-    [SerializeField] float temps;
+    [SerializeField] float temps = 1;
 
     [SerializeField] [SerializeReference] List<Animacio> animacions;
 

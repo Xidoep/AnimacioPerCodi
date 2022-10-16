@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Animacio_RectPosicio : Animacio
 {
+    [SerializeField] string nom = "Rect posicio";
     public Animacio_RectPosicio() { }
     public Animacio_RectPosicio(Vector3 inici, Vector3 final, bool dinamic = false)
     {

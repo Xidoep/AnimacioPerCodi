@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Animacio_Escala : Animacio
 {
+    [SerializeField] string nom = "Escala";
     public Animacio_Escala() { }
     public Animacio_Escala(Vector3 inici, Vector3 final, bool dinamic = false)
     {
@@ -13,7 +14,6 @@ public class Animacio_Escala : Animacio
         this.final = final;
         this.dinamic = dinamic;
     }
-
     [SerializeField] protected AnimationCurve corba = new AnimationCurve();
     [Space(10)]
     [SerializeField] Vector3 inici;

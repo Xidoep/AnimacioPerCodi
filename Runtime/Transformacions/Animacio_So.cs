@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Animacio_So : Animacio
 {
+    [SerializeField] string nom = "So";
     public Animacio_So() { }
     public Animacio_So(So so, bool aPosicio = true, float delay = 0)
     {
