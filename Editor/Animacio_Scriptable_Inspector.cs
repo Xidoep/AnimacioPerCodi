@@ -54,7 +54,8 @@ public static class Animacio_Inspector_Addings
 
         EditorGUILayout.LabelField("ESDEVENIMENT");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Esdeveniment")) animacions.Add(new Animacio_Esdeveniment());
+        if (GUILayout.Button("Custom Extern")) animacions.Add(new Animacio_Esdeveniment());
+        if (GUILayout.Button("Generic")) animacions.Add(new Animacio_EsdevenimentGeneric());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("COLOR");

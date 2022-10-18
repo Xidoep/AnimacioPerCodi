@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using XS_Utils;
+
 [System.Serializable]
 public class Animacio
 {
     protected Lector lector;
-
-
 
     public virtual void Transformar(object objectiu, float frame) { }
 
@@ -15,13 +15,23 @@ public class Animacio
 
     public void Play(GameObject gameObject, float temps, Transicio transicio)
     {
-        if (lector == null || lector.gameObject != gameObject) lector = gameObject.AddComponent<Lector>();
-        SetupLector(lector, temps, transicio);
+        Lector lector = gameObject.GetComponent<Lector>();
+        if(lector)
+            lector.Setup(Transformar, temps, transicio).Play();
+        else gameObject.AddComponent<Lector>().Setup(Transformar, temps, transicio).Play();
+
+        //if (lector == null || lector.gameObject != gameObject) lector = gameObject.AddComponent<Lector>();
+        //SetupLector(lector, temps, transicio);
     }
     public void Play(Transform transform, float temps, Transicio transicio)
     {
-        if (lector == null || lector.gameObject != transform.gameObject) lector = transform.gameObject.AddComponent<Lector>();
-        SetupLector(lector, temps, transicio);
+        Lector lector = transform.gameObject.GetComponent<Lector>();
+        if (lector)
+            lector.Setup(Transformar, temps, transicio).Play();
+        else transform.gameObject.AddComponent<Lector>().Setup(Transformar, temps, transicio).Play();
+
+        //if (lector == null || lector.gameObject != transform.gameObject) lector = transform.gameObject.AddComponent<Lector>();
+        //SetupLector(lector, temps, transicio);
     }
     public void Play(Image image, float temps, Transicio transicio)
     {
@@ -50,8 +60,13 @@ public class Animacio
     }
     public void Play(MeshRenderer meshRenderer, float temps, Transicio transicio)
     {
-        if (lector == null || lector.gameObject != meshRenderer.gameObject) lector = meshRenderer.gameObject.AddComponent<LectorMeshRenderer>();
-        SetupLector(lector, temps, transicio);
+        Lector lector = meshRenderer.gameObject.GetComponent<LectorMeshRenderer>();
+        if (lector)
+            lector.Setup(Transformar, temps, transicio).Play();
+        else meshRenderer.gameObject.AddComponent<LectorMeshRenderer>().Setup(Transformar, temps, transicio).Play();
+
+        //if (lector == null || lector.gameObject != meshRenderer.gameObject) lector = meshRenderer.gameObject.AddComponent<LectorMeshRenderer>();
+        //SetupLector(lector, temps, transicio);
     }
 
 

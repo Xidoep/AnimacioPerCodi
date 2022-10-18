@@ -13,6 +13,7 @@ public class Lector : MonoBehaviour
 
         return this;
     }
+    public void Add(System.Action<object, float> animar) => this.animar += animar;
     public Lector Setup(Animacio[] animacions, float temps, Transicio transicio)
     {
         animar = null;
@@ -76,6 +77,11 @@ public class Lector : MonoBehaviour
     public void Play()
     {
         time = Time.unscaledTime;
+        if (!gameObject.activeSelf)
+        {
+            Debug.Log("No està activat el game object...");
+            return;
+        }
         StartCoroutine(ActualitzarCorrutina());
     }
     public void Stop(bool esperarFinalAnimacio)
@@ -99,6 +105,7 @@ public class Lector : MonoBehaviour
             finalitzat = Actualitzar();
             yield return null;
         }
+        animar = null;
         yield return null;
     }
     bool Actualitzar()
