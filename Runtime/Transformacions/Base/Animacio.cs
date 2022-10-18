@@ -48,7 +48,11 @@ public class Animacio
         if (lector == null || lector.gameObject != toggle.gameObject) lector = toggle.gameObject.AddComponent<LectorToggle>();
         SetupLector(lector, temps, transicio);
     }
-
+    public void Play(MeshRenderer meshRenderer, float temps, Transicio transicio)
+    {
+        if (lector == null || lector.gameObject != meshRenderer.gameObject) lector = meshRenderer.gameObject.AddComponent<LectorMeshRenderer>();
+        SetupLector(lector, temps, transicio);
+    }
 
 
     void SetupLector(Lector lector, float temps, Transicio transicio) => lector.Setup(Transformar, temps, transicio).Play();

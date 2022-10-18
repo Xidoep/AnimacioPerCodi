@@ -23,7 +23,7 @@ public class Animacio_Scriptable : ScriptableObject
     public void Play(SpriteRenderer spriteRenderer) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(spriteRenderer, temps, transicio); } }
     public void Play(TMP_Text text) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(text, temps, transicio); } }
     public void Play(Toggle toggle) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(toggle, temps, transicio); } }
-
+    public void Play(MeshRenderer meshRenderer) { for (int i = 0; i < animacions.Count; i++) { animacions[i].Play(meshRenderer, temps, transicio); } }
 
 
     public void Continue(Transform transform) 

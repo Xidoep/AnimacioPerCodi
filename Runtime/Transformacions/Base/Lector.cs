@@ -216,3 +216,14 @@ public class LectorToggle : Lector
     protected override void Animar(float frame) => animar.Invoke(toggle, frame);
 }
 
+public class LectorMeshRenderer : Lector
+{
+    MeshRenderer meshRenderer;
+    public override Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    {
+        meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        return base.Setup(animar, temps, transicio);
+    }
+    protected override void Animar(float frame) => animar.Invoke(meshRenderer, frame);
+}
+
