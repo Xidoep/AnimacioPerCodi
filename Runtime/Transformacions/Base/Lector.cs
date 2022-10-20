@@ -234,3 +234,13 @@ public class LectorMeshRenderer : Lector
     protected override void Animar(float frame) => animar.Invoke(meshRenderer, frame);
 }
 
+public class LectorRectTransform : Lector
+{
+    RectTransform rectTransform;
+    public override Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    {
+        rectTransform = gameObject.GetComponent<RectTransform>();
+        return base.Setup(animar, temps, transicio);
+    }
+    protected override void Animar(float frame) => animar.Invoke(rectTransform, frame);
+}

@@ -23,8 +23,7 @@ public class Animacio_Scriptable : ScriptableObject
             lector = gameObject.GetComponent<Lector>();
             if (!lector) lector = gameObject.AddComponent<Lector>();
 
-            if (i == 0)
-                lector.Setup(animacions[i].Transformar, temps, transicio);
+            if (i == 0) lector.Setup(animacions[i].Transformar, temps, transicio);
             else lector.Add(animacions[i].Transformar);
         }
         lector.Play();
@@ -36,8 +35,7 @@ public class Animacio_Scriptable : ScriptableObject
             lector = transform.gameObject.GetComponent<Lector>();
             if (!lector) lector = transform.gameObject.AddComponent<Lector>();
 
-            if (i == 0)
-                lector.Setup(animacions[i].Transformar, temps, transicio);
+            if (i == 0) lector.Setup(animacions[i].Transformar, temps, transicio);
             else lector.Add(animacions[i].Transformar);
         }
         lector.Play();
@@ -54,13 +52,23 @@ public class Animacio_Scriptable : ScriptableObject
             lector = meshRenderer.gameObject.GetComponent<LectorMeshRenderer>();
             if (!lector) lector = meshRenderer.gameObject.AddComponent<LectorMeshRenderer>();
 
-            if (i == 0)
-                lector.Setup(animacions[i].Transformar, temps, transicio);
+            if (i == 0) lector.Setup(animacions[i].Transformar, temps, transicio);
             else lector.Add(animacions[i].Transformar);
         }
         lector.Play();
     }
+    public void Play(RectTransform rectTransform)
+    {
+        for (int i = 0; i < animacions.Count; i++)
+        {
+            lector = rectTransform.gameObject.GetComponent<LectorRectTransform>();
+            if (!lector) lector = rectTransform.gameObject.AddComponent<LectorRectTransform>();
 
+            if (i == 0) lector.Setup(animacions[i].Transformar, temps, transicio);
+            else lector.Add(animacions[i].Transformar);
+        }
+        lector.Play();
+    }
 
 
     public void Continue(Transform transform) => transform.GetComponent<Lector>().Continue();
