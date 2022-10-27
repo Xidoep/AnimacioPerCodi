@@ -56,6 +56,7 @@ public static class Animacio_Inspector_Addings
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Custom Extern")) animacions.Add(new Animacio_Esdeveniment());
         if (GUILayout.Button("Generic")) animacions.Add(new Animacio_EsdevenimentGeneric());
+        if (GUILayout.Button("GPU")) animacions.Add(new Animacio_GPU());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("COLOR");
