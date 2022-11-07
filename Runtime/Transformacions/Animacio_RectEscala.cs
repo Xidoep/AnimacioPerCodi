@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Animacio_RectPosicio : Animacio
+public class Animacio_RectEscala : Animacio
 {
-    [SerializeField] string nom = "Rect posicio";
-    public Animacio_RectPosicio() { }
-    public Animacio_RectPosicio(Vector3 inici, Vector3 final, bool dinamic = false)
+    [SerializeField] string nom = "Rect escala";
+    public Animacio_RectEscala() { }
+    public Animacio_RectEscala(Vector3 inici, Vector3 final, bool dinamic = false)
     {
         corba = Corba.Linear();
         this.inici = inici;
@@ -22,7 +22,7 @@ public class Animacio_RectPosicio : Animacio
     [Space(10)]
     [SerializeField] bool dinamic;
 
-    //INTERN
+    //inici
     Vector2 inicidin = Vector2.zero;
 
     public override void Transformar(object objectiu, float frame)
@@ -33,13 +33,13 @@ public class Animacio_RectPosicio : Animacio
 
     void Dinamic(object objectiu, float frame)
     {
-        if (frame == 0) inicidin = ((RectTransform)objectiu).anchoredPosition;
+        if (frame == 0) inicidin = ((RectTransform)objectiu).sizeDelta;
 
         Accio(inicidin, objectiu, frame);
     }
 
     void Accio(Vector3 inici, object objectiu, float frame)
     {
-        ((RectTransform)objectiu).anchoredPosition = Vector2.LerpUnclamped(inici, final, corba.Evaluate(frame));
+        ((RectTransform)objectiu).sizeDelta = Vector2.LerpUnclamped(inici, final, corba.Evaluate(frame));
     }
 }

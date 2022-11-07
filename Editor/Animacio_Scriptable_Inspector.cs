@@ -6,13 +6,14 @@ using UnityEditor;
 [CustomEditor(typeof(Animacio_Scriptable))]
 public class Animacio_Scriptable_Inspector : Editor
 {
+    bool mostrar = false;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
         Animacio_Scriptable _target = (Animacio_Scriptable)target;
 
-        Animacio_Inspector_Addings.MostrarOpcions(_target.Animacions);
+        Animacio_Inspector_Addings.MostrarOpcions(_target.Animacions, ref mostrar);
 
     }
 }
@@ -21,25 +22,30 @@ public class Animacio_Scriptable_Inspector : Editor
 
 public static class Animacio_Inspector_Addings
 {
-    public static void MostrarOpcions(List<Animacio> animacions)
+    
+    public static void MostrarOpcions(List<Animacio> animacions, ref bool mostrar)
     {
-        EditorGUILayout.LabelField("Add");
-        EditorGUILayout.LabelField("POSICIO");
+        mostrar = EditorGUILayout.Foldout(mostrar, "ADD");
+
+        if (!mostrar)
+            return;
+
+        EditorGUILayout.LabelField("TRANSFORM");
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Posicio")) animacions.Add(new Animacio_Posicio());
-        if (GUILayout.Button("RectPosicio")) animacions.Add(new Animacio_RectPosicio());
+        if (GUILayout.Button("Escala")) animacions.Add(new Animacio_Escala());
         GUILayout.EndHorizontal();
-
-        EditorGUILayout.LabelField("POSICIO");
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Rotacio")) animacions.Add(new Animacio_Rotacio());
         if (GUILayout.Button("Al voltant Vector")) animacions.Add(new Animacio_RotacioVector());
         GUILayout.EndHorizontal();
 
-        EditorGUILayout.LabelField("ESCALA");
+        EditorGUILayout.LabelField("RECT TRANSFORM");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Escala")) animacions.Add(new Animacio_Escala());
+        if (GUILayout.Button("Posicio")) animacions.Add(new Animacio_RectPosicio());
+        if (GUILayout.Button("Ancor")) animacions.Add(new Animacio_RectAncor());
         GUILayout.EndHorizontal();
+        if (GUILayout.Button("Escala")) animacions.Add(new Animacio_RectEscala());
 
         EditorGUILayout.LabelField("SHADER");
         GUILayout.BeginHorizontal();
