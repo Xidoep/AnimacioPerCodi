@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using XS_Utils;
+
+
 public class Lector : MonoBehaviour
 {
     public virtual Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
@@ -79,7 +82,7 @@ public class Lector : MonoBehaviour
         time = Time.unscaledTime;
         if (!gameObject.activeSelf)
         {
-            Debug.Log("No està activat el game object...");
+            Debugar.Log("No està activat el game object...");
             return;
         }
         StartCoroutine(ActualitzarCorrutina());
