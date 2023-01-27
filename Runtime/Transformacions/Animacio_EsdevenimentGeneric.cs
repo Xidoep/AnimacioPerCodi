@@ -17,7 +17,7 @@ public class Animacio_EsdevenimentGeneric : Animacio
     [SerializeField] Esdeveniment esdeveniment;
 
 
-    public override void Transformar(object objectiu, float frame)
+    public override void Transformar(Component objectiu, float frame)
     {
         if (frame != 1)
             return;
@@ -25,10 +25,10 @@ public class Animacio_EsdevenimentGeneric : Animacio
         switch (esdeveniment)
         {
             case Esdeveniment.deshabilitar:
-                ((Component)objectiu).gameObject.SetActive(false);
+                objectiu.gameObject.SetActive(false);
                 break;
             case Esdeveniment.destruir:
-                GameObject.Destroy(((Component)objectiu).gameObject);
+                GameObject.Destroy(objectiu.gameObject);
                 break;
         }
     }

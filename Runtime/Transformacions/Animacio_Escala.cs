@@ -22,7 +22,7 @@ public class Animacio_Escala : Animacio
     [SerializeField] bool dinamic;
 
 
-    public override void Transformar(object objectiu, float frame)
+    public override void Transformar(Component objectiu, float frame)
     {
         if (dinamic && frame == 0)
             inici = ((Transform)objectiu).localScale;

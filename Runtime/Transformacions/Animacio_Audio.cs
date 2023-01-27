@@ -20,7 +20,7 @@ public class Animacio_Audio : Animacio
 
 
 
-    public override void Transformar(object objectiu, float frame)
+    public override void Transformar(Component objectiu, float frame)
     {
         if (frame > 0)
             return;

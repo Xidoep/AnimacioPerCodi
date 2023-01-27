@@ -16,7 +16,19 @@ public class Animacio_Scriptable : ScriptableObject
 
     public List<Animacio> Animacions => animacions;
 
-    public void Play(GameObject gameObject) 
+    public void Play(Component component)
+    {
+        for (int i = 0; i < animacions.Count; i++)
+        {
+            lector = component.gameObject.GetComponent<LectorComponent>();
+            if (!lector) lector = component.gameObject.AddComponent<LectorComponent>();
+
+            if (i == 0) lector.Setup(animacions[i].Transformar, component, temps, transicio);
+            else lector.Add(animacions[i].Transformar);
+        }
+        lector.Play();
+    }
+    /*public void Play(GameObject gameObject) 
     { 
         for (int i = 0; i < animacions.Count; i++)
         {
@@ -69,7 +81,7 @@ public class Animacio_Scriptable : ScriptableObject
         }
         lector.Play();
     }
-
+    */
 
     public void Continue(Transform transform) => transform.GetComponent<Lector>().Continue();
     public void Continue() => lector.Continue();

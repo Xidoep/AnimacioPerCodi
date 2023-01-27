@@ -35,13 +35,13 @@ public class Animacio_RectAncor : Animacio
     Vector2 iniciMinDin;
     Vector2 iniciMaxDin;
 
-    public override void Transformar(object objectiu, float frame)
+    public override void Transformar(Component objectiu, float frame)
     {
         if (!dinamic) Accio(iniciMin, iniciMax, objectiu, frame);
         else Dinamic(objectiu, frame);
     }
 
-    void Dinamic(object objectiu, float frame)
+    void Dinamic(Component objectiu, float frame)
     {
         if (frame == 0) 
         {
@@ -52,7 +52,7 @@ public class Animacio_RectAncor : Animacio
         Accio(iniciMinDin, iniciMaxDin, objectiu, frame);
     }
 
-    void Accio(Vector3 iniciMin, Vector3 iniciMax, object objectiu, float frame)
+    void Accio(Vector3 iniciMin, Vector3 iniciMax, Component objectiu, float frame)
     {
         ((RectTransform)objectiu).anchorMin = Vector2.LerpUnclamped(iniciMin, finalMin, min.Evaluate(frame));
         ((RectTransform)objectiu).anchorMax = Vector2.LerpUnclamped(iniciMax, finalMax, max.Evaluate(frame));

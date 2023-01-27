@@ -24,13 +24,13 @@ public class Animacio_ShaderFloat : Animacio
     [SerializeField] bool dinamic;
 
 
-    public override void Transformar(object objectiu, float frame)
+    public override void Transformar(Component objectiu, float frame)
     {
         if (!dinamic) Accio(inici, objectiu, frame);
         else Dinamic(objectiu, frame);
     }
 
-    void Dinamic(object objectiu, float frame)
+    void Dinamic(Component objectiu, float frame)
     {
         float inici = 0;
 
@@ -38,7 +38,7 @@ public class Animacio_ShaderFloat : Animacio
 
         Accio(inici, objectiu, frame);
     }
-    void Accio(float inici, object objectiu, float frame)
+    void Accio(float inici, Component objectiu, float frame)
     {
         ((MeshRenderer)objectiu).material.SetFloat(propietat, Mathf.LerpUnclamped(inici, final, corba.Evaluate(frame)));
     }

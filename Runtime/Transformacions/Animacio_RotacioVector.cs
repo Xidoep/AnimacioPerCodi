@@ -20,7 +20,7 @@ public class Animacio_RotacioVector : Animacio
     [SerializeField] Vector3 eix;
     [SerializeField] float inici, final;
 
-    public override void Transformar(object objectiu, float frame)
+    public override void Transformar(Component objectiu, float frame)
     {
         float angle = Mathf.LerpUnclamped(inici, final, corba.Evaluate(frame));
         ((Transform)objectiu).rotation = Quaternion.AngleAxis(angle, eix);

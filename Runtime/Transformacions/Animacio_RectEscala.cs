@@ -25,20 +25,20 @@ public class Animacio_RectEscala : Animacio
     //inici
     Vector2 inicidin = Vector2.zero;
 
-    public override void Transformar(object objectiu, float frame)
+    public override void Transformar(Component objectiu, float frame)
     {
         if (!dinamic) Accio(inici, objectiu, frame);
         else Dinamic(objectiu, frame);
     }
 
-    void Dinamic(object objectiu, float frame)
+    void Dinamic(Component objectiu, float frame)
     {
         if (frame == 0) inicidin = ((RectTransform)objectiu).sizeDelta;
 
         Accio(inicidin, objectiu, frame);
     }
 
-    void Accio(Vector3 inici, object objectiu, float frame)
+    void Accio(Vector3 inici, Component objectiu, float frame)
     {
         ((RectTransform)objectiu).sizeDelta = Vector2.LerpUnclamped(inici, final, corba.Evaluate(frame));
     }

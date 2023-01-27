@@ -8,7 +8,7 @@ using XS_Utils;
 
 public class Lector : MonoBehaviour
 {
-    public virtual Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    public virtual Lector Setup(System.Action<Component, float> animar, Component component, float temps, Transicio transicio)
     {
         this.animar = animar;
         this.temps = temps;
@@ -16,7 +16,7 @@ public class Lector : MonoBehaviour
 
         return this;
     }
-    public void Add(System.Action<object, float> animar) => this.animar += animar;
+    public void Add(System.Action<Component, float> animar) => this.animar += animar;
     public Lector Setup(Animacio[] animacions, float temps, Transicio transicio)
     {
         animar = null;
@@ -63,7 +63,7 @@ public class Lector : MonoBehaviour
 
 
 
-    protected System.Action<object, float> animar = null;
+    protected System.Action<Component, float> animar = null;
 
     float temps;
     bool pingPong;
@@ -158,12 +158,24 @@ public class Lector : MonoBehaviour
 }
 
 
+public class LectorComponent : Lector
+{
+    [SerializeField] Component component;
 
+    public override Lector Setup(System.Action<Component, float> animar, Component component, float temps, Transicio transicio)
+    {
+        //component = gameObject.GetComponent<Component>();
+        this.component = component;
+        return base.Setup(animar, component, temps, transicio);
+    }
+    protected override void Animar(float frame) => animar.Invoke(component, frame);
+}
+/*
 public class LectorRectTarnsform : Lector
 {
     RectTransform rectTransform;
 
-    public override Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
     {
         rectTransform = gameObject.GetComponent<RectTransform>();
         return base.Setup(animar, temps, transicio);
@@ -174,7 +186,7 @@ public class LectorRectTarnsform : Lector
 public class LectorImage : Lector
 {
     Image image;
-    public override Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
     {
         image = gameObject.GetComponent<Image>();
         return base.Setup(animar, temps, transicio);
@@ -185,7 +197,7 @@ public class LectorImage : Lector
 public class LectorText : Lector
 {
     Text text;
-    public override Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
     {
         text = gameObject.GetComponent<Text>();
         return base.Setup(animar, temps, transicio);
@@ -196,7 +208,7 @@ public class LectorText : Lector
 public class LectorSpriteRenderer : Lector
 {
     SpriteRenderer spriteRenderer;
-    public override Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         return base.Setup(animar, temps, transicio);
@@ -207,7 +219,7 @@ public class LectorSpriteRenderer : Lector
 public class LectorTMP_Text : Lector
 {
     TMP_Text text;
-    public override Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
     {
         text = gameObject.GetComponent<TMP_Text>();
         return base.Setup(animar, temps, transicio);
@@ -218,7 +230,7 @@ public class LectorTMP_Text : Lector
 public class LectorToggle : Lector
 {
     Toggle toggle;
-    public override Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
     {
         toggle = gameObject.GetComponent<Toggle>();
         return base.Setup(animar, temps, transicio);
@@ -229,7 +241,7 @@ public class LectorToggle : Lector
 public class LectorMeshRenderer : Lector
 {
     MeshRenderer meshRenderer;
-    public override Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
     {
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
         return base.Setup(animar, temps, transicio);
@@ -240,10 +252,11 @@ public class LectorMeshRenderer : Lector
 public class LectorRectTransform : Lector
 {
     RectTransform rectTransform;
-    public override Lector Setup(System.Action<object, float> animar, float temps, Transicio transicio)
+    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
     {
         rectTransform = gameObject.GetComponent<RectTransform>();
         return base.Setup(animar, temps, transicio);
     }
     protected override void Animar(float frame) => animar.Invoke(rectTransform, frame);
 }
+*/

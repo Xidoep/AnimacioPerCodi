@@ -9,10 +9,17 @@ public class Animacio
 {
     protected Lector lector;
 
-    public virtual void Transformar(object objectiu, float frame) { }
+    public virtual void Transformar(Component component, float frame) { }
 
 
+    public void Play(Component component, float temps, Transicio transicio)
+    {
+        if (lector)
+            lector.Setup(Transformar, component, temps, transicio).Play();
+        else component.gameObject.AddComponent<LectorComponent>().Setup(Transformar,component, temps, transicio).Play();
 
+    }
+    /*
     public void Play(GameObject gameObject, float temps, Transicio transicio)
     {
         Lector lector = gameObject.GetComponent<Lector>();
@@ -33,6 +40,7 @@ public class Animacio
         //if (lector == null || lector.gameObject != transform.gameObject) lector = transform.gameObject.AddComponent<Lector>();
         //SetupLector(lector, temps, transicio);
     }
+
     public void Play(Image image, float temps, Transicio transicio)
     {
         if (lector == null || lector.gameObject != image.gameObject) lector = image.gameObject.AddComponent<LectorImage>();
@@ -68,9 +76,9 @@ public class Animacio
         //if (lector == null || lector.gameObject != meshRenderer.gameObject) lector = meshRenderer.gameObject.AddComponent<LectorMeshRenderer>();
         //SetupLector(lector, temps, transicio);
     }
+    */
 
-
-    void SetupLector(Lector lector, float temps, Transicio transicio) => lector.Setup(Transformar, temps, transicio).Play();
+    //void SetupLector(Lector lector, float temps, Transicio transicio) => lector.Setup(Transformar, temps, transicio).Play();
 
 
 

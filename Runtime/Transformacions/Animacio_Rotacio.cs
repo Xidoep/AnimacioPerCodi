@@ -26,13 +26,13 @@ public class Animacio_Rotacio : Animacio
     [SerializeField] bool dinamic;
 
 
-    public override void Transformar(object objectiu, float frame)
+    public override void Transformar(Component objectiu, float frame)
     {
         if (!dinamic) Accio(inici, objectiu, frame);
         else Dinamic(objectiu, frame);
     }
 
-    void Dinamic(object objectiu, float frame)
+    void Dinamic(Component objectiu, float frame)
     {
         Vector3 inici = Vector3.zero;
 
@@ -46,7 +46,7 @@ public class Animacio_Rotacio : Animacio
         Accio(inici, objectiu, frame);
     }
 
-    void Accio(Vector3 inici, object objectiu, float frame)
+    void Accio(Vector3 inici, Component objectiu, float frame)
     {
         if (!local)
             ((Transform)objectiu).rotation = Quaternion.Euler(Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame)));

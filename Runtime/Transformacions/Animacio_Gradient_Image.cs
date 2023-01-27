@@ -15,7 +15,7 @@ public class Animacio_Gradient_Image : Animacio
 
     [SerializeField] Gradient gradient;
 
-    public override void Transformar(object objectiu, float frame)
+    public override void Transformar(Component objectiu, float frame)
     {
         ((Image)objectiu).color = gradient.Evaluate(frame);
     }

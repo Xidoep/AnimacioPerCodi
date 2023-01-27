@@ -17,7 +17,7 @@ public class Animacio_GPU : Animacio
 
     [SerializeField] Accio accio;
 
-    public override void Transformar(object objectiu, float frame)
+    public override void Transformar(Component objectiu, float frame)
     {
         switch (accio)
         {
