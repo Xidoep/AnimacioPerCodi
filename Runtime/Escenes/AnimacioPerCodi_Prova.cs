@@ -7,7 +7,7 @@ using XS_Utils;
 public class AnimacioPerCodi_Prova : MonoBehaviour
 {
     [SerializeField] Animacio_Posicio animacio;
-    [SerializeField] Animacio_Scriptable scriptable;
+    [SerializeField] AnimacioPerCodi scriptable;
 
     private void OnEnable()
     {

@@ -8,12 +8,12 @@ public class Animacio_ProximaAnimacio : Animacio
     [SerializeField] string nom = "Proxima Animacio";
     // Start is called before the first frame update
     public Animacio_ProximaAnimacio() { }
-    public Animacio_ProximaAnimacio(Animacio_Scriptable animacio)
+    public Animacio_ProximaAnimacio(AnimacioPerCodi animacio)
     {
         this.animacio = animacio;
     }
 
-    [SerializeField] Animacio_Scriptable animacio;
+    [SerializeField] AnimacioPerCodi animacio;
 
     public override void Transformar(Component objectiu, float frame)
     {
