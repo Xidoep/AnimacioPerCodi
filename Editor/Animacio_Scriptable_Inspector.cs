@@ -16,20 +16,7 @@ public class AnimacioPerCodi_Inspector : Editor
     }
 }
 
-[CustomEditor(typeof(AnimacioPerCodi_Boto))]
-public class AnimacioPerCodi_Boto_Inspector : Editor
-{
-    bool mostrar = false;
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-        AnimacioPerCodi_Boto _target = (AnimacioPerCodi_Boto)target;
-        Animacio_Inspector_Addings.MostrarOpcions("ADD onClick",_target.OnClick.Animacions, ref mostrar);
-        Animacio_Inspector_Addings.MostrarOpcions("ADD onEnter", _target.OnEnter.Animacions, ref mostrar);
-        Animacio_Inspector_Addings.MostrarOpcions("ADD onExit", _target.OnExit.Animacions, ref mostrar);
-        Animacio_Inspector_Addings.MostrarOpcions("ADD Loop", _target.Loop.Animacions, ref mostrar);
-    }
-}
+
 
 public static class Animacio_Inspector_Addings
 {
@@ -44,8 +31,8 @@ public static class Animacio_Inspector_Addings
         EditorGUILayout.LabelField("TRANSFORM");
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Posicio")) animacions.Add(new Animacio_Posicio());
-        if (GUILayout.Button("Escala")) animacions.Add(new Animacio_Escala());
         if (GUILayout.Button("Rotacio")) animacions.Add(new Animacio_Rotacio());
+        if (GUILayout.Button("Escala")) animacions.Add(new Animacio_Escala());
         GUILayout.EndHorizontal();
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Al voltant Vector")) animacions.Add(new Animacio_RotacioVector());
@@ -75,7 +62,12 @@ public static class Animacio_Inspector_Addings
 
         EditorGUILayout.LabelField("IMAGE");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Gradient Image")) animacions.Add(new Animacio_Gradient_Image());
+        if (GUILayout.Button("Gradient")) animacions.Add(new Animacio_Gradient_Image());
+        GUILayout.EndHorizontal();
+
+        EditorGUILayout.LabelField("TEXT");
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Gradient")) animacions.Add(new Animacio_Text_Gradient());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("SKINNED MESH RENDERER");

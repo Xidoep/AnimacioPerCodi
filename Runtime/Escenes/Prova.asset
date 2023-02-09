@@ -17,12 +17,16 @@ MonoBehaviour:
   animacions:
   - rid: 7484184410551222275
   - rid: 7484184410551222276
+  interaccio:
+    temps: 0
+    animacions: []
   references:
     version: 2
     RefIds:
     - rid: 7484184410551222275
       type: {class: Animacio_RotacioVector, ns: , asm: AnimacioPerCodi}
       data:
+        nom: Rotacio a voltat de vector
         corba:
           serializedVersion: 2
           m_Curve:
@@ -71,6 +75,7 @@ MonoBehaviour:
     - rid: 7484184410551222276
       type: {class: Animacio_So, ns: , asm: AnimacioPerCodi}
       data:
+        nom: So
         so: {fileID: 11400000, guid: 84c31ddeb69f4ac46beb4fa634dd71b0, type: 2}
         aPosicio: 1
         delay: 1.5

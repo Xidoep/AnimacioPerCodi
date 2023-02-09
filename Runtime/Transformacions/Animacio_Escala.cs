@@ -25,8 +25,8 @@ public class Animacio_Escala : Animacio
     public override void Transformar(Component objectiu, float frame)
     {
         if (dinamic && frame == 0)
-            inici = ((Transform)objectiu).localScale;
+            inici = objectiu.transform.localScale;
 
-        ((Transform)objectiu).localScale = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
+        objectiu.transform.localScale = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
     }
 }
