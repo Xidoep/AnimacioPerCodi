@@ -9,6 +9,10 @@ public static class Extenions_AnimacioPerCodi
     {
         component.GetLector(ref lector);
         lector.AddAnimacions(animacions, component, temps, transicio);
+
+        if (animacions.Count == 0)
+            return;
+
         lector.Play();
     }
     static void GetLector(this Component component, ref Lector lector)

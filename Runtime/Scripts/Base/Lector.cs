@@ -168,7 +168,11 @@ public class LectorComponent : Lector
         this.component = component;
         return base.Setup(animar, component, temps, transicio);
     }
-    protected override void Animar(float frame) => animar.Invoke(component, frame);
+    protected override void Animar(float frame) 
+    {
+        //Debug.LogError($"Component == null? {component == null}");
+        animar.Invoke(component, frame);
+    } 
 }
 /*
 public class LectorRectTarnsform : Lector

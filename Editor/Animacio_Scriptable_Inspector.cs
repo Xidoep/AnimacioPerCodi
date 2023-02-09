@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+
+
 [CustomEditor(typeof(AnimacioPerCodi))]
 public class AnimacioPerCodi_Inspector : Editor
 {
@@ -11,17 +13,24 @@ public class AnimacioPerCodi_Inspector : Editor
     {
         base.OnInspectorGUI();
         AnimacioPerCodi _target = (AnimacioPerCodi)target;
-        Animacio_Inspector_Addings.MostrarOpcions("ADD",_target.Animacions, ref mostrar);
+        Animacio_Inspector_Addings.MostrarOpcions("ADD", _target, _target.Animacions, ref mostrar);
 
     }
 }
 
 
 
+
 public static class Animacio_Inspector_Addings
 {
-
-    public static void MostrarOpcions(string tabel, List<Animacio> animacions, ref bool mostrar)
+    static void Add(List<Animacio> animacions, Object animacioPerCodi, Animacio animacio)
+    {
+        Undo.RecordObject(animacioPerCodi, "Add animacio");
+        animacions.Add(animacio);
+        EditorUtility.SetDirty(animacioPerCodi);
+        PrefabUtility.RecordPrefabInstancePropertyModifications(animacioPerCodi);
+    }
+    public static void MostrarOpcions(string tabel, Object animacioPerCodi, List<Animacio> animacions, ref bool mostrar)
     {
         mostrar = EditorGUILayout.Foldout(mostrar, tabel);
 
@@ -30,23 +39,23 @@ public static class Animacio_Inspector_Addings
 
         EditorGUILayout.LabelField("TRANSFORM");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Posicio")) animacions.Add(new Animacio_Posicio());
-        if (GUILayout.Button("Rotacio")) animacions.Add(new Animacio_Rotacio());
-        if (GUILayout.Button("Escala")) animacions.Add(new Animacio_Escala());
+        if (GUILayout.Button("Posicio")) Add(animacions, animacioPerCodi, new Animacio_Posicio());
+        if (GUILayout.Button("Rotacio")) Add(animacions, animacioPerCodi, new Animacio_Rotacio());
+        if (GUILayout.Button("Escala")) Add(animacions, animacioPerCodi, new Animacio_Escala());
         GUILayout.EndHorizontal();
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Al voltant Vector")) animacions.Add(new Animacio_RotacioVector());
-        if (GUILayout.Button("So")) animacions.Add(new Animacio_So());
-        if (GUILayout.Button("Event Generic")) animacions.Add(new Animacio_EsdevenimentGeneric());
+        if (GUILayout.Button("Al voltant Vector")) Add(animacions, animacioPerCodi, new Animacio_RotacioVector());
+        if (GUILayout.Button("So")) Add(animacions, animacioPerCodi, new Animacio_So());
+        if (GUILayout.Button("Event Generic")) Add(animacions, animacioPerCodi, new Animacio_EsdevenimentGeneric());
         GUILayout.EndHorizontal();
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("GPU")) animacions.Add(new Animacio_GPU());
+        if (GUILayout.Button("GPU")) Add(animacions, animacioPerCodi, new Animacio_GPU());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("RECT TRANSFORM");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Posicio")) animacions.Add(new Animacio_RectPosicio());
-        if (GUILayout.Button("Ancor")) animacions.Add(new Animacio_RectAncor());
+        if (GUILayout.Button("Posicio")) Add(animacions, animacioPerCodi, new Animacio_RectPosicio());
+        if (GUILayout.Button("Ancor")) Add(animacions, animacioPerCodi, new Animacio_RectAncor());
         if (GUILayout.Button("Escala")) animacions.Add(new Animacio_RectEscala());
         GUILayout.EndHorizontal();
 
