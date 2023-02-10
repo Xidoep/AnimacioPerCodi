@@ -14,5 +14,7 @@ public class AnimacioPerCodi_Text_Inspector : Editor
         AnimacioPerCodi_Text _target = (AnimacioPerCodi_Text)target;
         Animacio_Inspector_Addings.MostrarOpcions("ADD onEnter", _target, _target.OnEnter.Animacions, ref mostrar1);
         Animacio_Inspector_Addings.MostrarOpcions("ADD onExit", _target, _target.OnExit.Animacions, ref mostrar2);
+
+        AssetDatabase.SaveAssetIfDirty(_target);
     }
 }

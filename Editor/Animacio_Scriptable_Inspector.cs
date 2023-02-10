@@ -15,7 +15,9 @@ public class AnimacioPerCodi_Inspector : Editor
         AnimacioPerCodi _target = (AnimacioPerCodi)target;
         Animacio_Inspector_Addings.MostrarOpcions("ADD", _target, _target.Animacions, ref mostrar);
 
+        AssetDatabase.SaveAssetIfDirty(_target);
     }
+
 }
 
 
@@ -27,7 +29,6 @@ public static class Animacio_Inspector_Addings
     {
         Undo.RecordObject(animacioPerCodi, "Add animacio");
         animacions.Add(animacio);
-        Debug.Log("add anim");
         EditorUtility.SetDirty(animacioPerCodi);
         PrefabUtility.RecordPrefabInstancePropertyModifications(animacioPerCodi);
         AssetDatabase.SaveAssetIfDirty(animacioPerCodi);
