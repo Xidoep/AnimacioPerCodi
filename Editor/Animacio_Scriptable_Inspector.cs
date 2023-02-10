@@ -9,15 +9,18 @@ using UnityEditor;
 public class AnimacioPerCodi_Inspector : Editor
 {
     bool mostrar = false;
+
+    AnimacioPerCodi _target;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        AnimacioPerCodi _target = (AnimacioPerCodi)target;
+        _target = (AnimacioPerCodi)target;
         Animacio_Inspector_Addings.MostrarOpcions("ADD", _target, _target.Animacions, ref mostrar);
-
+    }
+    private void OnDisable()
+    {
         AssetDatabase.SaveAssetIfDirty(_target);
     }
-
 }
 
 
