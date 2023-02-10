@@ -27,8 +27,10 @@ public static class Animacio_Inspector_Addings
     {
         Undo.RecordObject(animacioPerCodi, "Add animacio");
         animacions.Add(animacio);
+        Debug.Log("add anim");
         EditorUtility.SetDirty(animacioPerCodi);
         PrefabUtility.RecordPrefabInstancePropertyModifications(animacioPerCodi);
+        
     }
     public static void MostrarOpcions(string tabel, Object animacioPerCodi, List<Animacio> animacions, ref bool mostrar)
     {
