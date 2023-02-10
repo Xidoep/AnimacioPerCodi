@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using XS_Utils;
 
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Animacio", fileName = "Animacio")]
 public class AnimacioPerCodi : ScriptableObject
@@ -44,7 +45,6 @@ public class AnimacioPerCodi : ScriptableObject
         public bool TeAnimacions => animacions != null && animacions.Count > 0;
 
         public void Play(Component component, Transicio transicio, ref Lector lector) => component.SetupAndPlay(ref lector, animacions, temps, transicio);
-
     }
 }
 

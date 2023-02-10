@@ -7,11 +7,11 @@ public static class Extenions_AnimacioPerCodi
 
     public static void SetupAndPlay(this Component component, ref Lector lector, List<Animacio> animacions, float temps, Transicio transicio)
     {
-        component.GetLector(ref lector);
-        lector.AddAnimacions(animacions, component, temps, transicio);
-
         if (animacions.Count == 0)
             return;
+
+        component.GetLector(ref lector);
+        lector.AddAnimacions(animacions, component, temps, transicio);
 
         lector.Play();
     }
