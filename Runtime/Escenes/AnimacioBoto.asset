@@ -21,7 +21,7 @@ MonoBehaviour:
   onEnter:
     temps: 1
     animacions:
-    - rid: 2210364951684710405
+    - rid: 2210364951684710406
   onExit:
     temps: 1
     animacions: []
@@ -232,7 +232,7 @@ MonoBehaviour:
         final: {x: 0, y: 0, z: 12}
         local: 0
         dinamic: 0
-    - rid: 2210364951684710405
+    - rid: 2210364951684710406
       type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
       data:
         nom: Escala
