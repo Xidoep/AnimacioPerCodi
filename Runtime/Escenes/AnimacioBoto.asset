@@ -20,7 +20,8 @@ MonoBehaviour:
     - rid: 2210364930026373144
   onEnter:
     temps: 1
-    animacions: []
+    animacions:
+    - rid: 2210364951684710405
   onExit:
     temps: 1
     animacions: []
@@ -230,4 +231,17 @@ MonoBehaviour:
         inici: {x: 0, y: 0, z: 7}
         final: {x: 0, y: 0, z: 12}
         local: 0
+        dinamic: 0
+    - rid: 2210364951684710405
+      type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
+      data:
+        nom: Escala
+        corba:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        inici: {x: 0, y: 0, z: 0}
+        final: {x: 0, y: 0, z: 0}
         dinamic: 0
