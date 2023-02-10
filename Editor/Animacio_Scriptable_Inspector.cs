@@ -56,42 +56,42 @@ public static class Animacio_Inspector_Addings
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Posicio")) Add(animacions, animacioPerCodi, new Animacio_RectPosicio());
         if (GUILayout.Button("Ancor")) Add(animacions, animacioPerCodi, new Animacio_RectAncor());
-        if (GUILayout.Button("Escala")) animacions.Add(new Animacio_RectEscala());
+        if (GUILayout.Button("Escala")) Add(animacions, animacioPerCodi, new Animacio_RectEscala());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("MESH RENDERER");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Shader Float")) animacions.Add(new Animacio_ShaderFloat());
+        if (GUILayout.Button("Shader Float")) Add(animacions, animacioPerCodi, new Animacio_ShaderFloat());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("AUDIO SOURCE");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Play")) animacions.Add(new Animacio_Audio());
+        if (GUILayout.Button("Play")) Add(animacions, animacioPerCodi, new Animacio_Audio());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("IMAGE");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Gradient")) animacions.Add(new Animacio_Gradient_Image());
+        if (GUILayout.Button("Gradient")) Add(animacions, animacioPerCodi, new Animacio_Gradient_Image());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("TEXT");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Gradient")) animacions.Add(new Animacio_Text_Gradient());
+        if (GUILayout.Button("Gradient")) Add(animacions, animacioPerCodi, new Animacio_Text_Gradient());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("SKINNED MESH RENDERER");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("BlendShape")) animacions.Add(new Animacio_BlendShape());
+        if (GUILayout.Button("BlendShape")) Add(animacions, animacioPerCodi, new Animacio_BlendShape());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("CAP COMPONENT");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Esdeveniment")) animacions.Add(new Animacio_Esdeveniment());
+        if (GUILayout.Button("Esdeveniment")) Add(animacions, animacioPerCodi, new Animacio_Esdeveniment());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("ANTERIOR COMPONENT");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Proxima animacio")) animacions.Add(new Animacio_ProximaAnimacio());
+        if (GUILayout.Button("Proxima animacio")) Add(animacions, animacioPerCodi, new Animacio_ProximaAnimacio());
         GUILayout.EndHorizontal();
     }
 
