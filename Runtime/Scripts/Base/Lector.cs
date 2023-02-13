@@ -10,19 +10,24 @@ public class Lector : MonoBehaviour
 {
     public virtual Lector Setup(System.Action<Component, float> animar, Component component, float temps, Transicio transicio)
     {
-        this.animar = animar;
+        this.component = component;
+        this.animacions = animar;
         this.temps = temps;
         SetTransicio(transicio);
 
         return this;
     }
-    public void Add(System.Action<Component, float> animar) => this.animar += animar;
-    public Lector Setup(Animacio[] animacions, float temps, Transicio transicio)
+    //public void Add(System.Action<Component, float> animar) => this.animar += animar;
+    public virtual Lector Setup(Animacio[] animacions, Component component, float temps, Transicio transicio)
     {
-        animar = null;
+        if(coroutine != null) StopCoroutine(coroutine);
+
+        Debug.LogError($"3.- Setup {animacions.Length} animacions");
+        this.component = component;
+        this.animacions = null;
         for (int i = 0; i < animacions.Length; i++)
         {
-            animar += animacions[i].Transformar;
+            this.animacions += animacions[i].Transformar;
         }
         this.temps = temps;
         SetTransicio(transicio);
@@ -62,16 +67,18 @@ public class Lector : MonoBehaviour
     }
 
 
-
-    protected System.Action<Component, float> animar = null;
+    [SerializeField] Component component;
+    protected System.Action<Component, float> animacions = null;
 
     float temps;
     bool pingPong;
     bool looping;
     bool invertit;
     float time;
-    bool finalitzat;
+    [SerializeField] bool animar;
     bool finalitzarAlFinalAnimacio;
+
+    Coroutine coroutine;
 
     float TempsDesdePlay => Mathf.Clamp01((Time.unscaledTime - time) / temps);
 
@@ -85,34 +92,40 @@ public class Lector : MonoBehaviour
             Debugar.Log("No està activat el game object...");
             return;
         }
-        StartCoroutine(ActualitzarCorrutina());
+        coroutine = StartCoroutine(ActualitzarCorrutina());
     }
-    public void Stop(bool esperarFinalAnimacio)
+    public void Stop(bool esperarFinalAnimacio = false)
     {
         if (esperarFinalAnimacio)
             finalitzarAlFinalAnimacio = true;
-        else finalitzat = false;
+        else 
+        {
+            animar = false;
+            animacions = null;
+        } 
     }
     public void Continue()
     {
-        StartCoroutine(ActualitzarCorrutina());
+        coroutine = StartCoroutine(ActualitzarCorrutina());
     }
 
 
-    protected virtual void Animar(float frame) => animar.Invoke(transform, frame);
+    protected virtual void Animar(float frame) => animacions.Invoke(component, frame);
     IEnumerator ActualitzarCorrutina()
     {
-        finalitzat = true;
-        while (finalitzat)
+        animar = true;
+        while (animar)
         {
-            finalitzat = Actualitzar();
+            animar = Actualitzar();
             yield return null;
         }
-        animar = null;
         yield return null;
     }
     bool Actualitzar()
     {
+        if (!animar)
+            return false;
+
         if (!pingPong)
         {
             if (!invertit) Animar(TempsDesdePlay);
@@ -130,7 +143,7 @@ public class Lector : MonoBehaviour
             if (finalitzarAlFinalAnimacio)
             {
                 finalitzarAlFinalAnimacio = false;
-                finalitzat = true;
+                animar = true;
                 if (!pingPong)
                 {
                     if (!invertit)
@@ -156,111 +169,3 @@ public class Lector : MonoBehaviour
     }
 
 }
-
-
-public class LectorComponent : Lector
-{
-    [SerializeField] Component component;
-
-    public override Lector Setup(System.Action<Component, float> animar, Component component, float temps, Transicio transicio)
-    {
-        //component = gameObject.GetComponent<Component>();
-        this.component = component;
-        return base.Setup(animar, component, temps, transicio);
-    }
-    protected override void Animar(float frame) 
-    {
-        //Debug.LogError($"Component == null? {component == null}");
-        animar.Invoke(component, frame);
-    } 
-}
-/*
-public class LectorRectTarnsform : Lector
-{
-    RectTransform rectTransform;
-
-    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
-    {
-        rectTransform = gameObject.GetComponent<RectTransform>();
-        return base.Setup(animar, temps, transicio);
-    }
-    protected override void Animar(float frame) => animar.Invoke(rectTransform, frame);
-}
-
-public class LectorImage : Lector
-{
-    Image image;
-    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
-    {
-        image = gameObject.GetComponent<Image>();
-        return base.Setup(animar, temps, transicio);
-    }
-    protected override void Animar(float frame) => animar.Invoke(image, frame);
-}
-
-public class LectorText : Lector
-{
-    Text text;
-    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
-    {
-        text = gameObject.GetComponent<Text>();
-        return base.Setup(animar, temps, transicio);
-    }
-    protected override void Animar(float frame) => animar.Invoke(text, frame);
-}
-
-public class LectorSpriteRenderer : Lector
-{
-    SpriteRenderer spriteRenderer;
-    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
-    {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        return base.Setup(animar, temps, transicio);
-    }
-    protected override void Animar(float frame) => animar.Invoke(spriteRenderer, frame);
-}
-
-public class LectorTMP_Text : Lector
-{
-    TMP_Text text;
-    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
-    {
-        text = gameObject.GetComponent<TMP_Text>();
-        return base.Setup(animar, temps, transicio);
-    }
-    protected override void Animar(float frame) => animar.Invoke(text, frame);
-}
-
-public class LectorToggle : Lector
-{
-    Toggle toggle;
-    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
-    {
-        toggle = gameObject.GetComponent<Toggle>();
-        return base.Setup(animar, temps, transicio);
-    }
-    protected override void Animar(float frame) => animar.Invoke(toggle, frame);
-}
-
-public class LectorMeshRenderer : Lector
-{
-    MeshRenderer meshRenderer;
-    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
-    {
-        meshRenderer = gameObject.GetComponent<MeshRenderer>();
-        return base.Setup(animar, temps, transicio);
-    }
-    protected override void Animar(float frame) => animar.Invoke(meshRenderer, frame);
-}
-
-public class LectorRectTransform : Lector
-{
-    RectTransform rectTransform;
-    public override Lector Setup(System.Action<Component, float> animar, float temps, Transicio transicio)
-    {
-        rectTransform = gameObject.GetComponent<RectTransform>();
-        return base.Setup(animar, temps, transicio);
-    }
-    protected override void Animar(float frame) => animar.Invoke(rectTransform, frame);
-}
-*/

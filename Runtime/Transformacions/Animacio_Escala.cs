@@ -25,8 +25,15 @@ public class Animacio_Escala : Animacio
     public override void Transformar(Component objectiu, float frame)
     {
         if (dinamic && frame == 0)
-            inici = objectiu.transform.localScale;
+        {
+            if(final != objectiu.transform.localScale)
+                inici = objectiu.transform.localScale;
+        }
 
+         if (frame == 0) Debug.LogError($"Esclar!");
+
+        //Debug.LogError($"Esclar {frame}");
+        //Debug.LogError($"Component == null? {objectiu == null}");
         objectiu.transform.localScale = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
     }
 }

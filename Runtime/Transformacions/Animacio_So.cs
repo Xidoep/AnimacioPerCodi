@@ -27,6 +27,8 @@ public class Animacio_So : Animacio
         if (frame > 0)
             return;
 
+        Debug.LogError("Play!");
+
         if (!aPosicio)
         {
             if (delay < 0) so.Play();
@@ -34,9 +36,8 @@ public class Animacio_So : Animacio
         }
         else
         {
-            if (delay < 0) so.Play(((Transform)objectiu));
-            else so.Play(((Transform)objectiu), delay);
+            if (delay < 0) so.Play(objectiu.transform);
+            else so.Play(objectiu.transform, delay);
         }
     }
-
 }

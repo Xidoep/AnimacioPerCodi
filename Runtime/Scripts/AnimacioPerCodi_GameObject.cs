@@ -3,79 +3,77 @@ using System.Collections.Generic;
 using UnityEngine;
 using XS_Utils;
 
+[CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/AnimacioGameObject", fileName = "AnimacioGameObject")]
 public class AnimacioPerCodi_GameObject : ScriptableObject
 {
+    public AnimacioPerCodi onEnabled;
+    public AnimacioPerCodi idle;
+    public AnimacioPerCodi onPointerEnter;
+    public AnimacioPerCodi loop;
+    public AnimacioPerCodi onPointerDown;
+    public AnimacioPerCodi onPointerUp;
+    public AnimacioPerCodi onPointerExit;
+    public AnimacioPerCodi onDestroyOrDisable;
 
-
-
-
-    [ContextMenuItem("AddPosicio", "AddPosicio")]
-    [SerializeField] AnimacioPerCodi.Interaccio onEnabled;
-    [SerializeField] AnimacioPerCodi.Interaccio onPointerEnter;
-    [SerializeField] AnimacioPerCodi.Interaccio loop;
-    [SerializeField] AnimacioPerCodi.Interaccio onPointerDown;
-    [SerializeField] AnimacioPerCodi.Interaccio onPointerUp;
-    [SerializeField] AnimacioPerCodi.Interaccio onPointerExit;
-    [SerializeField] AnimacioPerCodi.Interaccio onDestroyOrDisable;
-
-    public AnimacioPerCodi.Interaccio OnEnabled => onEnabled;
-    public AnimacioPerCodi.Interaccio OnPointerEnter => onPointerEnter;
-    public AnimacioPerCodi.Interaccio Loop => loop;
-    public AnimacioPerCodi.Interaccio OnPointerDown => onPointerDown;
-    public AnimacioPerCodi.Interaccio OnPointerUp => onPointerUp;
-    public AnimacioPerCodi.Interaccio OnPointerExit => onPointerExit;
-    public AnimacioPerCodi.Interaccio OnDestroyOrDisable => onDestroyOrDisable;
-
-    Lector lector;
-
-
-    private void OnEnable()
-    {
-        lector = null;
-    }
-
-    //En enable, ha de fer play enable.
-    //En PointerEnter, ha de posar animacio PointerEnter, i fer animacio Hover amb delay o no depenent de si te animacio PointerEnter.
-    //On pointer down(si hi es), atura animacio Hover(si hi es) i posa animacio PointerDown.
-    //On Pointer up(si hi es), (si no hi ha pointerDown, atura animacio Hover(si hi es)) posa animacio pointer up i tria:
-    //  -si DestroyOnClick: animacio de Destroy/Dissable amb delay de la anim de click
-    //  -si no: Posar animacio de Hover amb delay d'animacio de click.
+    bool destroyingOrdisabling = false;
 
     /// <summary>
     /// Play a animacio apareixre
     /// </summary>
     /// <param name="component"></param>
-    public void PlayOnEnabled(Component component) => onEnabled.Play(component, Transicio.clamp, ref lector);
+    public void PlayOnEnabled(Component component, ref Coroutine idle) 
+    {
+        destroyingOrdisabling = false;
+        if (onEnabled) onEnabled.Play(component);
+
+        if (this.idle && this.idle.TeAnimacions)
+        {
+            if (onEnabled && onEnabled.TeAnimacions)
+                idle = IdlePlayDelayed(component, onEnabled.Temps);
+            else this.idle.Play(component);
+        }      
+    } 
 
     /// <summary>
     /// Play a animacio en Apuntar, i passa a la animacio Apuntat despres.
     /// </summary>
     /// <param name="component"></param>
-    /// <param name="corrutineLoop"></param>
-    public void PlayOnPointerEnter(Component component, ref Coroutine corrutineLoop)
+    /// <param name="loop"></param>
+    public void PlayOnPointerEnter(Component component, ref Coroutine loop, ref Coroutine idle)
     {
-        onPointerEnter.Play(component, Transicio.clamp, ref lector);
+        if (destroyingOrdisabling)
+            return;
 
-        if (onPointerEnter.TeAnimacions)
-            corrutineLoop = LoopPlayDelayed(component, onPointerEnter.Temps);
-        else loop.Play(component, Transicio.loop, ref lector);
+        idle = CorrutineStop(idle);
+
+        if (onPointerEnter) onPointerEnter.Play(component);
+
+        if (this.loop && this.loop.TeAnimacions)
+        {
+            if (onPointerEnter && onPointerEnter.TeAnimacions)
+                loop = LoopPlayDelayed(component, onPointerEnter.Temps);
+            else this.loop.Play(component);
+        }
     }
 
     /// <summary>
     /// Atura l'animacio Apuntat i fa Play animacio Clicar. Si no hi ha l'animacio Desclicar, torna a l'animacio Apuntat. 
     /// </summary>
     /// <param name="component"></param>
-    /// <param name="corrutineLoop"></param>
-    public void PlayOnPointerDown(Component component, ref Coroutine corrutineLoop)
+    /// <param name="loop"></param>
+    public void PlayOnPointerDown(Component component, ref Coroutine loop)
     {
-        corrutineLoop = LoopStop(corrutineLoop);
-        onPointerDown.Play(component, Transicio.clamp, ref lector);
+        loop = CorrutineStop(loop);
+        if (onPointerDown) onPointerDown.Play(component);
 
-        if (!onPointerUp.TeAnimacions)
+        if (this.loop && this.loop.TeAnimacions)
         {
-            if (onPointerDown.TeAnimacions)
-                corrutineLoop = LoopPlayDelayed(component, onPointerDown.Temps);
-            else loop.Play(component, Transicio.loop, ref lector);
+            if (!onPointerUp || !onPointerUp.TeAnimacions)
+            {
+                if (onPointerDown && onPointerDown.TeAnimacions)
+                    loop = LoopPlayDelayed(component, onPointerDown.Temps);
+                else this.loop.Play(component);
+            }
         }
     }
 
@@ -85,34 +83,42 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
     /// o passa a l'animacio Apuntat, si no.
     /// </summary>
     /// <param name="component"></param>
-    /// <param name="corrutineLoop"></param>
+    /// <param name="loop"></param>
     /// <param name="destroy"></param>
     /// <param name="disable"></param>
-    public void PlayOnPointerUp(Component component, ref Coroutine corrutineLoop, bool destroy, bool disable)
+    public void PlayOnPointerUp(Component component, ref Coroutine loop, ref Coroutine idle, bool destroy, bool disable)
     {
-        corrutineLoop = LoopStop(corrutineLoop);
+        if (destroyingOrdisabling)
+            return;
 
-        onPointerUp.Play(component, Transicio.clamp, ref lector);
+        loop = CorrutineStop(loop);
+
+        if (onPointerUp) onPointerUp.Play(component);
 
         if (destroy || disable)
         {
+            destroyingOrdisabling = true;
             if (destroy)
             {
-                DestroyAmbAnimacio(component, ref corrutineLoop);
+                DestroyAmbAnimacio(component, ref loop, ref idle);
             }
             else
             {
-                corrutineLoop = LoopStop(corrutineLoop);
-                if (onPointerUp.TeAnimacions) 
+                //loop = CorrutineStop(loop);
+                if (onPointerUp && onPointerUp.TeAnimacions) 
                     XS_Coroutine.StartCoroutine_Ending(onPointerUp.Temps, Disable);
                 else Disable();
             }
         }
         else
         {
-            if (!onPointerUp.TeAnimacions)
-                corrutineLoop = LoopPlayDelayed(component, onPointerUp.Temps);
-            else loop.Play(component, Transicio.loop, ref lector);
+            if (this.loop && this.loop.TeAnimacions)
+            {
+                if (onPointerUp && onPointerUp.TeAnimacions)
+                    loop = LoopPlayDelayed(component, onPointerUp.Temps);
+                else this.loop.Play(component);
+            }
+           
         }
 
         void Disable() => DisableAmbAnimacio(component);
@@ -122,44 +128,60 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
     /// Atura l'animacio Apuntat, i fa Play a l'animacio Desapuntar.
     /// </summary>
     /// <param name="component"></param>
-    /// <param name="corrutineLoop"></param>
-    public void PlayOnPointerExit(Component component, ref Coroutine corrutineLoop)
+    /// <param name="loop"></param>
+    public void PlayOnPointerExit(Component component, ref Coroutine loop, ref Coroutine idle)
     {
-        corrutineLoop = LoopStop(corrutineLoop);
-        onPointerExit.Play(component, Transicio.clamp, ref lector);
+        if (destroyingOrdisabling)
+            return;
+
+        loop = CorrutineStop(loop);
+
+        if (onPointerExit) onPointerExit.Play(component);
+
+        if (this.idle && this.idle.TeAnimacions)
+        {
+            if (onPointerExit && onPointerExit.TeAnimacions)
+                idle = IdlePlayDelayed(component, onPointerExit.Temps);
+            else this.idle.Play(component);
+        }
     }
 
     /// <summary>
     /// Destrueix el gameObject del component despres de l'animacio de DestruirOrAmagar
     /// </summary>
     /// <param name="component"></param>
-    /// <param name="corrutineLoop"></param>
-    public void DestroyAmbAnimacio(Component component, ref Coroutine corrutineLoop)
+    /// <param name="loop"></param>
+    public void DestroyAmbAnimacio(Component component, ref Coroutine loop, ref Coroutine idle)
     {
-        corrutineLoop = LoopStop(corrutineLoop);
-        DestroyAmbAnimacio(component);
+        loop = CorrutineStop(loop);
+        idle = CorrutineStop(idle);
+
+        if (onDestroyOrDisable) onDestroyOrDisable.Play(component);
+        Destroy(component.gameObject, onDestroyOrDisable && onDestroyOrDisable.TeAnimacions ? onDestroyOrDisable.Temps : 0);
+        //DestroyAmbAnimacio(component);
     }
-    void DestroyAmbAnimacio(Component component)
+    /*void DestroyAmbAnimacio(Component component)
     {
-        onDestroyOrDisable.Play(component, Transicio.clamp, ref lector);
+        onDestroyOrDisable.Play(component);
         Destroy(component.gameObject, onDestroyOrDisable.TeAnimacions ? onDestroyOrDisable.Temps : 0);
-    }
+    }*/
 
     /// <summary>
     /// Amaga el gameObject del component despres de l'animacio de DestruirOrAmagar
     /// </summary>
     /// <param name="component"></param>
-    /// <param name="corrutineLoop"></param>
-    public void DisableAmbAnimacio(Component component, ref Coroutine corrutineLoop)
+    /// <param name="loop"></param>
+    public void DisableAmbAnimacio(Component component, ref Coroutine loop, ref Coroutine idle)
     {
-        corrutineLoop = LoopStop(corrutineLoop);
+        loop = CorrutineStop(loop);
+        idle = CorrutineStop(idle);
         DisableAmbAnimacio(component);
     }
     void DisableAmbAnimacio(Component component)
     {
-        onDestroyOrDisable.Play(component, Transicio.clamp, ref lector);
+        if (onDestroyOrDisable) onDestroyOrDisable.Play(component);
 
-        if (onDestroyOrDisable.TeAnimacions) XS_Coroutine.StartCoroutine_Ending(onDestroyOrDisable.Temps, Disable);
+        if (onDestroyOrDisable && onDestroyOrDisable.TeAnimacions) XS_Coroutine.StartCoroutine_Ending(onDestroyOrDisable.Temps, Disable);
         else Disable();
 
         void Disable() => component.gameObject.SetActive(false);
@@ -173,15 +195,21 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
     {
         Coroutine corrutineLoop = XS_Coroutine.StartCoroutine_Ending(temps, LoopAfter);
 
-        void LoopAfter() => loop.Play(component, Transicio.loop, ref lector);
+        void LoopAfter() => loop.Play(component);
         return corrutineLoop;
     }
-    Coroutine LoopStop(Coroutine corrutineLoop)
+    Coroutine IdlePlayDelayed(Component component, float temps)
+    {
+        Coroutine corrutineLoop = XS_Coroutine.StartCoroutine_Ending(temps, IdleAfter);
+
+        void IdleAfter() => idle.Play(component);
+        return corrutineLoop;
+    }
+    Coroutine CorrutineStop(Coroutine corrutineLoop)
     {
         if (corrutineLoop != null)
-        {
             XS_Coroutine.StopCoroutine(corrutineLoop);
-        }
+
         return null;
     }
 

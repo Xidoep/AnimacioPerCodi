@@ -16,7 +16,6 @@ public class Animacio_Rotacio : Animacio
         this.dinamic = dinamic;
     }
 
-    [Header("Rotacio")]
     [SerializeField] protected AnimationCurve corba = new AnimationCurve();
     [Space(10)]
     [SerializeField] Vector3 inici;

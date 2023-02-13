@@ -28,16 +28,45 @@ public class AnimacioPerCodi_Inspector : Editor
 
 public static class Animacio_Inspector_Addings
 {
-    static void Add(List<Animacio> animacions, Object animacioPerCodi, Animacio animacio)
+    public static void AddAnimacioPerCodi(string label, Object scriptableBase, ref AnimacioPerCodi variableRefencia)
+    {
+        if (GUILayout.Button($"{(variableRefencia == null ? "Add" : "Remove")} {label}"))
+        {
+            if(variableRefencia == null)
+            {
+                var add = ScriptableObject.CreateInstance<AnimacioPerCodi>();
+                add.name = label.Substring(0, 1).ToUpper() + label.Substring(1);
+                AssetDatabase.AddObjectToAsset(add, scriptableBase);
+                variableRefencia = add;
+            }
+            else
+            {
+                if(EditorUtility.DisplayDialog("Borrar l'animacio????", "Vols carregarte aquesta animacio?\n Abans haries de comprovar que no es fa servir per ningú més.", "BORRAR!", "NO NO NO"))
+                {
+                    AssetDatabase.RemoveObjectFromAsset(variableRefencia);
+                    variableRefencia = null;
+                }
+            }
+
+            EditorUtility.SetDirty(scriptableBase);
+            PrefabUtility.RecordPrefabInstancePropertyModifications(scriptableBase);
+            AssetDatabase.SaveAssetIfDirty(scriptableBase);
+        }
+    }
+    static void Add(Animacio[] animacions, Object animacioPerCodi, Animacio animacio)
     {
         Undo.RecordObject(animacioPerCodi, "Add animacio");
-        animacions.Add(animacio);
+
+        List<Animacio> tmp = new List<Animacio>(animacions);
+        tmp.Add(animacio);
+        animacions = tmp.ToArray();
+
         EditorUtility.SetDirty(animacioPerCodi);
         PrefabUtility.RecordPrefabInstancePropertyModifications(animacioPerCodi);
         AssetDatabase.SaveAssetIfDirty(animacioPerCodi);
         
     }
-    public static void MostrarOpcions(string tabel, Object animacioPerCodi, List<Animacio> animacions, ref bool mostrar)
+    public static void MostrarOpcions(string tabel, Object animacioPerCodi, Animacio[] animacions, ref bool mostrar)
     {
         mostrar = EditorGUILayout.Foldout(mostrar, tabel);
 

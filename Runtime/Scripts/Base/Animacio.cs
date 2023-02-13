@@ -12,12 +12,12 @@ public class Animacio
     public virtual void Transformar(Component component, float frame) { }
 
 
+    //Pensat només per ser cridat quan es vol animar directament desde Script.
     public void Play(Component component, float temps, Transicio transicio)
     {
         if (lector)
             lector.Setup(Transformar, component, temps, transicio).Play();
-        else component.gameObject.AddComponent<LectorComponent>().Setup(Transformar,component, temps, transicio).Play();
-
+        else component.gameObject.AddComponent<Lector>().Setup(Transformar,component, temps, transicio).Play();
     }
 
 
