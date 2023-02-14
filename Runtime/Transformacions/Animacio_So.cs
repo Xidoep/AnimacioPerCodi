@@ -27,7 +27,7 @@ public class Animacio_So : Animacio
         if (frame > 0)
             return;
 
-        Debug.LogError("Play!");
+        //Debug.LogError("Play!");
 
         if (!aPosicio)
         {

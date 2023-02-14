@@ -30,7 +30,7 @@ public class Animacio_Escala : Animacio
                 inici = objectiu.transform.localScale;
         }
 
-         if (frame == 0) Debug.LogError($"Esclar!");
+         //if (frame == 0) Debug.LogError($"Esclar!");
 
         //Debug.LogError($"Esclar {frame}");
         //Debug.LogError($"Component == null? {objectiu == null}");

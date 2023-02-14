@@ -28,23 +28,30 @@ public class AnimacioPerCodi_Inspector : Editor
 
 public static class Animacio_Inspector_Addings
 {
-    public static void AddAnimacioPerCodi(string label, Object scriptableBase, ref AnimacioPerCodi variableRefencia)
+    public static void AddAnimacioPerCodi(string label, Object scriptableBase, ref AnimacioPerCodi animacio)
     {
-        if (GUILayout.Button($"{(variableRefencia == null ? "Add" : "Remove")} {label}"))
+        if (GUILayout.Button($"{(animacio == null ? "Add" : "Remove")} {label}"))
         {
-            if(variableRefencia == null)
+            if(animacio == null)
             {
                 var add = ScriptableObject.CreateInstance<AnimacioPerCodi>();
                 add.name = label.Substring(0, 1).ToUpper() + label.Substring(1);
                 AssetDatabase.AddObjectToAsset(add, scriptableBase);
-                variableRefencia = add;
+                animacio = add;
             }
             else
             {
-                if(EditorUtility.DisplayDialog("Borrar l'animacio????", "Vols carregarte aquesta animacio?\n Abans haries de comprovar que no es fa servir per ningú més.", "BORRAR!", "NO NO NO"))
+                if (AssetDatabase.IsSubAsset(animacio))
                 {
-                    AssetDatabase.RemoveObjectFromAsset(variableRefencia);
-                    variableRefencia = null;
+                    if (EditorUtility.DisplayDialog("Borrar l'animacio????", "Abans de borrar l'animacio has de COMPROVAR que no la fagi servir ningú més...", "BORRAR!", "NO NO NO"))
+                    {
+                        AssetDatabase.RemoveObjectFromAsset(animacio);
+                        animacio = null;
+                    }
+                }
+                else
+                {
+                    EditorUtility.DisplayDialog("Impossible!", "No es pot borrar aquesta animació, ja que no es filla de ningú.\nProva a reemplecarla directament si la vols canviar o treure", "OK");
                 }
             }
 

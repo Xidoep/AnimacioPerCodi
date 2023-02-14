@@ -2,9 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
 using XS_Utils;
-
 
 public class Lector : MonoBehaviour
 {
@@ -22,7 +20,7 @@ public class Lector : MonoBehaviour
     {
         if(coroutine != null) StopCoroutine(coroutine);
 
-        Debug.LogError($"3.- Setup {animacions.Length} animacions");
+        //Debug.LogError($"3.- Setup {animacions.Length} animacions");
         this.component = component;
         this.animacions = null;
         for (int i = 0; i < animacions.Length; i++)

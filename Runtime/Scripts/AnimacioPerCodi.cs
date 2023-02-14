@@ -11,10 +11,30 @@ public class AnimacioPerCodi : ScriptableObject
     [SerializeField] float temps = 1;
 
     [SerializeField] [SerializeReference] Animacio[] animacions;
+    Component component;
     Lector lector;
     public Lector Lector(Component component)
     {
-        if (lector != null)
+        if(this.component == component)
+        {
+            if (lector != null)
+                return lector;
+
+            if (component.GetComponent<Lector>())
+                return lector = component.GetComponent<Lector>();
+            else
+                return lector = component.gameObject.AddComponent<Lector>();
+        }
+        else
+        {
+            this.component = component;
+            if (component.GetComponent<Lector>())
+                return lector = component.GetComponent<Lector>();
+            else
+                return lector = component.gameObject.AddComponent<Lector>();
+        }
+
+        /*if (lector != null)
             return lector;
         else 
         {
@@ -23,7 +43,12 @@ public class AnimacioPerCodi : ScriptableObject
             else return lector = component.gameObject.AddComponent<Lector>();
             
             //return lector = component.gameObject.AddComponent<Lector>();
-        }
+        }*/
+    }
+
+    private void OnEnable()
+    {
+        lector = null;
     }
 
     public float Temps => temps;
