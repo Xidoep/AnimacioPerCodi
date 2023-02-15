@@ -15,7 +15,7 @@ public class AnimacioPerCodi_Inspector : Editor
     {
         base.OnInspectorGUI();
         _target = (AnimacioPerCodi)target;
-        Animacio_Inspector_Addings.MostrarOpcions("ADD", _target, _target.Animacions, ref mostrar);
+        Animacio_Inspector_Addings.MostrarOpcions("ADD", _target, ref mostrar);
     }
     private void OnDisable()
     {
@@ -60,20 +60,21 @@ public static class Animacio_Inspector_Addings
             AssetDatabase.SaveAssetIfDirty(scriptableBase);
         }
     }
-    static void Add(Animacio[] animacions, Object animacioPerCodi, Animacio animacio)
+    static void Add(AnimacioPerCodi animacioPerCodi, Animacio animacio)
     {
         Undo.RecordObject(animacioPerCodi, "Add animacio");
 
-        List<Animacio> tmp = new List<Animacio>(animacions);
+        List<Animacio> tmp = new List<Animacio>(animacioPerCodi.Animacions);
         tmp.Add(animacio);
-        animacions = tmp.ToArray();
+        animacioPerCodi.Animacions = tmp.ToArray();
 
         EditorUtility.SetDirty(animacioPerCodi);
         PrefabUtility.RecordPrefabInstancePropertyModifications(animacioPerCodi);
         AssetDatabase.SaveAssetIfDirty(animacioPerCodi);
-        
+
+        //return tmp.ToArray();
     }
-    public static void MostrarOpcions(string tabel, Object animacioPerCodi, Animacio[] animacions, ref bool mostrar)
+    public static void MostrarOpcions(string tabel, AnimacioPerCodi animacioPerCodi, ref bool mostrar)
     {
         mostrar = EditorGUILayout.Foldout(mostrar, tabel);
 
@@ -82,59 +83,59 @@ public static class Animacio_Inspector_Addings
 
         EditorGUILayout.LabelField("TRANSFORM");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Posicio")) Add(animacions, animacioPerCodi, new Animacio_Posicio());
-        if (GUILayout.Button("Rotacio")) Add(animacions, animacioPerCodi, new Animacio_Rotacio());
-        if (GUILayout.Button("Escala")) Add(animacions, animacioPerCodi, new Animacio_Escala());
+        if (GUILayout.Button("Posicio")) Add(animacioPerCodi, new Animacio_Posicio());
+        if (GUILayout.Button("Rotacio")) Add(animacioPerCodi, new Animacio_Rotacio());
+        if (GUILayout.Button("Escala")) Add(animacioPerCodi, new Animacio_Escala());
         GUILayout.EndHorizontal();
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Al voltant Vector")) Add(animacions, animacioPerCodi, new Animacio_RotacioVector());
-        if (GUILayout.Button("So")) Add(animacions, animacioPerCodi, new Animacio_So());
-        if (GUILayout.Button("Event Generic")) Add(animacions, animacioPerCodi, new Animacio_EsdevenimentGeneric());
+        if (GUILayout.Button("Al voltant Vector")) Add(animacioPerCodi, new Animacio_RotacioVector());
+        if (GUILayout.Button("So")) Add(animacioPerCodi, new Animacio_So());
+        if (GUILayout.Button("Event Generic")) Add(animacioPerCodi, new Animacio_EsdevenimentGeneric());
         GUILayout.EndHorizontal();
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("GPU")) Add(animacions, animacioPerCodi, new Animacio_GPU());
+        if (GUILayout.Button("GPU")) Add(animacioPerCodi, new Animacio_GPU());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("RECT TRANSFORM");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Posicio")) Add(animacions, animacioPerCodi, new Animacio_RectPosicio());
-        if (GUILayout.Button("Ancor")) Add(animacions, animacioPerCodi, new Animacio_RectAncor());
-        if (GUILayout.Button("Escala")) Add(animacions, animacioPerCodi, new Animacio_RectEscala());
+        if (GUILayout.Button("Posicio")) Add(animacioPerCodi, new Animacio_RectPosicio());
+        if (GUILayout.Button("Ancor")) Add(animacioPerCodi, new Animacio_RectAncor());
+        if (GUILayout.Button("Escala")) Add(animacioPerCodi, new Animacio_RectEscala());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("MESH RENDERER");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Shader Float")) Add(animacions, animacioPerCodi, new Animacio_ShaderFloat());
+        if (GUILayout.Button("Shader Float")) Add(animacioPerCodi, new Animacio_ShaderFloat());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("AUDIO SOURCE");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Play")) Add(animacions, animacioPerCodi, new Animacio_Audio());
+        if (GUILayout.Button("Play")) Add(animacioPerCodi, new Animacio_Audio());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("IMAGE");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Gradient")) Add(animacions, animacioPerCodi, new Animacio_Gradient_Image());
+        if (GUILayout.Button("Gradient")) Add(animacioPerCodi, new Animacio_Gradient_Image());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("TEXT");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Gradient")) Add(animacions, animacioPerCodi, new Animacio_Text_Gradient());
+        if (GUILayout.Button("Gradient")) Add(animacioPerCodi, new Animacio_Text_Gradient());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("SKINNED MESH RENDERER");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("BlendShape")) Add(animacions, animacioPerCodi, new Animacio_BlendShape());
+        if (GUILayout.Button("BlendShape")) Add(animacioPerCodi, new Animacio_BlendShape());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("CAP COMPONENT");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Esdeveniment")) Add(animacions, animacioPerCodi, new Animacio_Esdeveniment());
+        if (GUILayout.Button("Esdeveniment")) Add(animacioPerCodi, new Animacio_Esdeveniment());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("ANTERIOR COMPONENT");
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Proxima animacio")) Add(animacions, animacioPerCodi, new Animacio_ProximaAnimacio());
+        if (GUILayout.Button("Proxima animacio")) Add(animacioPerCodi, new Animacio_ProximaAnimacio());
         GUILayout.EndHorizontal();
     }
 

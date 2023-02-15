@@ -24,11 +24,7 @@ public class Animacio_Escala : Animacio
 
     public override void Transformar(Component objectiu, float frame)
     {
-        if (dinamic && frame == 0)
-        {
-            if(final != objectiu.transform.localScale)
-                inici = objectiu.transform.localScale;
-        }
+        if (dinamic && frame == 0) inici = objectiu.transform.localScale;
 
          //if (frame == 0) Debug.LogError($"Esclar!");
 

@@ -7,9 +7,15 @@ using UnityEditor;
 public class AnimacioPerCodi_GameObject_Inspector : Editor
 {
     AnimacioPerCodi_GameObject _target;
+    bool mostrar;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+
+        mostrar = EditorGUILayout.Foldout(mostrar, "ADD");
+
+        if (!mostrar)
+            return;
 
         _target = (AnimacioPerCodi_GameObject)target;
         Animacio_Inspector_Addings.AddAnimacioPerCodi("onEnabled", _target, ref _target.onEnabled);

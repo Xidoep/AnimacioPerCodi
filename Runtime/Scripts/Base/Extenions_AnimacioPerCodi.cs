@@ -8,7 +8,7 @@ public static class Extenions_AnimacioPerCodi
     public static void SetupAndPlay(this Component component, Lector lector, Animacio[] animacions, float temps, Transicio transicio)
     {
         //Debug.LogError($"2.-Component = {component.name}", component);
-        if (animacions.Length == 0)
+        if (animacions == null || animacions.Length == 0)
             return;
 
         //component.GetLector(ref lector);

@@ -52,7 +52,7 @@ public class AnimacioPerCodi : ScriptableObject
     }
 
     public float Temps => temps;
-    public Animacio[] Animacions => animacions;
+    public Animacio[] Animacions { get => animacions; set => animacions = value; }
     public bool TeAnimacions => animacions != null && animacions.Length > 0;
 
 

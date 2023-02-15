@@ -7,9 +7,15 @@ using UnityEditor;
 public class AnimacioPerCodi_Boto_Inspector : Editor
 {
     AnimacioPerCodi_Boto _target;
+    bool mostrar;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+
+        mostrar = EditorGUILayout.Foldout(mostrar, "ADD");
+
+        if (!mostrar)
+            return;
 
         _target = (AnimacioPerCodi_Boto)target;
         Animacio_Inspector_Addings.AddAnimacioPerCodi("onClick", _target, ref _target.onClick);

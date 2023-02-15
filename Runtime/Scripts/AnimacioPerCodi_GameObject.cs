@@ -86,7 +86,7 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
     /// <param name="loop"></param>
     /// <param name="destroy"></param>
     /// <param name="disable"></param>
-    public void PlayOnPointerUp(Component component, ref Coroutine loop, ref Coroutine idle, bool destroy, bool disable)
+    public void PlayOnPointerUp(Component component, ref Coroutine loop, ref Coroutine idle, bool destroy = false, bool disable = false)
     {
         if (destroyingOrdisabling)
             return;
@@ -121,7 +121,7 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
            
         }
 
-        void Disable() => DisableAmbAnimacio(component);
+        void Disable() => DisableAmbAnimacio(component, disable);
     }
 
     /// <summary>
@@ -151,13 +151,13 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
     /// </summary>
     /// <param name="component"></param>
     /// <param name="loop"></param>
-    public void DestroyAmbAnimacio(Component component, ref Coroutine loop, ref Coroutine idle)
+    public void DestroyAmbAnimacio(Component component, ref Coroutine loop, ref Coroutine idle, bool performDestroy = true)
     {
         loop = CorrutineStop(loop);
         idle = CorrutineStop(idle);
 
         if (onDestroyOrDisable) onDestroyOrDisable.Play(component);
-        Destroy(component.gameObject, onDestroyOrDisable && onDestroyOrDisable.TeAnimacions ? onDestroyOrDisable.Temps : 0);
+        if (performDestroy) Destroy(component.gameObject, onDestroyOrDisable && onDestroyOrDisable.TeAnimacions ? onDestroyOrDisable.Temps : 0);
         //DestroyAmbAnimacio(component);
     }
     /*void DestroyAmbAnimacio(Component component)
@@ -171,18 +171,21 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
     /// </summary>
     /// <param name="component"></param>
     /// <param name="loop"></param>
-    public void DisableAmbAnimacio(Component component, ref Coroutine loop, ref Coroutine idle)
+    public void DisableAmbAnimacio(Component component, ref Coroutine loop, ref Coroutine idle, bool performDisable = true)
     {
         loop = CorrutineStop(loop);
         idle = CorrutineStop(idle);
-        DisableAmbAnimacio(component);
+        DisableAmbAnimacio(component, performDisable);
     }
-    void DisableAmbAnimacio(Component component)
+    void DisableAmbAnimacio(Component component, bool performDisable)
     {
         if (onDestroyOrDisable) onDestroyOrDisable.Play(component);
 
-        if (onDestroyOrDisable && onDestroyOrDisable.TeAnimacions) XS_Coroutine.StartCoroutine_Ending(onDestroyOrDisable.Temps, Disable);
-        else Disable();
+        if (performDisable)
+        {
+            if (onDestroyOrDisable && onDestroyOrDisable.TeAnimacions) XS_Coroutine.StartCoroutine_Ending(onDestroyOrDisable.Temps, Disable);
+            else Disable();
+        }
 
         void Disable() => component.gameObject.SetActive(false);
     }

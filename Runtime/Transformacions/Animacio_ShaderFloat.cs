@@ -32,8 +32,6 @@ public class Animacio_ShaderFloat : Animacio
 
     void Dinamic(Component objectiu, float frame)
     {
-        float inici = 0;
-
         if (frame == 0) inici = ((MeshRenderer)objectiu).material.GetFloat(propietat);
 
         Accio(inici, objectiu, frame);
@@ -42,4 +40,5 @@ public class Animacio_ShaderFloat : Animacio
     {
         ((MeshRenderer)objectiu).material.SetFloat(propietat, Mathf.LerpUnclamped(inici, final, corba.Evaluate(frame)));
     }
+
 }
