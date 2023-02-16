@@ -29,6 +29,9 @@ public class AnimacioPerCodi_GameObject_Inspector : Editor
     }
     private void OnDisable()
     {
+        if (_target == null)
+            return;
+
         AssetDatabase.SaveAssetIfDirty(_target);
     }
 }

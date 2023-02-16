@@ -52,7 +52,6 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
 
     public void OnPointerEnter(PointerEventData eventData) 
     {
-      
         if (pare) 
             return;
 
@@ -84,7 +83,7 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
 
     public void PointerEnter() 
     {
-        Debug.LogError("Enter", this.gameObject);
+        //Debug.LogError("Enter", this.gameObject);
         if (animacio) animacio.PlayOnPointerEnter(component, ref loop, ref idle);
         onPointerEnterAction?.Invoke();
     }

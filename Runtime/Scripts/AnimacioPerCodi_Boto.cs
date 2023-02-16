@@ -14,7 +14,7 @@ public class AnimacioPerCodi_Boto : ScriptableObject
 
     public void PlayOnEnter(Component component, ref Coroutine corrutineLoop)
     {
-        Debug.Log($"1.-Component = {component.name}");
+        //Debug.Log($"1.-Component = {component.name}");
 
         onEnter.Play(component);
         if (onEnter.TeAnimacions)

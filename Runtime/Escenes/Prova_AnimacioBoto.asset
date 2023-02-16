@@ -169,7 +169,7 @@ MonoBehaviour:
         nom: Gradient imatge
         gradient:
           serializedVersion: 2
-          key0: {r: 0.5176471, g: 0.5176471, b: 0.5176471, a: 1}
+          key0: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
           key1: {r: 0.97588235, g: 0.97588235, b: 0.97588235, a: 1}
           key2: {r: 1, g: 1, b: 1, a: 0}
           key3: {r: 0, g: 0, b: 0, a: 0}
