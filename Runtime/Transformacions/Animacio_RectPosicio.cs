@@ -24,6 +24,7 @@ public class Animacio_RectPosicio : Animacio
 
     //INTERN
     Vector2 inicidin = Vector2.zero;
+    RectTransform rectTransform;
 
     public override void Transformar(Component objectiu, float frame)
     {
@@ -33,13 +34,13 @@ public class Animacio_RectPosicio : Animacio
 
     void Dinamic(Component objectiu, float frame)
     {
-        if (frame == 0) inicidin = ((RectTransform)objectiu).anchoredPosition;
+        if (frame == 0) inicidin = ((RectTransform)objectiu.transform).anchoredPosition;
 
         Accio(inicidin, objectiu, frame);
     }
 
     void Accio(Vector3 inici, Component objectiu, float frame)
     {
-        ((RectTransform)objectiu).anchoredPosition = Vector2.LerpUnclamped(inici, final, corba.Evaluate(frame));
+        ((RectTransform)objectiu.transform).anchoredPosition = Vector2.LerpUnclamped(inici, final, corba.Evaluate(frame));
     }
 }

@@ -46,14 +46,17 @@ public class AnimacioPerCodi_Boto : ScriptableObject
     {
         Coroutine corrutineLoop = XS_Coroutine.StartCoroutine_Ending(temps, LoopAfter);
 
-        void LoopAfter() => loop.Play(component);
+        void LoopAfter() 
+        {
+            if (loop) loop.Play(component);
+        }
         return corrutineLoop;
     }
     Coroutine LoopStop(Component component, Coroutine corrutineLoop)
     {
         if (corrutineLoop != null)
         {
-            loop.Lector(component).Stop();
+            if (loop) loop.Lector(component).Stop();
             XS_Coroutine.StopCoroutine(corrutineLoop);
         }
         return null;

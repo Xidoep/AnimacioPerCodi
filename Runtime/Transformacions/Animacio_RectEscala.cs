@@ -33,13 +33,13 @@ public class Animacio_RectEscala : Animacio
 
     void Dinamic(Component objectiu, float frame)
     {
-        if (frame == 0) inicidin = ((RectTransform)objectiu).sizeDelta;
+        if (frame == 0) inicidin = ((RectTransform)objectiu.transform).sizeDelta;
 
         Accio(inicidin, objectiu, frame);
     }
 
     void Accio(Vector3 inici, Component objectiu, float frame)
     {
-        ((RectTransform)objectiu).sizeDelta = Vector2.LerpUnclamped(inici, final, corba.Evaluate(frame));
+        ((RectTransform)objectiu.transform).sizeDelta = Vector2.LerpUnclamped(inici, final, corba.Evaluate(frame));
     }
 }

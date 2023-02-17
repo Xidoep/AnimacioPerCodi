@@ -34,6 +34,7 @@ public class Animacio_RectAncor : Animacio
     //INTERN
     Vector2 iniciMinDin;
     Vector2 iniciMaxDin;
+    RectTransform rectTransform;
 
     public override void Transformar(Component objectiu, float frame)
     {
@@ -45,16 +46,16 @@ public class Animacio_RectAncor : Animacio
     {
         if (frame == 0) 
         {
-            iniciMinDin = ((RectTransform)objectiu).anchorMin;
-            iniciMaxDin = ((RectTransform)objectiu).anchorMax;
-        } 
+            iniciMinDin = ((RectTransform)objectiu.transform).anchorMin;
+            iniciMaxDin = ((RectTransform)objectiu.transform).anchorMax;
+        }
 
         Accio(iniciMinDin, iniciMaxDin, objectiu, frame);
     }
 
-    void Accio(Vector3 iniciMin, Vector3 iniciMax, Component objectiu, float frame)
+    void Accio(Vector2 iniciMin, Vector2 iniciMax, Component objectiu, float frame)
     {
-        ((RectTransform)objectiu).anchorMin = Vector2.LerpUnclamped(iniciMin, finalMin, min.Evaluate(frame));
-        ((RectTransform)objectiu).anchorMax = Vector2.LerpUnclamped(iniciMax, finalMax, max.Evaluate(frame));
+        ((RectTransform)objectiu.transform).anchorMin = Vector2.LerpUnclamped(iniciMin, finalMin, min.Evaluate(frame));
+        ((RectTransform)objectiu.transform).anchorMax = Vector2.LerpUnclamped(iniciMax, finalMax, max.Evaluate(frame));
     }
 }

@@ -10,7 +10,7 @@ public class Animacio
     protected Lector lector;
 
     public virtual void Transformar(Component component, float frame) { }
-
+    public virtual void Restore() { }
 
     //Pensat només per ser cridat quan es vol animar directament desde Script.
     public void Play(Component component, float temps, Transicio transicio)

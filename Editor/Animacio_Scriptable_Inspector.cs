@@ -116,6 +116,7 @@ public static class Animacio_Inspector_Addings
         EditorGUILayout.LabelField("IMAGE");
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Gradient")) Add(animacioPerCodi, new Animacio_Gradient_Image());
+        if (GUILayout.Button("Shader TempsActual")) Add(animacioPerCodi, new Animacio_Shader_Image_TempsActual());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("TEXT");

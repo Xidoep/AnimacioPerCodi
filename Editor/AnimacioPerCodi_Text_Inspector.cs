@@ -23,6 +23,9 @@ public class AnimacioPerCodi_Text_Inspector : Editor
     }
     private void OnDisable()
     {
+        if (!_target)
+            return;
+
         AssetDatabase.SaveAssetIfDirty(_target);
     }
 }

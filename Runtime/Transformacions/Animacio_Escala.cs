@@ -21,15 +21,27 @@ public class Animacio_Escala : Animacio
     [Space(10)]
     [SerializeField] bool dinamic;
 
+    //INTERN
+    [SerializeField] Vector3 iniciDin;
 
     public override void Transformar(Component objectiu, float frame)
+    { 
+        if (!dinamic) Accio(inici, objectiu, frame);
+        else Dinamic(objectiu, frame);
+    }
+
+    void Dinamic(Component objectiu, float frame)
     {
-        if (dinamic && frame == 0) inici = objectiu.transform.localScale;
+        if (frame == 0)
+        {
+            iniciDin = objectiu.transform.localScale;
+        }
 
-         //if (frame == 0) Debug.LogError($"Esclar!");
+        Accio(iniciDin, objectiu, frame);
+    }
 
-        //Debug.LogError($"Esclar {frame}");
-        //Debug.LogError($"Component == null? {objectiu == null}");
+    void Accio(Vector3 inici, Component objectiu, float frame)
+    {
         objectiu.transform.localScale = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
     }
 }

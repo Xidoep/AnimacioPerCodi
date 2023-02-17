@@ -25,6 +25,9 @@ public class AnimacioPerCodi_Boto_Inspector : Editor
     }
     private void OnDisable()
     {
+        if (!_target)
+            return;
+
         AssetDatabase.SaveAssetIfDirty(_target);
     }
 }
