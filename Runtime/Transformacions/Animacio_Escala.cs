@@ -22,7 +22,7 @@ public class Animacio_Escala : Animacio
     [SerializeField] bool dinamic;
 
     //INTERN
-    [SerializeField] Vector3 iniciDin;
+    Vector3 iniciDin;
 
     public override void Transformar(Component objectiu, float frame)
     { 

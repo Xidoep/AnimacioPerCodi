@@ -131,7 +131,6 @@ MonoBehaviour:
         inici: {x: 1, y: 1, z: 1}
         final: {x: 1.2, y: 1.2, z: 1.2}
         dinamic: 0
-        iniciDin: {x: 0, y: 0, z: 0}
     - rid: 2210365020816801804
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
@@ -293,7 +292,6 @@ MonoBehaviour:
         inici: {x: 1.2, y: 1.2, z: 1.2}
         final: {x: 1.6, y: 1.6, z: 1.6}
         dinamic: 0
-        iniciDin: {x: 0, y: 0, z: 0}
     - rid: 2210365020816801798
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
@@ -460,10 +458,9 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        inici: {x: 1.4989631, y: 1.4989631, z: 1.4989631}
+        inici: {x: 1.2, y: 1.2, z: 1.2}
         final: {x: 1, y: 1, z: 1}
         dinamic: 1
-        iniciDin: {x: 0, y: 0, z: 0}
     - rid: 2210365020816801801
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
@@ -473,36 +470,45 @@ MonoBehaviour:
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 1
-            inSlope: -3.4841187
-            outSlope: -3.4841187
-            tangentMode: 0
+            value: 0
+            inSlope: 1.5947236
+            outSlope: 1.5947236
+            tangentMode: 34
             weightedMode: 0
             inWeight: 0
-            outWeight: 0.03976608
+            outWeight: 0.33333334
           - serializedVersion: 3
-            time: 0.59577894
-            value: -0.09052378
-            inSlope: -0.4778493
-            outSlope: -0.4778493
+            time: 0.68141884
+            value: 1.0866747
+            inSlope: -0.11642157
+            outSlope: -0.11642157
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.33333334
-            outWeight: 0.33333334
+            outWeight: 0.31771863
           - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: -0.5652891
-            outSlope: -0.5652891
+            time: 0.900159
+            value: 0.9741818
+            inSlope: -0.043044664
+            outSlope: -0.043044664
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0.058479548
+            inWeight: 0.33333334
+            outWeight: 0.57791626
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0
+            outSlope: -0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.44113
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        inici: {x: 0, y: 0, z: 0}
-        final: {x: 0, y: 0, z: 7}
+        inici: {x: -0, y: -0, z: 6.909974}
+        final: {x: 0, y: 0, z: 0}
         local: 1
         dinamic: 1
     - rid: 2210365020816801802

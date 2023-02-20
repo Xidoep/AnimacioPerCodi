@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OnEnter
   m_EditorClassIdentifier: 
   transicio: 0
-  temps: 1
+  temps: 0.5
   animacions:
   - rid: 2210365020816801806
   references:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: OnExit
   m_EditorClassIdentifier: 
   transicio: 0
-  temps: 1
+  temps: 0.5
   animacions:
   - rid: 2210365020816801807
   references:

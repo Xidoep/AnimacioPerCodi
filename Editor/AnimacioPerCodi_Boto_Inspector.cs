@@ -6,28 +6,38 @@ using UnityEditor;
 [CustomEditor(typeof(AnimacioPerCodi_Boto))]
 public class AnimacioPerCodi_Boto_Inspector : Editor
 {
-    AnimacioPerCodi_Boto _target;
+
+    SerializedProperty onEnter;
+    SerializedProperty onClick;
+    SerializedProperty onExit;
+    SerializedProperty loop;
+
     bool mostrar;
+
+    private void OnEnable()
+    {
+        onEnter = serializedObject.FindProperty("onEnter");
+        onClick = serializedObject.FindProperty("onClick");
+        onExit = serializedObject.FindProperty("onExit");
+        loop = serializedObject.FindProperty("loop");
+    }
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
+        EditorGUILayout.PropertyField(onEnter, "On Enter".ToNomAnimacioEditor(target, onEnter));
+        EditorGUILayout.PropertyField(onClick, "On Click".ToNomAnimacioEditor(target, onClick));
+        EditorGUILayout.PropertyField(onExit, "On Exit".ToNomAnimacioEditor(target, onExit));
+        EditorGUILayout.PropertyField(loop, "Loop".ToNomAnimacioEditor(target, loop));
+
+        serializedObject.ApplyModifiedProperties();
 
         mostrar = EditorGUILayout.Foldout(mostrar, "ADD");
-
         if (!mostrar)
             return;
 
-        _target = (AnimacioPerCodi_Boto)target;
-        Animacio_Inspector_Addings.AddAnimacioPerCodi("onClick", _target, ref _target.onClick);
-        Animacio_Inspector_Addings.AddAnimacioPerCodi("onEnter", _target, ref _target.onEnter);
-        Animacio_Inspector_Addings.AddAnimacioPerCodi("onExit", _target, ref _target.onExit);
-        Animacio_Inspector_Addings.AddAnimacioPerCodi("loop", _target, ref _target.loop);
+        Animacio_Inspector_Addings.AddAnimacioPerCodi("onClick", target, onClick);
+        Animacio_Inspector_Addings.AddAnimacioPerCodi("onEnter", target, onEnter);
+        Animacio_Inspector_Addings.AddAnimacioPerCodi("onExit", target, onExit);
+        Animacio_Inspector_Addings.AddAnimacioPerCodi("loop", target, loop);
     }
-    private void OnDisable()
-    {
-        if (!_target)
-            return;
-
-        AssetDatabase.SaveAssetIfDirty(_target);
-    }
+    private void OnDisable() => AssetDatabase.SaveAssetIfDirty(target);
 }
