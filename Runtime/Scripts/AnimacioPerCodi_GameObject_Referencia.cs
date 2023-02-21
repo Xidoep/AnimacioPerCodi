@@ -13,8 +13,8 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
     [Space(10)]
     [SerializeField] AnimacioPerCodi_GameObject_Referencia pare;
 
-    Coroutine loop;
-    Coroutine idle;
+    //Coroutine idle;
+    Coroutine coroutine;
 
     #region ACTIONS
 
@@ -36,7 +36,7 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
 
     void OnEnable() 
     {
-        if (animacio) animacio.PlayOnEnabled(component, ref idle);
+        if (animacio) coroutine = animacio.OnEnabled(component);
 
         if (!pare)
             return;
@@ -83,23 +83,22 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
 
     public void PointerEnter() 
     {
-        //Debug.LogError("Enter", this.gameObject);
-        if (animacio) animacio.PlayOnPointerEnter(component, ref loop, ref idle);
+        if (animacio) coroutine = animacio.OnPointerEnter(component, coroutine);
         onPointerEnterAction?.Invoke();
     }
     public void PointerDown() 
     {
-        if (animacio) animacio.PlayOnPointerDown(component, ref loop);
+        if (animacio) coroutine = animacio.OnPointerDown(component, coroutine);
         onPointerDownAction?.Invoke();
     }
     public void PointerUp()
     {
-        if (animacio) animacio.PlayOnPointerUp(component, ref loop, ref idle, onClick == OnClickAction.destroy, onClick == OnClickAction.disable);
+        if (animacio) coroutine = animacio.OnPointerUp(component, coroutine, onClick == OnClickAction.destroy, onClick == OnClickAction.disable);
         onPointerUpAction?.Invoke();
     }
     public void PointerExit() 
     {
-        if (animacio) animacio.PlayOnPointerExit(component, ref loop, ref idle);
+        if (animacio) coroutine = animacio.OnPointerExit(component, coroutine);
         onPointerExitAction?.Invoke();
     }
 
@@ -107,13 +106,13 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
     [ContextMenu("Destroy")] 
     public void Destroy() 
     {
-        if (animacio) animacio.DestroyAmbAnimacio(component, ref loop, ref idle, pare ? false : onClick == OnClickAction.destroy);
+        if (animacio) animacio.Destroy(component, ref coroutine, pare ? false : onClick == OnClickAction.destroy);
         onDestroyAction?.Invoke();
     }
     [ContextMenu("Disable")] 
     public void Disable() 
     {
-        if (animacio) animacio.DisableAmbAnimacio(component, ref loop, ref idle, pare ? false : onClick == OnClickAction.disable);
+        if (animacio) animacio.Disable(component, ref coroutine, pare ? false : onClick == OnClickAction.disable);
         onDisableAction?.Invoke();
     }
 

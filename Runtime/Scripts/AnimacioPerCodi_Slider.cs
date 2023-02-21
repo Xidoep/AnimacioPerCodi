@@ -5,30 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/AnimacioSlider", fileName = "AnimacioSlider")]
 public class AnimacioPerCodi_Slider : ScriptableObject
 {
-    public AnimacioPerCodi onEnter;
-    public AnimacioPerCodi onDown;
-    public AnimacioPerCodi modificar;
-    public AnimacioPerCodi onUp;
-    public AnimacioPerCodi onExit;
+    [SerializeField] AnimacioPerCodi onEnter;
+    [SerializeField] AnimacioPerCodi onDown;
+    [SerializeField] AnimacioPerCodi loop;
+    [SerializeField] AnimacioPerCodi modificar;
+    [SerializeField] AnimacioPerCodi onUp;
+    [SerializeField] AnimacioPerCodi onExit;
 
-    public void PlayOnEnter(Component component)
-    {
-        onEnter?.Play(component);
-    }
-    public void PlayOnDown(Component component)
-    {
-        onDown?.Play(component);
-    }
-    public void PlayModificar(Component component)
-    {
-        modificar?.Play(component);
-    }
-    public void PlayOnUp(Component component)
-    {
-        onUp?.Play(component);
-    }
-    public void PlayOnExit(Component component)
-    {
-        onExit?.Play(component);
-    }
+    public Coroutine OnEnter(Component component) => component.Animacio_LoopDespres(onEnter, loop);
+    public Coroutine OnDown(Component component, Coroutine corrutine) => component.StopAnterior_Animacio(onDown, loop, corrutine);
+    public void Modificar(Component component) => modificar.Play(component);
+    public Coroutine OnUp(Component component) => component.Animacio_LoopDespres(onUp, loop);
+    public Coroutine OnExit(Component component, Coroutine corrutine) => component.StopAnterior_Animacio(onExit, loop, corrutine);
 }

@@ -9,7 +9,7 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
     public AnimacioPerCodi onEnabled;
     public AnimacioPerCodi idle;
     public AnimacioPerCodi onPointerEnter;
-    public AnimacioPerCodi loop;
+    public AnimacioPerCodi apuntat;
     public AnimacioPerCodi onPointerDown;
     public AnimacioPerCodi onPointerUp;
     public AnimacioPerCodi onPointerExit;
@@ -18,167 +18,120 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
     bool destroyingOrdisabling = false;
 
     /// <summary>
-    /// Play a animacio apareixre
     /// </summary>
     /// <param name="component"></param>
-    public void PlayOnEnabled(Component component, ref Coroutine idle) 
+    /// <returns>Corrutine Idle</returns>
+    public Coroutine OnEnabled(Component component) 
     {
         destroyingOrdisabling = false;
-        if (onEnabled) onEnabled.Play(component);
 
-        if (this.idle && this.idle.TeAnimacions)
-        {
-            if (onEnabled && onEnabled.TeAnimacions)
-                idle = IdlePlayDelayed(component, onEnabled.Temps);
-            else this.idle.Play(component);
-        }      
-    } 
-
+        return component.Animacio_LoopDespres(onEnabled, this.idle);
+    }
     /// <summary>
-    /// Play a animacio en Apuntar, i passa a la animacio Apuntat despres.
     /// </summary>
     /// <param name="component"></param>
-    /// <param name="loop"></param>
-    public void PlayOnPointerEnter(Component component, ref Coroutine loop, ref Coroutine idle)
+    /// <param name="coroutine"></param>
+    /// <returns>Corrutine apuntat</returns>
+    public Coroutine OnPointerEnter(Component component, Coroutine coroutine)
     {
         if (destroyingOrdisabling)
-            return;
+            return null;
 
-        idle = CorrutineStop(idle);
-
-        if (onPointerEnter) onPointerEnter.Play(component);
-
-        if (this.loop && this.loop.TeAnimacions)
-        {
-            if (onPointerEnter && onPointerEnter.TeAnimacions)
-                loop = LoopPlayDelayed(component, onPointerEnter.Temps);
-            else this.loop.Play(component);
-        }
+        return component.StopAnterior_Animacio_LoopDespres(onPointerEnter, idle, coroutine, apuntat);
     }
 
     /// <summary>
-    /// Atura l'animacio Apuntat i fa Play animacio Clicar. Si no hi ha l'animacio Desclicar, torna a l'animacio Apuntat. 
+    /// 
     /// </summary>
     /// <param name="component"></param>
-    /// <param name="loop"></param>
-    public void PlayOnPointerDown(Component component, ref Coroutine loop)
+    /// <param name="coroutine"></param>
+    /// <returns>Corrutine apuntat</returns>
+    public Coroutine OnPointerDown(Component component, Coroutine coroutine)
     {
-        loop = CorrutineStop(loop);
-        if (onPointerDown) onPointerDown.Play(component);
+        if (destroyingOrdisabling)
+            return null;
 
-        if (this.loop && this.loop.TeAnimacions)
+        if (!onPointerUp || !onPointerUp.TeAnimacions) //No hi ha onPointerUp
         {
-            if (!onPointerUp || !onPointerUp.TeAnimacions)
-            {
-                if (onPointerDown && onPointerDown.TeAnimacions)
-                    loop = LoopPlayDelayed(component, onPointerDown.Temps);
-                else this.loop.Play(component);
-            }
+            return component.StopAnterior_Animacio_LoopDespres(onPointerDown, apuntat, coroutine, apuntat);
         }
+        else return component.StopAnterior_Animacio(onPointerDown, apuntat, coroutine);
     }
-
     /// <summary>
-    /// Atura l'animacio Apuntat si es que PlayOnPointerDown no ho ha fet. fa Play a animacio Desclicar i fa el seguent.
-    /// Destrueix i amaga el gameObjecte del component si l'hi dius.
-    /// o passa a l'animacio Apuntat, si no.
+    /// 
     /// </summary>
     /// <param name="component"></param>
-    /// <param name="loop"></param>
+    /// <param name="coroutine"></param>
     /// <param name="destroy"></param>
     /// <param name="disable"></param>
-    public void PlayOnPointerUp(Component component, ref Coroutine loop, ref Coroutine idle, bool destroy = false, bool disable = false)
+    /// <returns>Corrutine Apuntat</returns>
+    public Coroutine OnPointerUp(Component component, Coroutine coroutine, bool destroy = false, bool disable = false)
     {
         if (destroyingOrdisabling)
-            return;
+            return null;
 
-        loop = CorrutineStop(loop);
-
-        if (onPointerUp) onPointerUp.Play(component);
-
-        if (destroy || disable)
+        if (!onPointerDown || !onPointerDown.TeAnimacions) //No s'ha fet el onPointerDown
         {
-            destroyingOrdisabling = true;
-            if (destroy)
-            {
-                DestroyAmbAnimacio(component, ref loop, ref idle);
-            }
-            else
-            {
-                //loop = CorrutineStop(loop);
-                if (onPointerUp && onPointerUp.TeAnimacions) 
-                    XS_Coroutine.StartCoroutine_Ending(onPointerUp.Temps, Disable);
-                else Disable();
-            }
+            if (destroy) return DestroyAmbAnimacio(component, coroutine);
+            else if (disable) return DisableAmbAnimacio(component, coroutine);
+            else return component.StopAnterior_Animacio_LoopDespres(onPointerUp, apuntat, coroutine, apuntat);
         }
         else
         {
-            if (this.loop && this.loop.TeAnimacions)
-            {
-                if (onPointerUp && onPointerUp.TeAnimacions)
-                    loop = LoopPlayDelayed(component, onPointerUp.Temps);
-                else this.loop.Play(component);
-            }
-           
+            if (destroy) return DestroyAmbAnimacio(component, true);
+            else if (disable) return DisableAmbAnimacio(component, true);
+            else  return component.Animacio_LoopDespres(onPointerUp, apuntat);
         }
-
-        void Disable() => DisableAmbAnimacio(component, disable);
     }
-
     /// <summary>
-    /// Atura l'animacio Apuntat, i fa Play a l'animacio Desapuntar.
+    /// 
     /// </summary>
     /// <param name="component"></param>
-    /// <param name="loop"></param>
-    public void PlayOnPointerExit(Component component, ref Coroutine loop, ref Coroutine idle)
+    /// <param name="coroutine"></param>
+    /// <returns>Corrutine Idle</returns>
+    public Coroutine OnPointerExit(Component component, Coroutine coroutine)
     {
         if (destroyingOrdisabling)
-            return;
+            return null;
 
-        loop = CorrutineStop(loop);
-
-        if (onPointerExit) onPointerExit.Play(component);
-
-        if (this.idle && this.idle.TeAnimacions)
-        {
-            if (onPointerExit && onPointerExit.TeAnimacions)
-                idle = IdlePlayDelayed(component, onPointerExit.Temps);
-            else this.idle.Play(component);
-        }
+        return component.StopAnterior_Animacio_LoopDespres(onPointerExit, apuntat, coroutine, idle);
     }
 
-    /// <summary>
-    /// Destrueix el gameObject del component despres de l'animacio de DestruirOrAmagar
-    /// </summary>
-    /// <param name="component"></param>
-    /// <param name="loop"></param>
-    public void DestroyAmbAnimacio(Component component, ref Coroutine loop, ref Coroutine idle, bool performDestroy = true)
+
+
+    public void Destroy(Component component, ref Coroutine loop, bool performDestroy = true)
     {
         loop = CorrutineStop(loop);
-        idle = CorrutineStop(idle);
-
+        DestroyAmbAnimacio(component, performDestroy);
+    }
+    Coroutine DestroyAmbAnimacio(Component component, Coroutine loop, bool performDestroy = true)
+    {
+        DestroyAmbAnimacio(component, performDestroy);
+        return CorrutineStop(loop);
+    }
+    Coroutine DestroyAmbAnimacio(Component component, bool performDestroy)
+    {
+        destroyingOrdisabling = true;
         if (onDestroyOrDisable) onDestroyOrDisable.Play(component);
-        if (performDestroy) Destroy(component.gameObject, onDestroyOrDisable && onDestroyOrDisable.TeAnimacions ? onDestroyOrDisable.Temps : 0);
-        //DestroyAmbAnimacio(component);
+        if (performDestroy) Destroy(component.gameObject, (onDestroyOrDisable && onDestroyOrDisable.TeAnimacions) ? onDestroyOrDisable.Temps : 0);
+        return null;
     }
-    /*void DestroyAmbAnimacio(Component component)
-    {
-        onDestroyOrDisable.Play(component);
-        Destroy(component.gameObject, onDestroyOrDisable.TeAnimacions ? onDestroyOrDisable.Temps : 0);
-    }*/
 
-    /// <summary>
-    /// Amaga el gameObject del component despres de l'animacio de DestruirOrAmagar
-    /// </summary>
-    /// <param name="component"></param>
-    /// <param name="loop"></param>
-    public void DisableAmbAnimacio(Component component, ref Coroutine loop, ref Coroutine idle, bool performDisable = true)
+
+
+    public void Disable(Component component, ref Coroutine loop, bool performDisable = true)
     {
         loop = CorrutineStop(loop);
-        idle = CorrutineStop(idle);
         DisableAmbAnimacio(component, performDisable);
     }
-    void DisableAmbAnimacio(Component component, bool performDisable)
+    Coroutine DisableAmbAnimacio(Component component, Coroutine loop, bool performDisable = true)
     {
+        DisableAmbAnimacio(component, performDisable);
+        return CorrutineStop(loop);
+    }
+    Coroutine DisableAmbAnimacio(Component component, bool performDisable)
+    {
+        destroyingOrdisabling = true;
         if (onDestroyOrDisable) onDestroyOrDisable.Play(component);
 
         if (performDisable)
@@ -186,6 +139,8 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
             if (onDestroyOrDisable && onDestroyOrDisable.TeAnimacions) XS_Coroutine.StartCoroutine_Ending(onDestroyOrDisable.Temps, Disable);
             else Disable();
         }
+
+        return null;
 
         void Disable() => component.gameObject.SetActive(false);
     }
@@ -198,7 +153,7 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
     {
         Coroutine corrutineLoop = XS_Coroutine.StartCoroutine_Ending(temps, LoopAfter);
 
-        void LoopAfter() => loop.Play(component);
+        void LoopAfter() => apuntat.Play(component);
         return corrutineLoop;
     }
     Coroutine IdlePlayDelayed(Component component, float temps)

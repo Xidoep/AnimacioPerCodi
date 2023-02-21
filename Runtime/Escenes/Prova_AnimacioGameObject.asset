@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: OnDestroyOrDisable
   m_EditorClassIdentifier: 
   transicio: 0
-  temps: 1
+  temps: 0.5
   animacions:
   - rid: 2210365020816801809
   references:
@@ -171,10 +171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e338258b784a52c46b250e540248476b, type: 3}
   m_Name: Prova_AnimacioGameObject
   m_EditorClassIdentifier: 
-  onEnabled: {fileID: 0}
+  onEnabled: {fileID: 6932822627972747964}
   idle: {fileID: -5843092759424883152}
   onPointerEnter: {fileID: -1002564434349874534}
-  loop: {fileID: 3122797272790735135}
+  apuntat: {fileID: 3122797272790735135}
   onPointerDown: {fileID: 3642686460950078720}
   onPointerUp: {fileID: 1529665423620102735}
   onPointerExit: {fileID: 6642834182868179181}
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: OnPointerUp
   m_EditorClassIdentifier: 
   transicio: 0
-  temps: 0.5
+  temps: 0.2
   animacions:
   - rid: 2210365020816801815
   references:
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Name: OnPointerDown
   m_EditorClassIdentifier: 
   transicio: 0
-  temps: 1
+  temps: 0.2
   animacions:
   - rid: 2210365020816801814
   references:

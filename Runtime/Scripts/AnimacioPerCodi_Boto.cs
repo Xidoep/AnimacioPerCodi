@@ -12,58 +12,8 @@ public class AnimacioPerCodi_Boto : ScriptableObject
     public AnimacioPerCodi loop;
 
 
-    public void PlayOnEnter(Component component, ref Coroutine corrutineLoop)
-    {
-        //Debug.Log($"1.-Component = {component.name}");
-
-        onEnter.Play(component);
-        if (onEnter.TeAnimacions)
-            corrutineLoop = LoopPlayDelayed(component, onEnter.Temps);
-        else loop.Play(component);
-    }
-
-    public void PlayOnClick(Component component, ref Coroutine corrutineLoop) 
-    {
-        //onEnter.Lector(component).Stop();
-        LoopStop(component, corrutineLoop);
-
-        onClick.Play(component);
-
-        corrutineLoop = LoopPlayDelayed(component, onClick.Temps);
-    }
-    
-
-    public void PlayOnExit(Component component, ref Coroutine corrutineLoop)
-    {
-        corrutineLoop = LoopStop(component, corrutineLoop);
-        onExit.Play(component);
-    }
-
-
-
-
-    Coroutine LoopPlayDelayed(Component component, float temps)
-    {
-        Coroutine corrutineLoop = XS_Coroutine.StartCoroutine_Ending(temps, LoopAfter);
-
-        void LoopAfter() 
-        {
-            if (loop) loop.Play(component);
-        }
-        return corrutineLoop;
-    }
-    Coroutine LoopStop(Component component, Coroutine corrutineLoop)
-    {
-        if (corrutineLoop != null)
-        {
-            if (loop) loop.Lector(component).Stop();
-            XS_Coroutine.StopCoroutine(corrutineLoop);
-        }
-        return null;
-    }
-
-
-
-
+    public Coroutine OnEnter(Component component) => component.Animacio_LoopDespres(onEnter, loop);
+    public Coroutine OnClick(Component component, Coroutine corrutine) => component.StopAnterior_Animacio_LoopDespres(onClick, loop, corrutine, loop);
+    public Coroutine OnExit(Component component, Coroutine corrutine) => component.StopAnterior_Animacio(onExit, loop, corrutine);
 
 }

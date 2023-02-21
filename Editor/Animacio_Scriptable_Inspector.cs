@@ -28,7 +28,7 @@ public class AnimacioPerCodi_Inspector : Editor
 
 public static class Animacio_Inspector_Addings
 {
-    public static GUIContent ToNomAnimacioEditor(this string nom, Object animacioPerCodi, SerializedProperty animacio) => new GUIContent(nom + (AssetDatabase.GetAssetPath(animacioPerCodi) != AssetDatabase.GetAssetPath(animacio.objectReferenceValue) ? " (EXTERIOR)" : ""));
+    public static GUIContent ToNomAnimacioEditor(this string nom, Object animacioPerCodi, SerializedProperty animacio) => new GUIContent(nom + (animacio.objectReferenceValue == null ? " - null - " : (AssetDatabase.GetAssetPath(animacioPerCodi) != AssetDatabase.GetAssetPath(animacio.objectReferenceValue) ? "   (EXTERIOR)" : "")));
     
     public static Object AddAnimacioPerCodi(string label, Object scriptableBase, SerializedProperty animacio)
     {

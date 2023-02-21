@@ -1,65 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8818412320019783560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5bd4e9dac6aa4697e66b4d0d8fb3a, type: 3}
-  m_Name: Loop
-  m_EditorClassIdentifier: 
-  transicio: 1
-  temps: 1.5
-  animacions:
-  - rid: 2210365020816801795
-  references:
-    version: 2
-    RefIds:
-    - rid: 2210365020816801795
-      type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
-      data:
-        nom: Rotacio
-        corba:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 0.5
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        inici: {x: 0, y: 0, z: 3}
-        final: {x: 0, y: 0, z: 7}
-        local: 0
-        dinamic: 0
 --- !u!114 &-6819565934117131839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +71,6 @@ MonoBehaviour:
         inici: {x: 1, y: 1, z: 1}
         final: {x: 1.2, y: 1.2, z: 1.2}
         dinamic: 0
-        iniciDin: {x: 0, y: 0, z: 0}
     - rid: 2210365020816801804
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
@@ -293,7 +232,6 @@ MonoBehaviour:
         inici: {x: 1.2, y: 1.2, z: 1.2}
         final: {x: 1.6, y: 1.6, z: 1.6}
         dinamic: 0
-        iniciDin: {x: 0, y: 0, z: 0}
     - rid: 2210365020816801798
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
@@ -463,7 +401,6 @@ MonoBehaviour:
         inici: {x: 1.4989631, y: 1.4989631, z: 1.4989631}
         final: {x: 1, y: 1, z: 1}
         dinamic: 1
-        iniciDin: {x: 0, y: 0, z: 0}
     - rid: 2210365020816801801
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
@@ -553,4 +490,4 @@ MonoBehaviour:
   onClick: {fileID: -1890057176192814004}
   onEnter: {fileID: -6819565934117131839}
   onExit: {fileID: -1323997722522260603}
-  loop: {fileID: -8818412320019783560}
+  loop: {fileID: -8818412320019783560, guid: 2a5c255a53d1de247915709d45ae0b2f, type: 2}

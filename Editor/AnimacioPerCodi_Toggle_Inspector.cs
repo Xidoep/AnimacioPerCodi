@@ -7,6 +7,7 @@ using UnityEditor;
 public class AnimacioPerCodi_Toggle_Inspector : Editor
 {
     SerializedProperty onEnter;
+    SerializedProperty loop;
     SerializedProperty onClick;
     SerializedProperty onExit;
 
@@ -15,6 +16,7 @@ public class AnimacioPerCodi_Toggle_Inspector : Editor
     private void OnEnable()
     {
         onEnter = serializedObject.FindProperty("onEnter");
+        loop = serializedObject.FindProperty("loop");
         onClick = serializedObject.FindProperty("onClick");
         onExit = serializedObject.FindProperty("onExit");
     }
@@ -22,6 +24,7 @@ public class AnimacioPerCodi_Toggle_Inspector : Editor
     {
 
         EditorGUILayout.PropertyField(onEnter, "On Enter".ToNomAnimacioEditor(target, onEnter));
+        EditorGUILayout.PropertyField(loop, "Loop".ToNomAnimacioEditor(target, loop));
         EditorGUILayout.PropertyField(onClick, "On Click".ToNomAnimacioEditor(target, onClick));
         EditorGUILayout.PropertyField(onExit, "On Exit".ToNomAnimacioEditor(target, onExit));
 
@@ -32,6 +35,7 @@ public class AnimacioPerCodi_Toggle_Inspector : Editor
             return;
 
         onEnter.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onEnter", target, onEnter);
+        loop.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("loop", target, loop);
         onClick.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onClick", target, onClick);
         onExit.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onExit", target, onExit);
     }

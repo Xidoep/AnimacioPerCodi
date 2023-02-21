@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AnimacioToggle
   m_EditorClassIdentifier: 
   onEnter: {fileID: -6819565934117131839, guid: 2a5c255a53d1de247915709d45ae0b2f, type: 2}
+  loop: {fileID: -8818412320019783560, guid: 2a5c255a53d1de247915709d45ae0b2f, type: 2}
   onClick: {fileID: 5523055378512863617}
   onExit: {fileID: -1323997722522260603, guid: 2a5c255a53d1de247915709d45ae0b2f, type: 2}
 --- !u!114 &5523055378512863617

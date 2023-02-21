@@ -9,7 +9,7 @@ public class AnimacioPerCodi_GameObject_Inspector : Editor
     SerializedProperty onEnabled;
     SerializedProperty idle;
     SerializedProperty onPointerEnter;
-    SerializedProperty loop;
+    SerializedProperty apuntat;
     SerializedProperty onPointerDown;
     SerializedProperty onPointerUp;
     SerializedProperty onPointerExit;
@@ -21,7 +21,7 @@ public class AnimacioPerCodi_GameObject_Inspector : Editor
         onEnabled = serializedObject.FindProperty("onEnabled");
         idle = serializedObject.FindProperty("idle");
         onPointerEnter = serializedObject.FindProperty("onPointerEnter");
-        loop = serializedObject.FindProperty("loop");
+        apuntat = serializedObject.FindProperty("apuntat");
         onPointerDown = serializedObject.FindProperty("onPointerDown");
         onPointerUp = serializedObject.FindProperty("onPointerUp");
         onPointerExit = serializedObject.FindProperty("onPointerExit");
@@ -32,7 +32,7 @@ public class AnimacioPerCodi_GameObject_Inspector : Editor
         EditorGUILayout.PropertyField(onEnabled, "On Enabled".ToNomAnimacioEditor(target, onEnabled));
         EditorGUILayout.PropertyField(idle, "Idle".ToNomAnimacioEditor(target, idle));
         EditorGUILayout.PropertyField(onPointerEnter, "On Pointer Enter".ToNomAnimacioEditor(target, onPointerEnter));
-        EditorGUILayout.PropertyField(loop, "Loop".ToNomAnimacioEditor(target, loop));
+        EditorGUILayout.PropertyField(apuntat, "Apuntat".ToNomAnimacioEditor(target, apuntat));
         EditorGUILayout.PropertyField(onPointerDown, "On Pointer Down".ToNomAnimacioEditor(target, onPointerDown));
         EditorGUILayout.PropertyField(onPointerExit, "On Pointer Exit".ToNomAnimacioEditor(target, onPointerExit));
         EditorGUILayout.PropertyField(onDestroyOrDisable, "On Destroy/Disable".ToNomAnimacioEditor(target, onDestroyOrDisable));
@@ -46,7 +46,7 @@ public class AnimacioPerCodi_GameObject_Inspector : Editor
         onEnabled.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onEnabled", target, onEnabled);
         idle.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("idle", target, idle);
         onPointerEnter.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerEnter", target, onPointerEnter);
-        loop.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("loop", target, loop);
+        apuntat.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("apuntat", target, apuntat);
         onPointerDown.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerDown", target, onPointerDown);
         onPointerUp.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerUp", target, onPointerUp);
         onPointerExit.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerExit", target, onPointerExit);
