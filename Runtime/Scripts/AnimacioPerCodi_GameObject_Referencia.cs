@@ -8,10 +8,16 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
     public enum OnClickAction {res, destroy, disable }
 
     [SerializeField] Component component;
-    [SerializeField] OnClickAction onClick;
     [SerializeField] AnimacioPerCodi_GameObject animacio;
-    [Space(10)]
+
+    [Apartat("Interaccions")]
+    [SerializeField] bool interactuable = false;
+    [SerializeField] OnClickAction onClick;
+
+    [Apartat("Pare")]
     [SerializeField] AnimacioPerCodi_GameObject_Referencia pare;
+    [SerializeField] AnimacioPerCodi_Boto boto;
+    bool registrat = false;
 
     //Coroutine idle;
     Coroutine coroutine;
@@ -41,17 +47,26 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
         if (!pare)
             return;
 
+        if (registrat)
+            return;
+
+        registrat = true;
+
         pare.OnPointerEnterAction += PointerEnter;
         pare.OnPointerDownAction += PointerDown;
         pare.OnPointerUpAction += PointerUp;
         pare.OnPointerExitAction += PointerExit;
         pare.OnDestroyAction += Destroy;
         pare.OnDisableAction += Disable;
+        
     }
 
 
     public void OnPointerEnter(PointerEventData eventData) 
     {
+        if (!interactuable)
+            return;
+
         if (pare) 
             return;
 
@@ -59,6 +74,9 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
     }
     public void OnPointerDown(PointerEventData eventData) 
     {
+        if (!interactuable)
+            return;
+
         if (pare) 
             return;
 
@@ -66,6 +84,9 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
     }
     public void OnPointerUp(PointerEventData eventData) 
     {
+        if (!interactuable)
+            return;
+
         if (pare) 
             return;
 
@@ -73,6 +94,9 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!interactuable)
+            return;
+
         if (pare) 
             return;
 
@@ -119,6 +143,14 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
     private void OnDisable()
     {
         if (!pare)
+            return;
+
+        
+    }
+
+    void OnDestroy()
+    {
+        if (!registrat)
             return;
 
         pare.OnPointerEnterAction -= PointerEnter;
