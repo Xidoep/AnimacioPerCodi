@@ -58,7 +58,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         inici: {x: 0, y: 0, z: 3}
         final: {x: 0, y: 0, z: 7}
-        local: 0
+        local: 1
         dinamic: 0
 --- !u!114 &-6819565934117131839
 MonoBehaviour:
@@ -507,7 +507,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        inici: {x: -0, y: -0, z: 6.909974}
+        inici: {x: -0, y: 0, z: 6.9105296}
         final: {x: 0, y: 0, z: 0}
         local: 1
         dinamic: 1
