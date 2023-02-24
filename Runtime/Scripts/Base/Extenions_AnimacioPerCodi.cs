@@ -26,7 +26,7 @@ public static class Extenions_AnimacioPerCodi
     {
         animacio?.Play(component);
 
-        if (animacio.TeAnimacions)
+        if (animacio && animacio.TeAnimacions)
             return component.Loop(proxima, animacio.Temps);
         else proxima?.Play(component);
 
@@ -39,7 +39,7 @@ public static class Extenions_AnimacioPerCodi
 
         animacio?.Play(component);
 
-        if (animacio.TeAnimacions)
+        if (animacio && animacio.TeAnimacions)
             return component.Loop(proxima, animacio.Temps);
         else proxima?.Play(component);
 

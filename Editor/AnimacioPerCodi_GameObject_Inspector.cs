@@ -34,6 +34,7 @@ public class AnimacioPerCodi_GameObject_Inspector : Editor
         EditorGUILayout.PropertyField(onPointerEnter, "On Pointer Enter".ToNomAnimacioEditor(target, onPointerEnter));
         EditorGUILayout.PropertyField(apuntat, "Apuntat".ToNomAnimacioEditor(target, apuntat));
         EditorGUILayout.PropertyField(onPointerDown, "On Pointer Down".ToNomAnimacioEditor(target, onPointerDown));
+        EditorGUILayout.PropertyField(onPointerUp, "On Pointer Up".ToNomAnimacioEditor(target, onPointerUp));
         EditorGUILayout.PropertyField(onPointerExit, "On Pointer Exit".ToNomAnimacioEditor(target, onPointerExit));
         EditorGUILayout.PropertyField(onDestroyOrDisable, "On Destroy/Disable".ToNomAnimacioEditor(target, onDestroyOrDisable));
 
