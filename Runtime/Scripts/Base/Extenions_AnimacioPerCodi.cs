@@ -5,7 +5,11 @@ using XS_Utils;
 
 public static class Extenions_AnimacioPerCodi
 {
-
+    public static void SetupAndPlay(this Component component, Lector lector, Animacio animacio, float temps, Transicio transicio)
+    {
+        lector.Setup(new Animacio[] { animacio }, component, temps, transicio);
+        lector.Play();
+    }
     public static void SetupAndPlay(this Component component, Lector lector, Animacio[] animacions, float temps, Transicio transicio)
     {
         if (animacions == null || animacions.Length == 0)

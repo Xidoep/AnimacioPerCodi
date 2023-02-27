@@ -24,7 +24,6 @@ public class Animacio_RectPosicio : Animacio
 
     //INTERN
     Vector2 inicidin = Vector2.zero;
-    RectTransform rectTransform;
 
     public override void Transformar(Component objectiu, float frame)
     {
