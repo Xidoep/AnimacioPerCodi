@@ -9,8 +9,8 @@ public class Animacio_RectAncor : Animacio
     public Animacio_RectAncor() { }
     public Animacio_RectAncor(Vector3 iniciMin, Vector3 iniciMax, Vector3 finalMin, Vector3 finalMax, bool dinamic)
     {
-        min = Corba.Linear();
-        max = Corba.Linear();
+        min = Corba.Linear;
+        max = Corba.Linear;
         this.iniciMin = iniciMin;
         this.iniciMax = iniciMax;
 

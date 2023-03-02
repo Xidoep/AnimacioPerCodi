@@ -9,7 +9,7 @@ public class Animacio_BlendShape : Animacio
     public Animacio_BlendShape() { }
     public Animacio_BlendShape(int index)
     {
-        corba = Corba.Linear();
+        corba = Corba.Linear;
         this.index = index;
     }
 

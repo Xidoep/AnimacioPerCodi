@@ -9,7 +9,7 @@ public class Animacio_Escala : Animacio
     public Animacio_Escala() { }
     public Animacio_Escala(Vector3 inici, Vector3 final, bool dinamic = false)
     {
-        corba = Corba.Linear();
+        corba = Corba.Linear;
         this.inici = inici;
         this.final = final;
         this.dinamic = dinamic;

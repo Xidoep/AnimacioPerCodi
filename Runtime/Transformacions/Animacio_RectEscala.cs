@@ -9,7 +9,7 @@ public class Animacio_RectEscala : Animacio
     public Animacio_RectEscala() { }
     public Animacio_RectEscala(Vector3 inici, Vector3 final, bool dinamic = false)
     {
-        corba = Corba.Linear();
+        corba = Corba.Linear;
         this.inici = inici;
         this.final = final;
         this.dinamic = dinamic;

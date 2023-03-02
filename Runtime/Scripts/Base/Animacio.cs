@@ -35,5 +35,6 @@ public enum Transicio { clamp, loop, pingpong, loopPingpong, invertit }
 
 public static class Corba
 {
-    public static AnimationCurve Linear() => new AnimationCurve(new Keyframe[] { new Keyframe(0, 0), new Keyframe(1, 1) });
+    public static AnimationCurve Linear => new AnimationCurve(new Keyframe[] { new Keyframe(0, 0), new Keyframe(1, 1) });
+    public static AnimationCurve EasyInEasyOut => new AnimationCurve(new Keyframe[] { new Keyframe(0, 0, 0, 0), new Keyframe(1, 1, 1, 1) });
 }

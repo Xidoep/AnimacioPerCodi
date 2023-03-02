@@ -9,7 +9,7 @@ public class Animacio_Posicio : Animacio
     public Animacio_Posicio() { }
     public Animacio_Posicio(Vector3 inici, Vector3 final, bool local = true, bool dinamic = false)
     {
-        corba = Corba.Linear();
+        corba = Corba.Linear;
         this.inici = inici;
         this.final = final;
         this.local = local;

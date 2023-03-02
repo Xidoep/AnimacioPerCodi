@@ -9,7 +9,7 @@ public class Animacio_RotacioVector : Animacio
     public Animacio_RotacioVector() { }
     public Animacio_RotacioVector(Vector3 eix, float inici, float final)
     {
-        corba = Corba.Linear();
+        corba = Corba.Linear;
         this.eix = eix;
         this.inici = inici;
         this.final = final;

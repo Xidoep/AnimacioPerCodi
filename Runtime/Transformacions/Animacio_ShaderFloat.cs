@@ -7,9 +7,9 @@ public class Animacio_ShaderFloat : Animacio
 {
     [SerializeField] string nom = "Shader float";
     public Animacio_ShaderFloat() { }
-    public Animacio_ShaderFloat(string propietat, float inici, float final, bool dinamic = false)
+    public Animacio_ShaderFloat(string propietat, float inici, float final, AnimationCurve corba = null, bool dinamic = false)
     {
-        corba = Corba.Linear();
+        this.corba = corba != null ? Corba.Linear : corba;
         this.propietat = propietat;
         this.inici = inici;
         this.final = final;
