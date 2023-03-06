@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8106457602697982303
+--- !u!114 &-8818412320019783560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,169 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15a5bd4e9dac6aa4697e66b4d0d8fb3a, type: 3}
-  m_Name: OnUp
+  m_Name: Loop
   m_EditorClassIdentifier: 
-  transicio: 0
-  temps: 0.25
+  transicio: 1
+  temps: 1.5
   animacions:
-  - rid: 2210365202362531845
-  - rid: 2210365202362531847
+  - rid: 2210365020816801795
   references:
     version: 2
     RefIds:
-    - rid: 2210365202362531845
-      type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
-      data:
-        nom: Escala
-        corba:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 1.528401
-            outSlope: 1.528401
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 0.712974
-            value: 1.0897102
-            inSlope: -0.11642157
-            outSlope: -0.11642157
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.31771863
-          - serializedVersion: 3
-            time: 0.900159
-            value: 0.9741818
-            inSlope: -0.043044664
-            outSlope: -0.043044664
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.57791626
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.44113
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        inici: {x: 2.2, y: 2.2, z: 2.2}
-        final: {x: 1.5, y: 1.5, z: 1.5}
-        dinamic: 1
-    - rid: 2210365202362531847
-      type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
-      data:
-        nom: Gradient imatge
-        gradient:
-          serializedVersion: 2
-          key0: {r: 1, g: 1, b: 0.5, a: 1}
-          key1: {r: 1, g: 1, b: 1, a: 1}
-          key2: {r: 0, g: 0, b: 0, a: 0}
-          key3: {r: 0, g: 0, b: 0, a: 0}
-          key4: {r: 0, g: 0, b: 0, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 65535
-          ctime2: 0
-          ctime3: 0
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 65535
-          atime2: 0
-          atime3: 0
-          atime4: 0
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_NumColorKeys: 2
-          m_NumAlphaKeys: 2
---- !u!114 &-6523182077544920291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5bd4e9dac6aa4697e66b4d0d8fb3a, type: 3}
-  m_Name: OnExit
-  m_EditorClassIdentifier: 
-  transicio: 0
-  temps: 1
-  animacions:
-  - rid: 2210365179851702277
-  - rid: 2210365179851702278
-  - rid: 2210365179851702279
-  references:
-    version: 2
-    RefIds:
-    - rid: 2210365179851702277
-      type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
-      data:
-        nom: Escala
-        corba:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 3.4416497
-            outSlope: 3.4416497
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.08202197
-          - serializedVersion: 3
-            time: 0.6521553
-            value: 1.1738214
-            inSlope: -0.11642157
-            outSlope: -0.11642157
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.31771863
-          - serializedVersion: 3
-            time: 0.900159
-            value: 0.9741818
-            inSlope: -0.043044664
-            outSlope: -0.043044664
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.57791626
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.44113
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        inici: {x: 1.2, y: 1.2, z: 1.2}
-        final: {x: 1, y: 1, z: 1}
-        dinamic: 1
-    - rid: 2210365179851702278
+    - rid: 2210365020816801795
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
         nom: Rotacio
@@ -181,31 +28,22 @@ MonoBehaviour:
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 0
-            inSlope: 1.5947236
-            outSlope: 1.5947236
-            tangentMode: 34
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 0.68141884
-            value: 1.0866747
-            inSlope: -0.11642157
-            outSlope: -0.11642157
+            time: 0.5
+            value: 0
+            inSlope: 0
+            outSlope: 0
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.33333334
-            outWeight: 0.31771863
-          - serializedVersion: 3
-            time: 0.900159
-            value: 0.9741818
-            inSlope: -0.043044664
-            outSlope: -0.043044664
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.57791626
+            outWeight: 0.33333334
           - serializedVersion: 3
             time: 1
             value: 1
@@ -213,271 +51,16 @@ MonoBehaviour:
             outSlope: 0
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0.44113
+            inWeight: 0.33333334
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        inici: {x: -0, y: 0, z: 10}
-        final: {x: 0, y: 0, z: 0}
+        inici: {x: 0, y: 0, z: 1}
+        final: {x: 0, y: 0, z: 10}
         local: 1
-        dinamic: 1
-    - rid: 2210365179851702279
-      type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
-      data:
-        nom: Gradient imatge
-        gradient:
-          serializedVersion: 2
-          key0: {r: 1, g: 1, b: 1, a: 1}
-          key1: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 1}
-          key2: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 0}
-          key3: {r: 0, g: 0, b: 0, a: 0}
-          key4: {r: 0, g: 0, b: 0, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 50308
-          ctime2: 65535
-          ctime3: 0
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 65535
-          atime2: 0
-          atime3: 0
-          atime4: 0
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_NumColorKeys: 3
-          m_NumAlphaKeys: 2
---- !u!114 &-3207743087773307122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5bd4e9dac6aa4697e66b4d0d8fb3a, type: 3}
-  m_Name: Modificar
-  m_EditorClassIdentifier: 
-  transicio: 0
-  temps: 0.5
-  animacions:
-  - rid: 2210365202362531842
-  - rid: 2210365202362531843
-  references:
-    version: 2
-    RefIds:
-    - rid: 2210365202362531842
-      type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
-      data:
-        nom: Escala
-        corba:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0.0008239746
-            value: -0.0021362305
-            inSlope: 8.691212
-            outSlope: 8.691212
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.06696066
-          - serializedVersion: 3
-            time: 0.17439549
-            value: 0.9989717
-            inSlope: 2.7262597
-            outSlope: 2.7262597
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.16268103
-            outWeight: 0.085495226
-          - serializedVersion: 3
-            time: 0.57034683
-            value: 0.08849563
-            inSlope: -7.666901
-            outSlope: -7.666901
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.037600443
-            outWeight: 0.07769482
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: -4.1750293
-            outSlope: -4.1750293
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.057390437
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        inici: {x: 1, y: 1, z: 1}
-        final: {x: 1.7, y: 1.7, z: 1.7}
         dinamic: 0
-    - rid: 2210365202362531843
-      type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
-      data:
-        nom: Gradient imatge
-        gradient:
-          serializedVersion: 2
-          key0: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 1}
-          key1: {r: 1, g: 1, b: 0.5, a: 1}
-          key2: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 0}
-          key3: {r: 0, g: 0, b: 0, a: 0}
-          key4: {r: 0, g: 0, b: 0, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 16577
-          ctime2: 65535
-          ctime3: 0
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 65535
-          atime2: 0
-          atime3: 0
-          atime4: 0
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_NumColorKeys: 3
-          m_NumAlphaKeys: 2
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f72020114d8276441ae1a23e39301321, type: 3}
-  m_Name: AnimacioSlider
-  m_EditorClassIdentifier: 
-  onEnter: {fileID: 4741860428039698192}
-  onDown: {fileID: 991848384804324902}
-  loop: {fileID: -8818412320019783560, guid: 66be45ff0dd71a645932e7055e095b5e, type: 2}
-  modificar: {fileID: -3207743087773307122}
-  onUp: {fileID: -8106457602697982303}
-  onExit: {fileID: -6523182077544920291}
---- !u!114 &991848384804324902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5bd4e9dac6aa4697e66b4d0d8fb3a, type: 3}
-  m_Name: OnDown
-  m_EditorClassIdentifier: 
-  transicio: 0
-  temps: 0.25
-  animacions:
-  - rid: 2210365202362531844
-  - rid: 2210365202362531846
-  references:
-    version: 2
-    RefIds:
-    - rid: 2210365202362531844
-      type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
-      data:
-        nom: Escala
-        corba:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 10.009537
-            outSlope: 10.009537
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.042302318
-          - serializedVersion: 3
-            time: 0.41472572
-            value: 1.3554344
-            inSlope: -0.65114164
-            outSlope: -0.65114164
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.15045494
-          - serializedVersion: 3
-            time: 0.8065921
-            value: 0.9171063
-            inSlope: -0.043044664
-            outSlope: -0.043044664
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.57791626
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: -0
-            outSlope: -0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.44113
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        inici: {x: 1.5, y: 1.5, z: 1.5}
-        final: {x: 2.2, y: 2.2, z: 2.2}
-        dinamic: 0
-    - rid: 2210365202362531846
-      type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
-      data:
-        nom: Gradient imatge
-        gradient:
-          serializedVersion: 2
-          key0: {r: 1, g: 1, b: 1, a: 1}
-          key1: {r: 1, g: 1, b: 0, a: 1}
-          key2: {r: 1, g: 1, b: 0.5, a: 0}
-          key3: {r: 0, g: 0, b: 0, a: 0}
-          key4: {r: 0, g: 0, b: 0, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 18504
-          ctime2: 65535
-          ctime3: 0
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 65535
-          atime2: 0
-          atime3: 0
-          atime4: 0
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_NumColorKeys: 3
-          m_NumAlphaKeys: 2
---- !u!114 &4741860428039698192
+--- !u!114 &-6819565934117131839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -490,15 +73,16 @@ MonoBehaviour:
   m_Name: OnEnter
   m_EditorClassIdentifier: 
   transicio: 0
-  temps: 1
+  temps: 0.5
   animacions:
-  - rid: 2210365179851702274
-  - rid: 2210365179851702275
-  - rid: 2210365179851702276
+  - rid: 2210365020816801803
+  - rid: 2210365020816801804
+  - rid: 2210365020816801805
+  - rid: 2210365024886849537
   references:
     version: 2
     RefIds:
-    - rid: 2210365179851702274
+    - rid: 2210365020816801803
       type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
       data:
         nom: Escala
@@ -547,7 +131,7 @@ MonoBehaviour:
         inici: {x: 1, y: 1, z: 1}
         final: {x: 1.5, y: 1.5, z: 1.5}
         dinamic: 0
-    - rid: 2210365179851702275
+    - rid: 2210365020816801804
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
         nom: Rotacio
@@ -579,7 +163,7 @@ MonoBehaviour:
         final: {x: 0, y: 0, z: 10}
         local: 1
         dinamic: 0
-    - rid: 2210365179851702276
+    - rid: 2210365020816801805
       type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
       data:
         nom: Gradient imatge
@@ -612,3 +196,367 @@ MonoBehaviour:
           m_Mode: 0
           m_NumColorKeys: 3
           m_NumAlphaKeys: 2
+    - rid: 2210365024886849537
+      type: {class: Animacio_So, ns: , asm: AnimacioPerCodi}
+      data:
+        nom: So
+        so: {fileID: 11400000, guid: 50f36f7a3a835f441bb9c9f072726e22, type: 2}
+        aPosicio: 0
+        delay: 0
+--- !u!114 &-1890057176192814004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a5bd4e9dac6aa4697e66b4d0d8fb3a, type: 3}
+  m_Name: OnClick
+  m_EditorClassIdentifier: 
+  transicio: 0
+  temps: 0.5
+  animacions:
+  - rid: 2210365020816801797
+  - rid: 2210365020816801798
+  - rid: 2210365020816801799
+  - rid: 2210365024886849536
+  references:
+    version: 2
+    RefIds:
+    - rid: 2210365020816801797
+      type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
+      data:
+        nom: Escala
+        corba:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 15.491738
+            outSlope: 15.491738
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.046466187
+          - serializedVersion: 3
+            time: 0.265746
+            value: 0.99117506
+            inSlope: -1.6743882
+            outSlope: -1.6743882
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.10895658
+          - serializedVersion: 3
+            time: 0.40116963
+            value: -0.064842634
+            inSlope: -3.3113532
+            outSlope: -3.3113532
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.70122546
+            value: 0.07071684
+            inSlope: 0.046647254
+            outSlope: 0.046647254
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.13683043
+            outWeight: 0.32133374
+          - serializedVersion: 3
+            time: 0.8885013
+            value: -0.038803436
+            inSlope: 0.09894982
+            outSlope: 0.09894982
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.3657598
+            outWeight: 0.57791626
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.44113
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        inici: {x: 1.5, y: 1.5, z: 1.5}
+        final: {x: 2.2, y: 2.2, z: 2.2}
+        dinamic: 0
+    - rid: 2210365020816801798
+      type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
+      data:
+        nom: Rotacio
+        corba:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 8.026301
+            outSlope: 8.026301
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.10526061
+            value: 0.84485334
+            inSlope: 0.91406655
+            outSlope: 0.91406655
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.39294875
+            value: -0.9382862
+            inSlope: -1.0188863
+            outSlope: -1.0188863
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.7455965
+            value: 0.52886814
+            inSlope: 0.4280283
+            outSlope: 0.4280283
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.12843391
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -2.0788558
+            outSlope: -2.0788558
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        inici: {x: 0, y: 0, z: 10}
+        final: {x: 0, y: 0, z: 20}
+        local: 0
+        dinamic: 0
+    - rid: 2210365020816801799
+      type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
+      data:
+        nom: Gradient imatge
+        gradient:
+          serializedVersion: 2
+          key0: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 1}
+          key1: {r: 1, g: 1, b: 0.5, a: 1}
+          key2: {r: 1, g: 1, b: 0.95134187, a: 1}
+          key3: {r: 1, g: 1, b: 1, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 8096
+          ctime2: 32768
+          ctime3: 65535
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 65535
+          atime3: 0
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_NumColorKeys: 4
+          m_NumAlphaKeys: 2
+    - rid: 2210365024886849536
+      type: {class: Animacio_So, ns: , asm: AnimacioPerCodi}
+      data:
+        nom: So
+        so: {fileID: 11400000, guid: b62daf6c64bd0e2409c3481bb495b35e, type: 2}
+        aPosicio: 0
+        delay: 0
+--- !u!114 &-1323997722522260603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a5bd4e9dac6aa4697e66b4d0d8fb3a, type: 3}
+  m_Name: OnExit
+  m_EditorClassIdentifier: 
+  transicio: 0
+  temps: 0.5
+  animacions:
+  - rid: 2210365020816801800
+  - rid: 2210365020816801801
+  - rid: 2210365020816801802
+  references:
+    version: 2
+    RefIds:
+    - rid: 2210365020816801800
+      type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
+      data:
+        nom: Escala
+        corba:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 3.4416497
+            outSlope: 3.4416497
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.08202197
+          - serializedVersion: 3
+            time: 0.6521553
+            value: 1.1738214
+            inSlope: -0.11642157
+            outSlope: -0.11642157
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.31771863
+          - serializedVersion: 3
+            time: 0.900159
+            value: 0.9741818
+            inSlope: -0.043044664
+            outSlope: -0.043044664
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.57791626
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.44113
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        inici: {x: 1.5, y: 1.5, z: 1.5}
+        final: {x: 1, y: 1, z: 1}
+        dinamic: 1
+    - rid: 2210365020816801801
+      type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
+      data:
+        nom: Rotacio
+        corba:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 1.5947236
+            outSlope: 1.5947236
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.68141884
+            value: 1.0866747
+            inSlope: -0.11642157
+            outSlope: -0.11642157
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.31771863
+          - serializedVersion: 3
+            time: 0.900159
+            value: 0.9741818
+            inSlope: -0.043044664
+            outSlope: -0.043044664
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.57791626
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0
+            outSlope: -0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.44113
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        inici: {x: -0, y: 0, z: 10}
+        final: {x: 0, y: 0, z: 0}
+        local: 1
+        dinamic: 1
+    - rid: 2210365020816801802
+      type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
+      data:
+        nom: Gradient imatge
+        gradient:
+          serializedVersion: 2
+          key0: {r: 1, g: 1, b: 1, a: 1}
+          key1: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 1}
+          key2: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 0}
+          key3: {r: 0, g: 0, b: 0, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 50308
+          ctime2: 65535
+          ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 0
+          atime3: 0
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_NumColorKeys: 3
+          m_NumAlphaKeys: 2
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afa75ff91118ec44b227347a22e0387, type: 3}
+  m_Name: BotoGenericPetit
+  m_EditorClassIdentifier: 
+  onClick: {fileID: -1890057176192814004}
+  onEnter: {fileID: -6819565934117131839}
+  onExit: {fileID: -1323997722522260603}
+  loop: {fileID: -8818412320019783560}

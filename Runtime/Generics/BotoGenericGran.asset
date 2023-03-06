@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3afa75ff91118ec44b227347a22e0387, type: 3}
-  m_Name: BotoGeneric
+  m_Name: BotoGenericGran
   m_EditorClassIdentifier: 
   onClick: {fileID: -1890057176192814004}
   onEnter: {fileID: -6819565934117131839}

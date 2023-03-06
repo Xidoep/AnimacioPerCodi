@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 835a9cc3a4d72a34d9b56c5ba1972774, type: 3}
-  m_Name: AnimacioToggle
+  m_Name: AnimacioToggleGran
   m_EditorClassIdentifier: 
   onEnter: {fileID: -6819565934117131839, guid: 2a5c255a53d1de247915709d45ae0b2f, type: 2}
   loop: {fileID: -8818412320019783560, guid: 2a5c255a53d1de247915709d45ae0b2f, type: 2}
