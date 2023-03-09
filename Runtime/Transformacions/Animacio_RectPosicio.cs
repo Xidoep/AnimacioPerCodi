@@ -7,7 +7,7 @@ public class Animacio_RectPosicio : Animacio
 {
     [SerializeField] string nom = "Rect posicio";
     public Animacio_RectPosicio() { }
-    public Animacio_RectPosicio(Vector3 inici, Vector3 final, AnimationCurve corba = null, bool dinamic = false)
+    public Animacio_RectPosicio(Vector2 inici, Vector2 final, AnimationCurve corba = null, bool dinamic = false)
     {
         this.corba = corba != null ? Corba.Linear : corba;
         this.inici = inici;

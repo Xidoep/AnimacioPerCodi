@@ -22,9 +22,9 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
     //Coroutine idle;
     Coroutine coroutine;
 
-    #region ACTIONS
+    public void SetAnimacio(AnimacioPerCodi_GameObject animacio) => this.animacio = animacio;
 
-    
+    #region ACTIONS
     System.Action onPointerEnterAction;
     System.Action onPointerDownAction;
     System.Action onPointerUpAction;
