@@ -14,6 +14,10 @@ public class Animacio_RectPosicio : Animacio
         this.final = final;
         this.dinamic = dinamic;
     }
+    public void SetInici(Vector2 inici)
+    {
+        this.inici = inici;
+    }
 
     [SerializeField] protected AnimationCurve corba = new AnimationCurve();
     [Space(10)]
