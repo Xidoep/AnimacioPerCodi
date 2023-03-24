@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[CanEditMultipleObjects]
 [CustomEditor(typeof(AnimacioPerCodi_GameObject))]
 public class AnimacioPerCodi_GameObject_Inspector : Editor
 {
