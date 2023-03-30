@@ -32,6 +32,23 @@ public class Lector : MonoBehaviour
 
         return this;
     }
+    public virtual Lector Setup(AnimacioPerCodi animacioPerCodi, Component component, float temps, Transicio transicio)
+    {
+        if (coroutine != null) StopCoroutine(coroutine);
+
+        //Debug.LogError($"3.- Setup {animacions.Length} animacions");
+        this.component = component;
+        this.animacions = null;
+        for (int i = 0; i < animacioPerCodi.Animacions.Length; i++)
+        {
+            this.animacions += animacioPerCodi.Animacions[i].Transformar;
+        }
+        this.temps = temps;
+        SetTransicio(transicio);
+
+        return this;
+    }
+
     void SetTransicio(Transicio transicio)
     {
         switch (transicio)

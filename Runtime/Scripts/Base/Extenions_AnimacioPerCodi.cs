@@ -5,25 +5,32 @@ using XS_Utils;
 
 public static class Extenions_AnimacioPerCodi
 {
+    public static void SetupAndPlay(this Component component, Lector lector, AnimacioPerCodi animacioPerCodi)
+    {
+        lector.Setup(animacioPerCodi.Animacions, component, animacioPerCodi.Temps, animacioPerCodi.Transicio);
+        lector.Play();
+    }
     public static void SetupAndPlay(this Component component, Lector lector, Animacio animacio, float temps, Transicio transicio)
     {
         lector.Setup(new Animacio[] { animacio }, component, temps, transicio);
         lector.Play();
     }
-    public static void SetupAndPlay(this Component component, Lector lector, Animacio[] animacions, float temps, Transicio transicio)
+    public static Lector SetupAndPlay(this Component component, Lector lector, Animacio[] animacions, float temps, Transicio transicio)
     {
         if (animacions == null || animacions.Length == 0)
-            return;
+            return lector;
 
         lector.Setup(animacions, component, temps, transicio);
         lector.Play();
+
+        return lector;
     }
-    static void GetLector(this Component component, ref Lector lector)
+    /*static void GetLector(this Component component, ref Lector lector)
     {
         if(lector)
             lector = component.gameObject.GetComponent<Lector>();
         else lector = component.gameObject.AddComponent<Lector>();
-    }
+    }*/
 
 
     public static Coroutine Animacio_LoopDespres(this Component component, AnimacioPerCodi animacio, AnimacioPerCodi proxima)

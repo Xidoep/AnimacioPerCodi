@@ -52,13 +52,27 @@ public class AnimacioPerCodi : ScriptableObject
     }
 
     public float Temps => temps;
+    public Transicio Transicio => transicio;
     public Animacio[] Animacions { get => animacions; set => animacions = value; }
     public bool TeAnimacions => animacions != null && animacions.Length > 0;
 
 
 
 
+    /// <summary>
+    /// Util per ser cridat desde un Unityevent
+    /// </summary>
+    /// <param name="component"></param>
     public void Play(Component component) => component.SetupAndPlay(Lector(component), animacions, temps, transicio);
+
+    /// <summary>
+    /// Pensat per ser cridat desde codi.
+    /// Si el Lector es Null en crea un de noi i el retorna.
+    /// </summary>
+    /// <param name="component"></param>
+    /// <param name="lector"></param>
+    /// <returns></returns>
+    public Lector Play(Component component, Lector lector) => component.SetupAndPlay(lector ? lector : Lector(component), animacions, temps, transicio);
 
     public void Continue(Transform transform) => transform.GetComponent<Lector>().Continue();
     public void Continue() => lector.Continue();
