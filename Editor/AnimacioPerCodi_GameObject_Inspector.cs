@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using XS_Utils;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(AnimacioPerCodi_GameObject))]

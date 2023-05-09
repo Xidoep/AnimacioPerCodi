@@ -61,7 +61,8 @@ public static class Extenions_AnimacioPerCodi
     {
         component.Stop(anteiorAnimacio, anteriorCoroutine);
 
-        animacio.Play(component);
+        if (animacio && animacio.TeAnimacions)
+            animacio.Play(component);
 
         return null;
     }
