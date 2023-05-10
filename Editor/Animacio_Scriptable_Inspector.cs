@@ -133,11 +133,17 @@ public static class Animacio_Inspector_Addings
         EditorGUILayout.LabelField("TEXT");
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Gradient")) Add(animacioPerCodi, new Animacio_Text_Gradient());
+        if (GUILayout.Button("Color")) Add(animacioPerCodi, new Animacio_Text_Color());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("SKINNED MESH RENDERER");
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("BlendShape")) Add(animacioPerCodi, new Animacio_BlendShape());
+        GUILayout.EndHorizontal();
+
+        EditorGUILayout.LabelField("BEHAVIOUR");
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Enable")) Add(animacioPerCodi, new Animacio_Enable());
         GUILayout.EndHorizontal();
 
         EditorGUILayout.LabelField("CAP COMPONENT");

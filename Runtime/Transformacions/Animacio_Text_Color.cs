@@ -1,31 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
-public class Animacio_Escala : Animacio
+public class Animacio_Text_Color : Animacio
 {
-    [SerializeField] string nom = "Escala";
-    public Animacio_Escala() => corba = Corba.Linear;
-    public Animacio_Escala(Vector3 inici, Vector3 final, bool dinamic = false)
+    [SerializeField] string nom = "Text color";
+    public Animacio_Text_Color() { }
+    public Animacio_Text_Color(Color inici, Color final, bool dinamic = false)
     {
         corba = Corba.Linear;
         this.inici = inici;
         this.final = final;
         this.dinamic = dinamic;
     }
+
     [SerializeField] protected AnimationCurve corba = new AnimationCurve();
     [Space(10)]
-    [SerializeField] Vector3 inici;
-    [SerializeField] Vector3 final;
+    [SerializeField] Color inici;
+    [SerializeField] Color final;
     [Space(10)]
     [SerializeField] bool dinamic;
 
-    //INTERN
-    Vector3 iniciDin;
+    Color iniciDin;
 
     public override void Transformar(Component objectiu, float frame)
-    { 
+    {
         if (!dinamic) Accio(inici, objectiu, frame);
         else Dinamic(objectiu, frame);
     }
@@ -34,14 +35,14 @@ public class Animacio_Escala : Animacio
     {
         if (frame == 0)
         {
-            iniciDin = objectiu.transform.localScale;
+            iniciDin = ((TMP_Text)objectiu).color;
         }
 
         Accio(iniciDin, objectiu, frame);
     }
 
-    void Accio(Vector3 inici, Component objectiu, float frame)
+    void Accio(Color inici, Component objectiu, float frame)
     {
-        objectiu.transform.localScale = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
+        ((TMP_Text)objectiu).color = Color.Lerp(inici, final, corba.Evaluate(frame));
     }
 }

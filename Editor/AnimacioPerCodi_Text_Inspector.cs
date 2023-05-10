@@ -21,12 +21,14 @@ public class AnimacioPerCodi_Text_Inspector : Editor
         EditorGUILayout.PropertyField(onEnter, "On Enter".ToNomAnimacioEditor(target, onEnter));
         EditorGUILayout.PropertyField(onExit, "On Exit".ToNomAnimacioEditor(target, onExit));
 
+        serializedObject.ApplyModifiedProperties();
+
         mostrar = EditorGUILayout.Foldout(mostrar, "ADD");
         if (!mostrar)
             return;
 
-        onEnter.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onEnter", target, onEnter);
-        onExit.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onExit", target, onExit);
+        Animacio_Inspector_Addings.AddAnimacioPerCodi("onEnter", target, onEnter);
+        Animacio_Inspector_Addings.AddAnimacioPerCodi("onExit", target, onExit);
     }
     private void OnDisable() => AssetDatabase.SaveAssetIfDirty(target);
 }

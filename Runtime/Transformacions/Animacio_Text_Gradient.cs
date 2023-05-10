@@ -6,7 +6,7 @@ using TMPro;
 [System.Serializable]
 public class Animacio_Text_Gradient : Animacio
 {
-    [SerializeField] string nom = "Text color";
+    [SerializeField] string nom = "Text gradient";
     public Animacio_Text_Gradient() { }
     public Animacio_Text_Gradient(Gradient gradient)
     {
@@ -19,4 +19,5 @@ public class Animacio_Text_Gradient : Animacio
     {
         ((TMP_Text)objectiu).color = gradient.Evaluate(frame);
     }
+
 }

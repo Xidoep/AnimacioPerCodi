@@ -44,8 +44,8 @@ public class Animacio_Posicio : Animacio
     void Accio(Vector3 inici, Component objectiu, float frame)
     {
         if (!local)
-            ((Transform)objectiu).position = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
-        else ((Transform)objectiu).localPosition = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
+            objectiu.transform.position = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
+        else objectiu.transform.localPosition = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
     }
 }
 

@@ -32,6 +32,23 @@ public class Lector : MonoBehaviour
 
         return this;
     }
+    public virtual Lector Setup(Animacio[] animacions, Component component, float temps, float delay, Transicio transicio)
+    {
+        if (coroutine != null) StopCoroutine(coroutine);
+
+        //Debug.LogError($"3.- Setup {animacions.Length} animacions");
+        this.component = component;
+        this.animacions = null;
+        for (int i = 0; i < animacions.Length; i++)
+        {
+            this.animacions += animacions[i].Transformar;
+        }
+        this.temps = temps;
+        this.delay = delay;
+        SetTransicio(transicio);
+
+        return this;
+    }
     public virtual Lector Setup(AnimacioPerCodi animacioPerCodi, Component component, float temps, Transicio transicio)
     {
         if (coroutine != null) StopCoroutine(coroutine);
@@ -86,6 +103,7 @@ public class Lector : MonoBehaviour
     protected System.Action<Component, float> animacions = null;
 
     float temps;
+    float delay = 0;
     bool pingPong;
     bool looping;
     bool invertit;
@@ -95,7 +113,7 @@ public class Lector : MonoBehaviour
 
     Coroutine coroutine;
 
-    float TempsDesdePlay => Mathf.Clamp01((Time.unscaledTime - time) / temps);
+    float TempsDesdePlay => Mathf.Clamp01((Time.unscaledTime - time - delay) / temps);
 
 
   

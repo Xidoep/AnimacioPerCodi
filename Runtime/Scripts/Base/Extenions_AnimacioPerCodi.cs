@@ -10,17 +10,17 @@ public static class Extenions_AnimacioPerCodi
         lector.Setup(animacioPerCodi.Animacions, component, animacioPerCodi.Temps, animacioPerCodi.Transicio);
         lector.Play();
     }
-    public static void SetupAndPlay(this Component component, Lector lector, Animacio animacio, float temps, Transicio transicio)
+    public static void SetupAndPlay(this Component component, Lector lector, Animacio animacio, float temps, float delay, Transicio transicio)
     {
-        lector.Setup(new Animacio[] { animacio }, component, temps, transicio);
+        lector.Setup(new Animacio[] { animacio }, component, temps, delay, transicio);
         lector.Play();
     }
-    public static Lector SetupAndPlay(this Component component, Lector lector, Animacio[] animacions, float temps, Transicio transicio)
+    public static Lector SetupAndPlay(this Component component, Lector lector, Animacio[] animacions, float temps, float delay, Transicio transicio)
     {
         if (animacions == null || animacions.Length == 0)
             return lector;
 
-        lector.Setup(animacions, component, temps, transicio);
+        lector.Setup(animacions, component, temps, delay, transicio);
         lector.Play();
 
         return lector;

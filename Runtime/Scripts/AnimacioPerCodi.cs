@@ -9,6 +9,7 @@ public class AnimacioPerCodi : ScriptableObject
 {
     [SerializeField] Transicio transicio;
     [SerializeField] float temps = 1;
+    [SerializeField] float delay = 0;
 
     [SerializeField] [SerializeReference] Animacio[] animacions;
     Component component;
@@ -63,7 +64,7 @@ public class AnimacioPerCodi : ScriptableObject
     /// Util per ser cridat desde un Unityevent
     /// </summary>
     /// <param name="component"></param>
-    public void Play(Component component) => component.SetupAndPlay(Lector(component), animacions, temps, transicio);
+    public void Play(Component component) => component.SetupAndPlay(Lector(component), animacions, temps, delay, transicio);
 
     /// <summary>
     /// Pensat per ser cridat desde codi.
@@ -72,7 +73,7 @@ public class AnimacioPerCodi : ScriptableObject
     /// <param name="component"></param>
     /// <param name="lector"></param>
     /// <returns></returns>
-    public Lector Play(Component component, Lector lector) => component.SetupAndPlay(lector ? lector : Lector(component), animacions, temps, transicio);
+    public Lector Play(Component component, Lector lector) => component.SetupAndPlay(lector ? lector : Lector(component), animacions, temps, delay, transicio);
 
     public void Continue(Transform transform) => transform.GetComponent<Lector>().Continue();
     public void Continue() => lector.Continue();
