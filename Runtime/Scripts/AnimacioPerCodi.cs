@@ -3,15 +3,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using XS_Utils;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/Animacio", fileName = "Animacio")]
 public class AnimacioPerCodi : ScriptableObject
 {
-    [SerializeField] Transicio transicio;
-    [SerializeField] float temps = 1;
-    [SerializeField] float delay = 0;
+    [SerializeField, HideLabel] Transicio transicio;
+    [SerializeField, HorizontalGroup("Temps"), InlineButton("@this.delay = 1", label: "Delayed", ShowIf = "@this.delay == 0")] float temps = 1;
+    [SerializeField, HorizontalGroup("Temps"), HideIf("@this.delay == 0"), Delayed] float delay = 0;
 
-    [SerializeField] [SerializeReference] Animacio[] animacions;
+    [SerializeField, SerializeReference, ListDrawerSettings(DefaultExpandedState = true,DraggableItems = false, ShowFoldout = false,ShowIndexLabels = false,ShowItemCount = false, ShowPaging = false)] 
+    Animacio[] animacions;
     Component component;
     Lector lector;
     public Lector Lector(Component component)

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_So : Animacio
 {
-    [SerializeField] string nom = "So";
+    string nom = "So";
     public Animacio_So() { }
     public Animacio_So(So so, bool aPosicio = true, float delay = 0)
     {
@@ -14,13 +15,17 @@ public class Animacio_So : Animacio
         this.delay = delay;
     }
 
-    [SerializeField] So so;
-    [Space(10)]
+    [BoxGroup("So"), SerializeField, InlineEditor, LabelText("Scriptable")] So so;
+
     [Tooltip("It just have a range to limit it's amount. It's not related to the animation time")]
-    [SerializeField] bool aPosicio;
-    [SerializeField] [Range(0, 1.5f)] float delay = 0;
- 
-    
+    [BoxGroup("So"), PropertyOrder(1), SerializeField, HorizontalGroup("So/o"), LabelWidth(60)] 
+    bool aPosicio;
+
+    [BoxGroup("So"), PropertyOrder(2), SerializeField, HorizontalGroup("So/o"), LabelWidth(40), Range(0, 1.5f), ShowIf("@this.delay > 0")] 
+    float delay = 0;
+
+
+    [BoxGroup("So"), PropertyOrder(2), HorizontalGroup("So/o", width: 70), Button, HideIf("@this.delay > 0")] void Delayed() => delay = 1;   
     
     public override void Transformar(Component objectiu, float frame)
     {
@@ -31,12 +36,12 @@ public class Animacio_So : Animacio
 
         if (!aPosicio)
         {
-            if (delay < 0) so.Play();
+            if (delay <= 0) so.Play();
             else so.Play(delay);
         }
         else
         {
-            if (delay < 0) so.Play(objectiu.transform);
+            if (delay <= 0) so.Play(objectiu.transform);
             else so.Play(objectiu.transform, delay);
         }
     }

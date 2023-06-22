@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
+public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler
 {
     public enum OnClickAction {res, destroy, disable }
 
@@ -68,6 +68,16 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
             return;
 
         if (pare) 
+            return;
+
+        PointerEnter();
+    }
+    public void OnSelect(BaseEventData eventData)
+    {
+        if (!interactuable)
+            return;
+
+        if (pare)
             return;
 
         PointerEnter();
@@ -160,4 +170,6 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
         pare.OnDestroyAction -= Destroy;
         pare.OnDisableAction -= Disable;
     }
+
+    
 }

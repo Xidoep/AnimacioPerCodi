@@ -14,15 +14,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transicio: 0
   temps: 3
+  delay: 0.5
   animacions:
   - rid: 7484184410551222275
   - rid: 7484184410551222276
-  interaccio:
-    temps: 0
-    animacions: []
+  - rid: 2895901723276869635
   references:
     version: 2
     RefIds:
+    - rid: 2895901723276869635
+      type: {class: Animacio_Posicio, ns: , asm: AnimacioPerCodi}
+      data:
+        corba:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0.096511126
+            outSlope: 0.096511126
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.024348006
+            value: 0.0023498535
+            inSlope: 0
+            outSlope: 6.8632407
+            tangentMode: 1
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.04709764
+          - serializedVersion: 3
+            time: 0.5
+            value: 1
+            inSlope: -1.8667632
+            outSlope: 0
+            tangentMode: 1
+            weightedMode: 0
+            inWeight: 0.09552859
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        inici: {x: 0, y: 0, z: 0}
+        final: {x: 0, y: 0, z: 0}
+        local: 0
+        dinamic: 0
     - rid: 7484184410551222275
       type: {class: Animacio_RotacioVector, ns: , asm: AnimacioPerCodi}
       data:

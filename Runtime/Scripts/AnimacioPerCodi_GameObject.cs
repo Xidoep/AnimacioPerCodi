@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XS_Utils;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/AnimacioGameObject", fileName = "AnimacioGameObject")]
 public class AnimacioPerCodi_GameObject : ScriptableObject
 {
-    public AnimacioPerCodi onEnabled;
-    public AnimacioPerCodi idle;
-    public AnimacioPerCodi onPointerEnter;
-    public AnimacioPerCodi apuntat;
-    public AnimacioPerCodi onPointerDown;
-    public AnimacioPerCodi onPointerUp;
-    public AnimacioPerCodi onPointerExit;
-    public AnimacioPerCodi onDestroyOrDisable;
+    [SerializeScriptableObject] public AnimacioPerCodi onEnabled;
+    [SerializeScriptableObject] public AnimacioPerCodi idle;
+    [SerializeScriptableObject] public AnimacioPerCodi onPointerEnter;
+    [SerializeScriptableObject] public AnimacioPerCodi apuntat;
+    [SerializeScriptableObject] public AnimacioPerCodi onPointerDown;
+    [SerializeScriptableObject] public AnimacioPerCodi onPointerUp;
+    [SerializeScriptableObject] public AnimacioPerCodi onPointerExit;
+    [SerializeScriptableObject] public AnimacioPerCodi onDestroyOrDisable;
 
     bool destroyingOrdisabling = false;
 
