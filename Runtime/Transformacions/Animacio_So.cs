@@ -37,12 +37,12 @@ public class Animacio_So : Animacio
         if (!aPosicio)
         {
             if (delay <= 0) so.Play();
-            else so.Play(delay);
+            else so.PlayDelayed(delay);
         }
         else
         {
             if (delay <= 0) so.Play(objectiu.transform);
-            else so.Play(objectiu.transform, delay);
+            else so.PlayDelayed(objectiu.transform, delay);
         }
     }
 }
