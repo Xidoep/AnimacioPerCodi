@@ -6,17 +6,18 @@ using XS_Utils;
 
 public class Lector : MonoBehaviour
 {
-    public virtual Lector Setup(System.Action<Component, float> animar, Component component, float temps, Transicio transicio)
+    public virtual Lector Setup(System.Action<Component, float> animar, Component component, float temps, Transicio transicio, bool unscaled)
     {
         this.component = component;
         this.animacions = animar;
         this.temps = temps;
+        this.unscaled = unscaled;
         SetTransicio(transicio);
 
         return this;
     }
     //public void Add(System.Action<Component, float> animar) => this.animar += animar;
-    public virtual Lector Setup(Animacio[] animacions, Component component, float temps, Transicio transicio)
+    public virtual Lector Setup(Animacio[] animacions, Component component, float temps, Transicio transicio, bool unscaled)
     {
         if(coroutine != null) StopCoroutine(coroutine);
 
@@ -28,11 +29,12 @@ public class Lector : MonoBehaviour
             this.animacions += animacions[i].Transformar;
         }
         this.temps = temps;
+        this.unscaled = unscaled;
         SetTransicio(transicio);
 
         return this;
     }
-    public virtual Lector Setup(Animacio[] animacions, Component component, float temps, float delay, Transicio transicio)
+    public virtual Lector Setup(Animacio[] animacions, Component component, float temps, float delay, Transicio transicio, bool unscaled)
     {
         if (coroutine != null) StopCoroutine(coroutine);
 
@@ -45,11 +47,12 @@ public class Lector : MonoBehaviour
         }
         this.temps = temps;
         this.delay = delay;
+        this.unscaled = unscaled;
         SetTransicio(transicio);
 
         return this;
     }
-    public virtual Lector Setup(AnimacioPerCodi animacioPerCodi, Component component, float temps, Transicio transicio)
+    public virtual Lector Setup(AnimacioPerCodi animacioPerCodi, Component component, float temps, Transicio transicio, bool unscaled)
     {
         if (coroutine != null) StopCoroutine(coroutine);
 
@@ -61,6 +64,7 @@ public class Lector : MonoBehaviour
             this.animacions += animacioPerCodi.Animacions[i].Transformar;
         }
         this.temps = temps;
+        this.unscaled = unscaled;
         SetTransicio(transicio);
 
         return this;
@@ -104,6 +108,7 @@ public class Lector : MonoBehaviour
 
     float temps;
     float delay = 0;
+    bool unscaled;
     bool pingPong;
     bool looping;
     bool invertit;
@@ -194,7 +199,9 @@ public class Lector : MonoBehaviour
             {
                 if (looping)
                 {
-                    time = Time.unscaledTime;
+                    if (unscaled)
+                        time = Time.unscaledTime;
+                    else time = Time.time;
                 }
             }
         }

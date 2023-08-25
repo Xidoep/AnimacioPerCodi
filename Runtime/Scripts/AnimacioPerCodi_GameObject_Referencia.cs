@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Sirenix.OdinInspector;
 
 public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, ISelectHandler
 {
     public enum OnClickAction {res, destroy, disable }
 
     [SerializeField] Component component;
-    [SerializeField] AnimacioPerCodi_GameObject animacio;
+    [SerializeField, SerializeScriptableObject] AnimacioPerCodi_GameObject animacio;
 
     [Apartat("Interaccions")]
     [SerializeField] bool interactuable = false;

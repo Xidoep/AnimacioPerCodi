@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_Rotacio : Animacio
 {
-    [SerializeField] string nom = "Rotacio";
     public Animacio_Rotacio() { }
     public Animacio_Rotacio(Vector3 inici, Vector3 final, bool local = true, bool dinamic = false)
     {
@@ -16,13 +14,11 @@ public class Animacio_Rotacio : Animacio
         this.dinamic = dinamic;
     }
 
-    [SerializeField] protected AnimationCurve corba = new AnimationCurve();
-    [Space(10)]
-    [SerializeField] Vector3 inici;
-    [SerializeField] Vector3 final;
-    [Space(10)]
-    [SerializeField] bool local;
-    [SerializeField] bool dinamic;
+    [Title("Rotacio", horizontalLine: false), SerializeField, HideLabel] protected AnimationCurve corba = new AnimationCurve();
+    [SerializeField, HorizontalGroup("1"), LabelWidth(35), HideIf("@this.dinamic == true")] Vector3 inici;
+    [SerializeField, HorizontalGroup("1", width: 40), ToggleLeft, LabelText("din")] bool dinamic;
+    [SerializeField, HorizontalGroup("2", marginRight: 43), LabelWidth(35)] Vector3 final;
+    [SerializeField, ToggleLeft] bool local;
 
     //INTERN
     //Vector3 iniciDin;

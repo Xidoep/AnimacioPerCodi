@@ -9,8 +9,10 @@ using Sirenix.OdinInspector;
 public class AnimacioPerCodi : ScriptableObject
 {
     [SerializeField, HideLabel] Transicio transicio;
-    [SerializeField, HorizontalGroup("Temps"), InlineButton("@this.delay = 1", label: "Delayed", ShowIf = "@this.delay == 0")] float temps = 1;
-    [SerializeField, HorizontalGroup("Temps"), HideIf("@this.delay == 0"), Delayed] float delay = 0;
+    [SerializeField, HideLabel, Tooltip("Temps"), HorizontalGroup("Temps"), InlineButton("@this.delay = 1", label: "Delayed", ShowIf = "@this.delay == 0")] float temps = 1;
+    [SerializeField, HorizontalGroup("Temps"), HideIf("@this.delay == 0"), Delayed, LabelWidth(40)] float delay = 0;
+    [SerializeField, HorizontalGroup("Temps"), ToggleLeft()] bool unscaled = true;
+
 
     [SerializeField, SerializeReference, ListDrawerSettings(DefaultExpandedState = true,DraggableItems = false, ShowFoldout = false,ShowIndexLabels = false,ShowItemCount = false, ShowPaging = false)] 
     Animacio[] animacions;
@@ -49,10 +51,7 @@ public class AnimacioPerCodi : ScriptableObject
         }*/
     }
 
-    private void OnEnable()
-    {
-        lector = null;
-    }
+    private void OnEnable() => lector = null;
 
     public float Temps => temps;
     public Transicio Transicio => transicio;
@@ -66,7 +65,7 @@ public class AnimacioPerCodi : ScriptableObject
     /// Util per ser cridat desde un Unityevent
     /// </summary>
     /// <param name="component"></param>
-    public void Play(Component component) => component.SetupAndPlay(Lector(component), animacions, temps, delay, transicio);
+    public void Play(Component component) => component.SetupAndPlay(Lector(component), animacions, temps, delay, transicio, unscaled);
 
     /// <summary>
     /// Pensat per ser cridat desde codi.
@@ -75,7 +74,7 @@ public class AnimacioPerCodi : ScriptableObject
     /// <param name="component"></param>
     /// <param name="lector"></param>
     /// <returns></returns>
-    public Lector Play(Component component, Lector lector) => component.SetupAndPlay(lector ? lector : Lector(component), animacions, temps, delay, transicio);
+    public Lector Play(Component component, Lector lector) => component.SetupAndPlay(lector ? lector : Lector(component), animacions, temps, delay, transicio, unscaled);
 
     public void Continue(Transform transform) => transform.GetComponent<Lector>().Continue();
     public void Continue() => lector.Continue();

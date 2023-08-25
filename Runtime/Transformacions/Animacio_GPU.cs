@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using XS_Utils;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_GPU : Animacio
 {
-    [SerializeField] string nom = "GPU";
     public Animacio_GPU() { }
     public Animacio_GPU(Accio accio)
     {
@@ -15,7 +13,7 @@ public class Animacio_GPU : Animacio
 
     public enum Accio { add, remove}
 
-    [SerializeField] Accio accio;
+    [Title("GPU", horizontalLine: false), SerializeField, HideLabel] Accio accio;
 
     public override void Transformar(Component objectiu, float frame)
     {

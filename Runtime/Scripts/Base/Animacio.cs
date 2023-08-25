@@ -13,11 +13,11 @@ public class Animacio
     public virtual void Restore() { }
 
     //Pensat només per ser cridat quan es vol animar directament desde Script.
-    public void Play(Component component, float temps, Transicio transicio)
+    public void Play(Component component, float temps, Transicio transicio, bool unescaled)
     {
         if (lector)
-            lector.Setup(Transformar, component, temps, transicio).Play();
-        else component.gameObject.AddComponent<Lector>().Setup(Transformar,component, temps, transicio).Play();
+            lector.Setup(Transformar, component, temps, transicio, unescaled).Play();
+        else component.gameObject.AddComponent<Lector>().Setup(Transformar,component, temps, transicio, unescaled).Play();
     }
 
 

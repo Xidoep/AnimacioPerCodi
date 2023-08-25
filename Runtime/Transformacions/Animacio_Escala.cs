@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_Escala : Animacio
 {
-    [SerializeField] string nom = "Escala";
     public Animacio_Escala() => corba = Corba.Linear;
     public Animacio_Escala(Vector3 inici, Vector3 final, bool dinamic = false)
     {
@@ -14,15 +12,17 @@ public class Animacio_Escala : Animacio
         this.final = final;
         this.dinamic = dinamic;
     }
-    [SerializeField] protected AnimationCurve corba = new AnimationCurve();
-    [Space(10)]
-    [SerializeField] Vector3 inici;
-    [SerializeField] Vector3 final;
-    [Space(10)]
-    [SerializeField] bool dinamic;
+
+    
+    [Title("Escala", horizontalLine: false), HideLabel, SerializeField] protected AnimationCurve corba = new AnimationCurve();
+    [SerializeField, HorizontalGroup("1"), LabelWidth(45), HideIf("@this.dinamic == true")] Vector3 inici;
+    [SerializeField, HorizontalGroup("1", width: 40), LabelText("din"), ToggleLeft] bool dinamic;
+    [SerializeField, HorizontalGroup("2", marginRight: 43), LabelWidth(45)] Vector3 final;
 
     //INTERN
     Vector3 iniciDin;
+
+
 
     public override void Transformar(Component objectiu, float frame)
     { 

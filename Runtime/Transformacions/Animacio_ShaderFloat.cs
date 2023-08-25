@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_ShaderFloat : Animacio
 {
-    [SerializeField] string nom = "Shader float";
     public Animacio_ShaderFloat() { }
     public Animacio_ShaderFloat(string propietat, float inici, float final, AnimationCurve corba = null, bool dinamic = false)
     {
@@ -16,12 +14,11 @@ public class Animacio_ShaderFloat : Animacio
         this.dinamic = dinamic;
     }
 
-    [SerializeField] protected AnimationCurve corba = new AnimationCurve();
-    [Space(10)]
-    [SerializeField] string propietat;
-    [SerializeField] float inici, final;
-    [Space(10)]
-    [SerializeField] bool dinamic;
+    [Title("Shader float", horizontalLine: false), LabelWidth(100), SerializeField] string propietat;
+    [SerializeField, HideLabel] protected AnimationCurve corba = new AnimationCurve();
+    [SerializeField, HorizontalGroup("1"), ShowIf("@this.dinamic == false"), LabelWidth(30)] float inici;
+    [SerializeField, HorizontalGroup("1"), LabelWidth(30)] float final;
+    [SerializeField, HorizontalGroup("1", 40), ToggleLeft, LabelText("din"), ToggleLeft] bool dinamic;
 
 
     public override void Transformar(Component objectiu, float frame)

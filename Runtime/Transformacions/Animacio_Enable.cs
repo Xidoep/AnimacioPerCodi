@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class Animacio_Enable : Animacio
 {
     public enum Moment { Inici, Final}
     public enum Accio { Enable, Disable}
-
-    [SerializeField] string nom = "Activar BotoFisic";
 
     public Animacio_Enable() { }
     public Animacio_Enable(Moment moment, Accio accio) 
@@ -16,8 +13,8 @@ public class Animacio_Enable : Animacio
         this.accio = accio;
     }
 
-    [SerializeField] Moment moment;
-    [SerializeField] Accio accio;
+    [SerializeField, HorizontalGroup("1", Title = "Blend Shape"), LabelWidth(45), HideLabel] Moment moment;
+    [SerializeField, HorizontalGroup("1", Title = "Blend Shape"), HideLabel] Accio accio;
 
     public override void Transformar(Component component, float frame)
     {

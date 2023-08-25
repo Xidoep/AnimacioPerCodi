@@ -15,7 +15,7 @@ public static class Animacio_Inspector_Addings
 
     public static Object AddAnimacioPerCodi(string label, Object scriptableBase, SerializedProperty animacio)
     {
-        if (GUILayout.Button($"{(animacio.objectReferenceValue == null ? "Add" : "Remove")} {label}"))
+        if (GUILayout.Button($"{(animacio.objectReferenceValue == null ? "Add" : "Remove")}", new GUIStyle(GUI.skin.button) { fixedWidth = 60 }))
         {
             if (animacio.objectReferenceValue == null)
             {
@@ -44,7 +44,10 @@ public static class Animacio_Inspector_Addings
                 }
                 else
                 {
-                    EditorUtility.DisplayDialog("Impossible!", "No es pot borrar aquesta animació, ja que no es filla de ningú.\nProva a reemplecarla directament si la vols canviar o treure", "OK");
+                    if(EditorUtility.DisplayDialog("Impossible!", "No es pot borrar aquesta animació, ja que no es filla de ningú.\nCom a molt es pot treure.", "TREURE!! NO LA VULL AQUI", "MANTENIR..."))
+                    {
+                        animacio.objectReferenceValue = null;
+                    }
                 }
             }
 
@@ -53,6 +56,44 @@ public static class Animacio_Inspector_Addings
             AssetDatabase.SaveAssetIfDirty(scriptableBase);
         }
         return animacio.objectReferenceValue;
+    }
+    public static AnimacioPerCodi AddAnimacioPerCodi(string label, Object scriptableBase, AnimacioPerCodi animacio)
+    {
+        if (animacio == null)
+        {
+            var add = ScriptableObject.CreateInstance<AnimacioPerCodi>();
+            add.name = label.Substring(0, 1).ToUpper() + label.Substring(1);
+            AssetDatabase.AddObjectToAsset(add, scriptableBase);
+            animacio = add;
+        }
+        else
+        {
+            if (AssetDatabase.IsSubAsset(animacio))
+            {
+                if (AssetDatabase.GetAssetPath(scriptableBase) == AssetDatabase.GetAssetPath(animacio))
+                {
+                    if (EditorUtility.DisplayDialog("Borrar l'animacio????", "Abans de borrar l'animacio has de COMPROVAR que no la fagi servir ningú més...", "BORRAR!", "NO NO NO"))
+                    {
+                        AssetDatabase.RemoveObjectFromAsset(animacio);
+                        animacio = null;
+                    }
+                }
+                else
+                {
+                    Debug.Log(AssetDatabase.GetAssetPath(animacio));
+                    EditorUtility.DisplayDialog("Impossible!", "Aquesta animacio és filla d'algú altre i tu no tens permis per borrar-la, només el seu pare", "OK");
+                }
+            }
+            else
+            {
+                EditorUtility.DisplayDialog("Impossible!", "No es pot borrar aquesta animació, ja que no es filla de ningú.\nProva a reemplecarla directament si la vols canviar o treure", "OK");
+            }
+        }
+
+        EditorUtility.SetDirty(scriptableBase);
+        PrefabUtility.RecordPrefabInstancePropertyModifications(scriptableBase);
+        AssetDatabase.SaveAssetIfDirty(scriptableBase);
+        return animacio;
     }
     static void Add(AnimacioPerCodi animacioPerCodi, Animacio animacio)
     {

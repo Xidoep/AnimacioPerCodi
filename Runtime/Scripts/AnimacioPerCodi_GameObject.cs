@@ -1,38 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XS_Utils;
+//using XS_Utils;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/AnimacioGameObject", fileName = "AnimacioGameObject")]
 public class AnimacioPerCodi_GameObject : ScriptableObject
 {
-    [SerializeScriptableObject] public AnimacioPerCodi onEnabled;
-    [SerializeScriptableObject] public AnimacioPerCodi idle;
-    [SerializeScriptableObject] public AnimacioPerCodi onPointerEnter;
-    [SerializeScriptableObject] public AnimacioPerCodi apuntat;
-    [SerializeScriptableObject] public AnimacioPerCodi onPointerDown;
-    [SerializeScriptableObject] public AnimacioPerCodi onPointerUp;
-    [SerializeScriptableObject] public AnimacioPerCodi onPointerExit;
-    [SerializeScriptableObject] public AnimacioPerCodi onDestroyOrDisable;
+    [SerializeField, SerializeScriptableObject] public AnimacioPerCodi onEnabled;
+    [SerializeField, SerializeScriptableObject] public AnimacioPerCodi idle;
+    [SerializeField, SerializeScriptableObject] public AnimacioPerCodi onPointerEnter;
+    [SerializeField, SerializeScriptableObject] public AnimacioPerCodi apuntat;
+    [SerializeField, SerializeScriptableObject] public AnimacioPerCodi onPointerDown;
+    [SerializeField, SerializeScriptableObject] public AnimacioPerCodi onPointerUp;
+    [SerializeField, SerializeScriptableObject] public AnimacioPerCodi onPointerExit;
+    [SerializeField, SerializeScriptableObject] public AnimacioPerCodi onDestroyOrDisable;
+
+
+
+
+
 
     bool destroyingOrdisabling = false;
 
-    /// <summary>
-    /// </summary>
-    /// <param name="component"></param>
-    /// <returns>Corrutine Idle</returns>
+
     public Coroutine OnEnabled(Component component) 
     {
         destroyingOrdisabling = false;
 
         return component.Animacio_LoopDespres(onEnabled, this.idle);
     }
-    /// <summary>
-    /// </summary>
-    /// <param name="component"></param>
-    /// <param name="coroutine"></param>
-    /// <returns>Corrutine apuntat</returns>
     public Coroutine OnPointerEnter(Component component, Coroutine coroutine)
     {
         if (destroyingOrdisabling)
@@ -40,13 +37,6 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
 
         return component.StopAnterior_Animacio_LoopDespres(onPointerEnter, idle, coroutine, apuntat);
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="component"></param>
-    /// <param name="coroutine"></param>
-    /// <returns>Corrutine apuntat</returns>
     public Coroutine OnPointerDown(Component component, Coroutine coroutine)
     {
         if (destroyingOrdisabling)
@@ -58,14 +48,6 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
         }
         else return component.StopAnterior_Animacio(onPointerDown, apuntat, coroutine);
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="component"></param>
-    /// <param name="coroutine"></param>
-    /// <param name="destroy"></param>
-    /// <param name="disable"></param>
-    /// <returns>Corrutine Apuntat</returns>
     public Coroutine OnPointerUp(Component component, Coroutine coroutine, bool destroy = false, bool disable = false)
     {
         if (destroyingOrdisabling)
@@ -84,12 +66,6 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
             else  return component.Animacio_LoopDespres(onPointerUp, apuntat);
         }
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="component"></param>
-    /// <param name="coroutine"></param>
-    /// <returns>Corrutine Idle</returns>
     public Coroutine OnPointerExit(Component component, Coroutine coroutine)
     {
         if (destroyingOrdisabling)
@@ -137,14 +113,15 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
 
         if (performDisable)
         {
-            if (onDestroyOrDisable && onDestroyOrDisable.TeAnimacions) XS_Coroutine.StartCoroutine_Ending(onDestroyOrDisable.Temps, Disable);
-            else Disable();
+            //if (onDestroyOrDisable && onDestroyOrDisable.TeAnimacions) XS_Utils.XS_Coroutine.StartCoroutine_Ending(onDestroyOrDisable.Temps, Disable);
+            if (onDestroyOrDisable && onDestroyOrDisable.TeAnimacions) XS_Utils.XS_Coroutine.StartCoroutine_Ending(onDestroyOrDisable.Temps, Disable, component);
+            else Disable(component);
         }
 
         return null;
 
-        void Disable() => component.gameObject.SetActive(false);
     }
+    void Disable(Component component) => component.gameObject.SetActive(false);
 
 
 
@@ -152,14 +129,14 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
 
     Coroutine LoopPlayDelayed(Component component, float temps)
     {
-        Coroutine corrutineLoop = XS_Coroutine.StartCoroutine_Ending(temps, LoopAfter);
+        Coroutine corrutineLoop = XS_Utils.XS_Coroutine.StartCoroutine_Ending(temps, LoopAfter);
 
         void LoopAfter() => apuntat.Play(component);
         return corrutineLoop;
     }
     Coroutine IdlePlayDelayed(Component component, float temps)
     {
-        Coroutine corrutineLoop = XS_Coroutine.StartCoroutine_Ending(temps, IdleAfter);
+        Coroutine corrutineLoop = XS_Utils.XS_Coroutine.StartCoroutine_Ending(temps, IdleAfter);
 
         void IdleAfter() => idle.Play(component);
         return corrutineLoop;
@@ -167,10 +144,57 @@ public class AnimacioPerCodi_GameObject : ScriptableObject
     Coroutine CorrutineStop(Coroutine corrutineLoop)
     {
         if (corrutineLoop != null)
-            XS_Coroutine.StopCoroutine(corrutineLoop);
+            XS_Utils.XS_Coroutine.StopCoroutine(corrutineLoop);
 
         return null;
     }
 
 
+
+
+
+
+    
+    /*
+    
+    
+    [Button("Add")] void AddOnEnabled() => onEnabled = Animacio_Inspector_Addings.AddAnimacioPerCodi("onEnabled", this, onEnabled);
+    [Button("Remove")] void RemoveOnEnabled() => onEnabled = Animacio_Inspector_Addings.AddAnimacioPerCodi("onEnabled", this, onEnabled);
+
+    
+    
+    [SerializeField, HorizontalGroup("idle", width: 70), Button(Name = "Add"), ShowIf("@this.idle == null")] void Addidle() => idle = Animacio_Inspector_Addings.AddAnimacioPerCodi("idle", this, idle);
+    [SerializeField, HorizontalGroup("idle", width: 70), Button(Name = "Remove"), ShowIf("@this.idle != null")] void Removeidle() => idle = Animacio_Inspector_Addings.AddAnimacioPerCodi("idle", this, idle);
+
+
+
+    [SerializeField, HorizontalGroup("onPointerEnter", width: 70), Button(Name = "Add"), ShowIf("@this.onPointerEnter == null")] void AddonPointerEnter() => onPointerEnter = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerEnter", this, onPointerEnter);
+    [SerializeField, HorizontalGroup("onPointerEnter", width: 70), Button(Name = "Remove"), ShowIf("@this.onPointerEnter != null")] void RemoveonPointerEnter() => onPointerEnter = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerEnter", this, onPointerEnter);
+
+
+
+    [SerializeField, HorizontalGroup("apuntat", width: 70), Button(Name = "Add"), ShowIf("@this.apuntat == null")] void Addapuntat() => apuntat = Animacio_Inspector_Addings.AddAnimacioPerCodi("apuntat", this, apuntat);
+    [SerializeField, HorizontalGroup("apuntat", width: 70), Button(Name = "Remove"), ShowIf("@this.apuntat != null")] void Removeapuntat() => apuntat = Animacio_Inspector_Addings.AddAnimacioPerCodi("apuntat", this, apuntat);
+
+
+
+    [SerializeField, HorizontalGroup("onPointerDown", width: 70), Button(Name = "Add"), ShowIf("@this.onPointerDown == null")] void AddonPointerDown() => onPointerDown = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerDown", this, onPointerDown);
+    [SerializeField, HorizontalGroup("onPointerDown", width: 70), Button(Name = "Remove"), ShowIf("@this.onPointerDown != null")] void RemoveonPointerDown() => onPointerDown = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerDown", this, onPointerDown);
+
+
+
+    [SerializeField, HorizontalGroup("onPointerUp", width: 70), Button(Name = "Add"), ShowIf("@this.onPointerUp == null")] void AddonPointerUp() => onPointerUp = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerUp", this, onPointerUp);
+    [SerializeField, HorizontalGroup("onPointerUp", width: 70), Button(Name = "Remove"), ShowIf("@this.onPointerUp != null")] void RemoveonPointerUp() => onPointerUp = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerUp", this, onPointerUp);
+
+
+
+    [SerializeField, HorizontalGroup("onPointerExit", width: 70), Button(Name = "Add"), ShowIf("@this.onPointerExit == null")] void AddonPointerExit() => onPointerExit = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerExit", this, onPointerExit);
+    [SerializeField, HorizontalGroup("onPointerExit", width: 70), Button(Name = "Remove"), ShowIf("@this.onPointerExit != null")] void RemoveonPointerExit() => onPointerExit = Animacio_Inspector_Addings.AddAnimacioPerCodi("onPointerExit", this, onPointerExit);
+
+
+
+    [SerializeField, HorizontalGroup("onDestroyOrDisable", width: 70), Button(Name = "Add"), ShowIf("@this.onDestroyOrDisable == null")] void AddonDestroyOrDisable() => onDestroyOrDisable = Animacio_Inspector_Addings.AddAnimacioPerCodi("onDestroyOrDisable", this, onDestroyOrDisable);
+    [SerializeField, HorizontalGroup("onDestroyOrDisable", width: 70), Button(Name = "Remove"), ShowIf("@this.onDestroyOrDisable != null")] void RemoveonDestroyOrDisable() => onDestroyOrDisable = Animacio_Inspector_Addings.AddAnimacioPerCodi("onDestroyOrDisable", this, onDestroyOrDisable);
+
+    */
 }

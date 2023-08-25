@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(AnimacioPerCodi_Slider))]
+//[CustomEditor(typeof(AnimacioPerCodi_Slider))]
 public class AnimacioPerCodi_Slider_Inspector : Editor
 {
+    /*
     SerializedProperty onEnter;
     SerializedProperty onDown;
     SerializedProperty loop;
@@ -47,4 +48,5 @@ public class AnimacioPerCodi_Slider_Inspector : Editor
         onExit.objectReferenceValue = Animacio_Inspector_Addings.AddAnimacioPerCodi("onExit", target, onExit);
     }
     private void OnDisable() => AssetDatabase.SaveAssetIfDirty(target);
+    */
 }

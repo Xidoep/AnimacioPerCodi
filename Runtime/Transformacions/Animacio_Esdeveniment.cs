@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static Animacio_Esdeveniment;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_Esdeveniment : Animacio
 {
-    [SerializeField] string nom = "Esdeveniment";
     public Animacio_Esdeveniment() { }
     public Animacio_Esdeveniment(UnityEvent esdeveniment, Moment moment = Moment.final)
     {
@@ -24,8 +21,8 @@ public class Animacio_Esdeveniment : Animacio
     public enum Moment { inici, final}
 
     [SerializeField] UnityEvent esdeveniment;
+    [SerializeField, HideLabel] Moment moment;
     Action action;
-    [SerializeField] Moment moment;
 
 
 

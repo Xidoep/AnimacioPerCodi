@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_RectEscala : Animacio
 {
-    [SerializeField] string nom = "Rect escala";
     public Animacio_RectEscala() { }
     public Animacio_RectEscala(Vector3 inici, Vector3 final, bool dinamic = false)
     {
@@ -15,12 +13,10 @@ public class Animacio_RectEscala : Animacio
         this.dinamic = dinamic;
     }
 
-    [SerializeField] protected AnimationCurve corba = new AnimationCurve();
-    [Space(10)]
-    [SerializeField] Vector2 inici;
-    [SerializeField] Vector2 final;
-    [Space(10)]
-    [SerializeField] bool dinamic;
+    [Title("Rect escala", horizontalLine: false), SerializeField, HideLabel] protected AnimationCurve corba = new AnimationCurve();
+    [SerializeField, HorizontalGroup("1"), LabelWidth(35), HideIf("@this.dinamic == true")] Vector2 inici;
+    [SerializeField, HorizontalGroup("1", width: 40), ToggleLeft, LabelText("din")] bool dinamic;
+    [SerializeField, HorizontalGroup("2", marginRight: 43), LabelWidth(35)] Vector2 final;
 
     //inici
     Vector2 inicidin = Vector2.zero;

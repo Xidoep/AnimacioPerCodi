@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
@@ -17,12 +15,11 @@ public class Animacio_Posicio : Animacio
         this.dinamic = dinamic;
     }
 
-    [BoxGroup("Posicio"), SerializeField, HideLabel] protected AnimationCurve corba = new AnimationCurve();
-    [BoxGroup("Posicio"), SerializeField, LabelWidth(34), HideIf("@this.dinamic == true")] Vector3 inici;
-    [BoxGroup("Posicio"), SerializeField, LabelWidth(34), HorizontalGroup("Posicio/p")] Vector3 final;
-    [Space(10)]
-    [BoxGroup("Posicio"), SerializeField, LabelWidth(34)] bool local;
-    [BoxGroup("Posicio"), SerializeField, HorizontalGroup("Posicio/p", width: 40), ToggleLeft, LabelText("Din.")] bool dinamic;
+    [Title("Posicio", horizontalLine: false), SerializeField, HideLabel] protected AnimationCurve corba = new AnimationCurve();
+    [SerializeField, HorizontalGroup("1"), LabelWidth(35), HideIf("@this.dinamic == true")] Vector3 inici;
+    [SerializeField, HorizontalGroup("1", width: 40), ToggleLeft, LabelText("din")] bool dinamic;
+    [SerializeField, HorizontalGroup("2", marginRight: 43), LabelWidth(35)] Vector3 final;
+    [SerializeField, ToggleLeft] bool local;
 
 
     public override void Transformar(Component objectiu, float frame)
@@ -47,5 +44,6 @@ public class Animacio_Posicio : Animacio
             objectiu.transform.position = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
         else objectiu.transform.localPosition = Vector3.LerpUnclamped(inici, final, corba.Evaluate(frame));
     }
+
 }
 

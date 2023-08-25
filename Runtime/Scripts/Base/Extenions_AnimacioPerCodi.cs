@@ -5,22 +5,22 @@ using XS_Utils;
 
 public static class Extenions_AnimacioPerCodi
 {
-    public static void SetupAndPlay(this Component component, Lector lector, AnimacioPerCodi animacioPerCodi)
+    public static void SetupAndPlay(this Component component, Lector lector, AnimacioPerCodi animacioPerCodi, bool unescaled)
     {
-        lector.Setup(animacioPerCodi.Animacions, component, animacioPerCodi.Temps, animacioPerCodi.Transicio);
+        lector.Setup(animacioPerCodi.Animacions, component, animacioPerCodi.Temps, animacioPerCodi.Transicio, unescaled);
         lector.Play();
     }
-    public static void SetupAndPlay(this Component component, Lector lector, Animacio animacio, float temps, float delay, Transicio transicio)
+    public static void SetupAndPlay(this Component component, Lector lector, Animacio animacio, float temps, float delay, Transicio transicio, bool unescaled)
     {
-        lector.Setup(new Animacio[] { animacio }, component, temps, delay, transicio);
+        lector.Setup(new Animacio[] { animacio }, component, temps, delay, transicio, unescaled);
         lector.Play();
     }
-    public static Lector SetupAndPlay(this Component component, Lector lector, Animacio[] animacions, float temps, float delay, Transicio transicio)
+    public static Lector SetupAndPlay(this Component component, Lector lector, Animacio[] animacions, float temps, float delay, Transicio transicio, bool unescaled)
     {
         if (animacions == null || animacions.Length == 0)
             return lector;
 
-        lector.Setup(animacions, component, temps, delay, transicio);
+        lector.Setup(animacions, component, temps, delay, transicio, unescaled);
         lector.Play();
 
         return lector;

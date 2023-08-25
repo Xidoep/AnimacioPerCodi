@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_BlendShape : Animacio
 {
-    [SerializeField] string nom = "BlendShape";
     public Animacio_BlendShape() { }
     public Animacio_BlendShape(int index)
     {
@@ -13,9 +11,8 @@ public class Animacio_BlendShape : Animacio
         this.index = index;
     }
 
-    [SerializeField] protected AnimationCurve corba = new AnimationCurve();
-    [Space(10)]
-    [SerializeField] int index;
+    [SerializeField, HorizontalGroup("1", Title = "Blend Shape", Width = 110, Gap = 10), LabelWidth(75)] int index;
+    [SerializeField, HorizontalGroup("1", Title = "Blend Shape"), HideLabel] protected AnimationCurve corba = new AnimationCurve();
 
     public override void Transformar(Component objectiu, float frame)
     {

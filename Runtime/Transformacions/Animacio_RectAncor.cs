@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_RectAncor : Animacio
 {
-    [SerializeField] string nom = "Rect ancor";
     public Animacio_RectAncor() { }
     public Animacio_RectAncor(Vector3 iniciMin, Vector3 iniciMax, Vector3 finalMin, Vector3 finalMax, bool dinamic)
     {
@@ -20,21 +18,22 @@ public class Animacio_RectAncor : Animacio
         this.dinamic = dinamic;
     }
 
-    [SerializeField] protected AnimationCurve min = new AnimationCurve();
-    [SerializeField] protected AnimationCurve max = new AnimationCurve();
-    [Space(10)]
-    [SerializeField] Vector2 iniciMin;
-    [SerializeField] Vector2 iniciMax;
-    [Space(10)]
-    [SerializeField] Vector2 finalMin;
-    [SerializeField] Vector2 finalMax;
-    [Space(10)]
-    [SerializeField] bool dinamic;
+    [Title("Rect Ancor", horizontalLine: false)]
+    [SerializeField, LabelWidth(40)] protected AnimationCurve min = new AnimationCurve();
+    [SerializeField, LabelWidth(40)] protected AnimationCurve max = new AnimationCurve();
+
+    [HorizontalGroup("Split")]
+    [BoxGroup("Split/Left", GroupName = "Inici"), SerializeField, LabelText("Min"), LabelWidth(27), HideIf("@this.dinamic == true")] Vector2 iniciMin;
+    [BoxGroup("Split/Left", GroupName = "Inici"), SerializeField, LabelText("Max"), LabelWidth(27), HideIf("@this.dinamic == true")] Vector2 iniciMax;
+    [BoxGroup("Split/Right", GroupName = "Final"), SerializeField, LabelText("Min"), LabelWidth(27), HideLabel] Vector2 finalMin;
+    [BoxGroup("Split/Right", GroupName = "Final"), SerializeField, LabelText("Max"), LabelWidth(27), HideLabel] Vector2 finalMax;
+
+
+    [SerializeField, ToggleLeft] bool dinamic;
 
     //INTERN
     Vector2 iniciMinDin;
     Vector2 iniciMaxDin;
-    RectTransform rectTransform;
 
     public override void Transformar(Component objectiu, float frame)
     {

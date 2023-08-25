@@ -1,19 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_Gradient_Image : Animacio
 {
-    [SerializeField] string nom = "Gradient imatge";
     public Animacio_Gradient_Image() { }
     public Animacio_Gradient_Image(Gradient gradient)
     {
         this.gradient = gradient;
     }
 
-    [SerializeField] Gradient gradient;
+    [Title("Gradient Image", horizontalLine: false)]
+    [SerializeField, HideLabel] Gradient gradient;
 
     public override void Transformar(Component objectiu, float frame)
     {

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_RectPosicio : Animacio
 {
-    [SerializeField] string nom = "Rect posicio";
     public Animacio_RectPosicio() { }
     public Animacio_RectPosicio(Vector2 inici, Vector2 final, AnimationCurve corba = null, bool dinamic = false)
     {
@@ -14,17 +12,11 @@ public class Animacio_RectPosicio : Animacio
         this.final = final;
         this.dinamic = dinamic;
     }
-    public void SetInici(Vector2 inici)
-    {
-        this.inici = inici;
-    }
 
-    [SerializeField] protected AnimationCurve corba = new AnimationCurve();
-    [Space(10)]
-    [SerializeField] Vector2 inici;
-    [SerializeField] Vector2 final;
-    [Space(10)]
-    [SerializeField] bool dinamic;
+    [Title("Rect posicio", horizontalLine: false), SerializeField, HideLabel] protected AnimationCurve corba = new AnimationCurve();
+    [SerializeField, HorizontalGroup("1"), LabelWidth(35), HideIf("@this.dinamic == true")] Vector2 inici;
+    [SerializeField, HorizontalGroup("1", width: 40), ToggleLeft, LabelText("din")] bool dinamic;
+    [SerializeField, HorizontalGroup("2", marginRight: 43), LabelWidth(35)] Vector2 final;
 
     //INTERN
     Vector2 inicidin = Vector2.zero;

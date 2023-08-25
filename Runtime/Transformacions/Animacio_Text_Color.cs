@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_Text_Color : Animacio
 {
-    [SerializeField] string nom = "Text color";
     public Animacio_Text_Color() { }
     public Animacio_Text_Color(Color inici, Color final, bool dinamic = false)
     {
@@ -16,12 +14,10 @@ public class Animacio_Text_Color : Animacio
         this.dinamic = dinamic;
     }
 
-    [SerializeField] protected AnimationCurve corba = new AnimationCurve();
-    [Space(10)]
-    [SerializeField] Color inici;
-    [SerializeField] Color final;
-    [Space(10)]
-    [SerializeField] bool dinamic;
+    [Title("Text color", horizontalLine: false), SerializeField, HideLabel] protected AnimationCurve corba = new AnimationCurve();
+    [SerializeField, HorizontalGroup("1"), LabelWidth(45), HideIf("@this.dinamic == true")] Color inici;
+    [SerializeField, HorizontalGroup("1", width: 40), LabelText("din"), ToggleLeft] bool dinamic;
+    [SerializeField, HorizontalGroup("2", marginRight: 43), LabelWidth(45)] Color final;
 
     Color iniciDin;
 

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class Animacio_RotacioVector : Animacio
@@ -15,15 +14,13 @@ public class Animacio_RotacioVector : Animacio
         this.final = final;
     }
 
-    [SerializeField] protected AnimationCurve corba = new AnimationCurve();
-    [Space(10)]
-    [SerializeField] Vector3 eix;
-    [SerializeField] float inici, final;
+    [Title("Rotacio a voltat de vector", horizontalLine: false), SerializeField, HideLabel] protected AnimationCurve corba = new AnimationCurve();
+    [SerializeField, LabelWidth(40)] Vector3 eix;
+    [SerializeField, HorizontalGroup("1"), LabelWidth(30)] float inici, final;
 
     public override void Transformar(Component objectiu, float frame)
     {
         float angle = Mathf.LerpUnclamped(inici, final, corba.Evaluate(frame));
         ((Transform)objectiu).rotation = Quaternion.AngleAxis(angle, eix);
     }
-
 }

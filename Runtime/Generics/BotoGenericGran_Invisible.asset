@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transicio: 1
   temps: 1.5
+  delay: 0
   animacions:
   - rid: 2210365020816801795
   references:
@@ -74,6 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transicio: 0
   temps: 0.5
+  delay: 0
   animacions:
   - rid: 2210365020816801803
   - rid: 2210365020816801804
@@ -165,7 +167,6 @@ MonoBehaviour:
     - rid: 2210365024886849537
       type: {class: Animacio_So, ns: , asm: AnimacioPerCodi}
       data:
-        nom: So
         so: {fileID: 11400000, guid: 50f36f7a3a835f441bb9c9f072726e22, type: 2}
         aPosicio: 0
         delay: 0
@@ -183,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transicio: 0
   temps: 0.5
+  delay: 0
   animacions:
   - rid: 2210365020816801797
   - rid: 2210365020816801798
@@ -319,7 +321,6 @@ MonoBehaviour:
     - rid: 2210365024886849536
       type: {class: Animacio_So, ns: , asm: AnimacioPerCodi}
       data:
-        nom: So
         so: {fileID: 11400000, guid: b62daf6c64bd0e2409c3481bb495b35e, type: 2}
         aPosicio: 0
         delay: 0
@@ -337,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transicio: 0
   temps: 0.5
+  delay: 0
   animacions:
   - rid: 2210365020816801800
   - rid: 2210365020816801801
@@ -454,7 +456,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afa75ff91118ec44b227347a22e0387, type: 3}
   m_Name: BotoGenericGran_Invisible
   m_EditorClassIdentifier: 
+  onEnable: {fileID: 0}
   onClick: {fileID: -1890057176192814004}
   onEnter: {fileID: -6819565934117131839}
   onExit: {fileID: -1323997722522260603}
   loop: {fileID: -8818412320019783560}
+  onDestroyOrDisable: {fileID: 0}
