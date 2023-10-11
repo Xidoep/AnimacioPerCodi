@@ -16,6 +16,17 @@ public class Lector : MonoBehaviour
 
         return this;
     }
+    public virtual Lector Setup(System.Action<Component, float> animar, Component component, float temps, float delay, Transicio transicio, bool unscaled)
+    {
+        this.component = component;
+        this.animacions = animar;
+        this.temps = temps;
+        this.delay = delay;
+        this.unscaled = unscaled;
+        SetTransicio(transicio);
+
+        return this;
+    }
     //public void Add(System.Action<Component, float> animar) => this.animar += animar;
     public virtual Lector Setup(Animacio[] animacions, Component component, float temps, Transicio transicio, bool unscaled)
     {

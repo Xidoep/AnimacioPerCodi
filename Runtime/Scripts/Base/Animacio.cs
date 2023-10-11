@@ -19,7 +19,12 @@ public class Animacio
             lector.Setup(Transformar, component, temps, transicio, unescaled).Play();
         else component.gameObject.AddComponent<Lector>().Setup(Transformar,component, temps, transicio, unescaled).Play();
     }
-
+    public void Play(Component component, float temps, float delay, Transicio transicio, bool unescaled)
+    {
+        if (lector)
+            lector.Setup(Transformar, component, temps, delay, transicio, unescaled).Play();
+        else component.gameObject.AddComponent<Lector>().Setup(Transformar, component, temps, delay, transicio, unescaled).Play();
+    }
 
     public void Continue(Transform transform) => transform.GetComponent<Lector>().Continue();
     public void Continue() => lector.Continue();
