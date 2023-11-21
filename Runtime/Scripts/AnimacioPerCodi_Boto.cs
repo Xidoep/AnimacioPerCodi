@@ -6,12 +6,12 @@ using XS_Utils;
 [CreateAssetMenu(menuName = "Xido Studio/AnimacioPerCodi/AnimacioBoto", fileName = "AnimacioBoto")]
 public class AnimacioPerCodi_Boto : ScriptableObject
 {
-    public AnimacioPerCodi onEnable;
-    public AnimacioPerCodi onClick;
-    public AnimacioPerCodi onEnter;
-    public AnimacioPerCodi onExit;
-    public AnimacioPerCodi loop;
-    public AnimacioPerCodi onDestroyOrDisable;
+    [SerializeScriptableObject] public AnimacioPerCodi onEnable;
+    [SerializeScriptableObject] public AnimacioPerCodi onClick;
+    [SerializeScriptableObject] public AnimacioPerCodi onEnter;
+    [SerializeScriptableObject] public AnimacioPerCodi onExit;
+    [SerializeScriptableObject] public AnimacioPerCodi loop;
+    [SerializeScriptableObject] public AnimacioPerCodi onDestroyOrDisable;
 
 
 

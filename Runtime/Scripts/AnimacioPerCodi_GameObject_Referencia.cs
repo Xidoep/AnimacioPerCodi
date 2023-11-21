@@ -11,11 +11,11 @@ public class AnimacioPerCodi_GameObject_Referencia : MonoBehaviour, IPointerEnte
     [SerializeField] Component component;
     [SerializeField, SerializeScriptableObject] AnimacioPerCodi_GameObject animacio;
 
-    [Apartat("Interaccions")]
+    [Title("Interaccions")]
     [SerializeField] bool interactuable = false;
     [SerializeField] OnClickAction onClick;
 
-    [Apartat("Pare")]
+    [Title("Pare")]
     [SerializeField] AnimacioPerCodi_GameObject_Referencia pare;
     [SerializeField] AnimacioPerCodi_Boto boto;
     bool registrat = false;
