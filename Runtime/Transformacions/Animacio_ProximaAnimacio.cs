@@ -13,7 +13,7 @@ public class Animacio_ProximaAnimacio : Animacio
         this.animacio = animacio;
     }
 
-    [SerializeField] AnimacioPerCodi animacio;
+    [SerializeField, SerializeScriptableObject] AnimacioPerCodi animacio;
 
     public override void Transformar(Component objectiu, float frame)
     {
