@@ -15,6 +15,7 @@ MonoBehaviour:
   transicio: 1
   temps: 1.5
   delay: 0
+  unscaled: 1
   animacions:
   - rid: 2210365020816801795
   references:
@@ -23,7 +24,6 @@ MonoBehaviour:
     - rid: 2210365020816801795
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
-        nom: Rotacio
         corba:
           serializedVersion: 2
           m_Curve:
@@ -58,9 +58,9 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         inici: {x: 0, y: 0, z: 3}
+        dinamic: 0
         final: {x: 0, y: 0, z: 7}
         local: 1
-        dinamic: 0
 --- !u!114 &-6819565934117131839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,9 +76,11 @@ MonoBehaviour:
   transicio: 0
   temps: 0.5
   delay: 0
+  unscaled: 1
   animacions:
   - rid: 2210365020816801803
   - rid: 2210365020816801804
+  - rid: 2210365020816801805
   - rid: 2210365024886849537
   references:
     version: 2
@@ -86,7 +88,6 @@ MonoBehaviour:
     - rid: 2210365020816801803
       type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
       data:
-        nom: Escala
         corba:
           serializedVersion: 2
           m_Curve:
@@ -130,12 +131,11 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         inici: {x: 1, y: 1, z: 1}
-        final: {x: 1.2, y: 1.2, z: 1.2}
         dinamic: 0
+        final: {x: 1.2, y: 1.2, z: 1.2}
     - rid: 2210365020816801804
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
-        nom: Rotacio
         corba:
           serializedVersion: 2
           m_Curve:
@@ -161,9 +161,42 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         inici: {x: 0, y: 0, z: 0}
+        dinamic: 0
         final: {x: 0, y: 0, z: 7}
         local: 1
-        dinamic: 0
+    - rid: 2210365020816801805
+      type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
+      data:
+        gradient:
+          serializedVersion: 2
+          key0: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 1}
+          key1: {r: 0.97588235, g: 0.97588235, b: 0.97588235, a: 1}
+          key2: {r: 1, g: 1, b: 1, a: 0}
+          key3: {r: 0, g: 0, b: 0, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 21010
+          ctime2: 65535
+          ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 0
+          atime3: 0
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_ColorSpace: -1
+          m_NumColorKeys: 3
+          m_NumAlphaKeys: 2
     - rid: 2210365024886849537
       type: {class: Animacio_So, ns: , asm: AnimacioPerCodi}
       data:
@@ -185,9 +218,11 @@ MonoBehaviour:
   transicio: 0
   temps: 0.5
   delay: 0
+  unscaled: 1
   animacions:
   - rid: 2210365020816801797
   - rid: 2210365020816801798
+  - rid: 2210365020816801799
   - rid: 2210365024886849536
   references:
     version: 2
@@ -195,7 +230,6 @@ MonoBehaviour:
     - rid: 2210365020816801797
       type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
       data:
-        nom: Escala
         corba:
           serializedVersion: 2
           m_Curve:
@@ -257,12 +291,11 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         inici: {x: 1.2, y: 1.2, z: 1.2}
-        final: {x: 1.6, y: 1.6, z: 1.6}
         dinamic: 0
+        final: {x: 1.6, y: 1.6, z: 1.6}
     - rid: 2210365020816801798
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
-        nom: Rotacio
         corba:
           serializedVersion: 2
           m_Curve:
@@ -315,9 +348,42 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         inici: {x: 0, y: 0, z: 7}
+        dinamic: 0
         final: {x: 0, y: 0, z: 12}
         local: 0
-        dinamic: 0
+    - rid: 2210365020816801799
+      type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
+      data:
+        gradient:
+          serializedVersion: 2
+          key0: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 1}
+          key1: {r: 1, g: 1, b: 0.5, a: 1}
+          key2: {r: 1, g: 1, b: 0.95134187, a: 1}
+          key3: {r: 1, g: 1, b: 1, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 8096
+          ctime2: 32768
+          ctime3: 65535
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 65535
+          atime3: 0
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_ColorSpace: -1
+          m_NumColorKeys: 4
+          m_NumAlphaKeys: 2
     - rid: 2210365024886849536
       type: {class: Animacio_So, ns: , asm: AnimacioPerCodi}
       data:
@@ -339,16 +405,17 @@ MonoBehaviour:
   transicio: 0
   temps: 0.5
   delay: 0
+  unscaled: 1
   animacions:
   - rid: 2210365020816801800
   - rid: 2210365020816801801
+  - rid: 2210365020816801802
   references:
     version: 2
     RefIds:
     - rid: 2210365020816801800
       type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
       data:
-        nom: Escala
         corba:
           serializedVersion: 2
           m_Curve:
@@ -392,12 +459,11 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         inici: {x: 1.2, y: 1.2, z: 1.2}
-        final: {x: 1, y: 1, z: 1}
         dinamic: 1
+        final: {x: 1, y: 1, z: 1}
     - rid: 2210365020816801801
       type: {class: Animacio_Rotacio, ns: , asm: AnimacioPerCodi}
       data:
-        nom: Rotacio
         corba:
           serializedVersion: 2
           m_Curve:
@@ -431,8 +497,8 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: -0
-            outSlope: -0
+            inSlope: 0
+            outSlope: 0
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.44113
@@ -441,9 +507,42 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         inici: {x: -0, y: 0, z: 6.9105296}
+        dinamic: 1
         final: {x: 0, y: 0, z: 0}
         local: 1
-        dinamic: 1
+    - rid: 2210365020816801802
+      type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
+      data:
+        gradient:
+          serializedVersion: 2
+          key0: {r: 1, g: 1, b: 1, a: 1}
+          key1: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 1}
+          key2: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 0}
+          key3: {r: 0, g: 0, b: 0, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 50308
+          ctime2: 65535
+          ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 0
+          atime3: 0
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_ColorSpace: -1
+          m_NumColorKeys: 3
+          m_NumAlphaKeys: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,7 +553,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3afa75ff91118ec44b227347a22e0387, type: 3}
-  m_Name: BotoGenericGran_Invisible
+  m_Name: BotoGenericGran
   m_EditorClassIdentifier: 
   onEnable: {fileID: 0}
   onClick: {fileID: -1890057176192814004}

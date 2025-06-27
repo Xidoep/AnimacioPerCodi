@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 835a9cc3a4d72a34d9b56c5ba1972774, type: 3}
-  m_Name: AnimacioTogglePetit
+  m_Name: AnimacioToggleGran
   m_EditorClassIdentifier: 
-  onEnter: {fileID: -6819565934117131839, guid: 66be45ff0dd71a645932e7055e095b5e, type: 2}
-  loop: {fileID: -8818412320019783560, guid: 66be45ff0dd71a645932e7055e095b5e, type: 2}
+  onEnter: {fileID: -6819565934117131839, guid: 2a5c255a53d1de247915709d45ae0b2f, type: 2}
+  loop: {fileID: -8818412320019783560, guid: 2a5c255a53d1de247915709d45ae0b2f, type: 2}
   onClick: {fileID: 5523055378512863617}
-  onExit: {fileID: -1323997722522260603, guid: 66be45ff0dd71a645932e7055e095b5e, type: 2}
+  onExit: {fileID: -1323997722522260603, guid: 2a5c255a53d1de247915709d45ae0b2f, type: 2}
 --- !u!114 &5523055378512863617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +30,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transicio: 0
   temps: 0.5
+  delay: 0
+  unscaled: 1
   animacions:
   - rid: 6828013860741971968
   - rid: 6828013860741971971
@@ -39,7 +41,6 @@ MonoBehaviour:
     - rid: 6828013860741971968
       type: {class: Animacio_Escala, ns: , asm: AnimacioPerCodi}
       data:
-        nom: Escala
         corba:
           serializedVersion: 2
           m_Curve:
@@ -83,12 +84,11 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         inici: {x: 1, y: 1, z: 1}
-        final: {x: 2, y: 2, z: 2}
         dinamic: 0
+        final: {x: 2, y: 2, z: 2}
     - rid: 6828013860741971971
       type: {class: Animacio_Gradient_Image, ns: , asm: AnimacioPerCodi}
       data:
-        nom: Gradient imatge
         gradient:
           serializedVersion: 2
           key0: {r: 0.69803923, g: 0.7490196, b: 0.8, a: 1}
@@ -116,5 +116,6 @@ MonoBehaviour:
           atime6: 0
           atime7: 0
           m_Mode: 0
+          m_ColorSpace: -1
           m_NumColorKeys: 3
           m_NumAlphaKeys: 2
